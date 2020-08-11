@@ -5,6 +5,7 @@ RUN : \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        dumb-init \
         gcc \
         g++ \
         git \
@@ -38,3 +39,5 @@ RUN : \
     && rm -rf ~/.local && virtualenv /tmpvenv && rm -rf /tmpvenv \
     && rm /tmp/virtualenv.pyz \
     && :
+
+ENTRYPOINT ["dumb-init", "--"]
