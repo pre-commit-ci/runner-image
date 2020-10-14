@@ -1,0 +1,17 @@
+name: main
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - run: echo "TAG=$(bin/set-tag)" >> "$GITHUB_ENV"
+      name: set tag
+    - run: podman build --pull-always --tag "$TAG" .
+    - run: bin/test "$TAG"
