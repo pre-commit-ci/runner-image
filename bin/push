@@ -20,10 +20,11 @@ def _push(
         input=password.encode(),
         check=True,
     )
-    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag}'))
+
     tag_image, _, _ = tag.partition(':')
-    tag_latest = f'{tag_image}:latest'
-    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag_latest}'))
+    for target_tag in (f'{prefix}/{tag}', f'{prefix}/{tag_image}:latest'):
+        subprocess.check_call(('docker', 'tag', tag, target_tag))
+        subprocess.check_call(('docker', 'push', target_tag))
 
 
 def main() -> int:
