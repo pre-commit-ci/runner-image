@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import subprocess
+
+
+def _push(
+        *,
+        tag: str,
+        hostname: str,
+        username: str,
+        password: str,
+        prefix: str,
+) -> None:
+    subprocess.run(
+        (
+            'docker', 'login', '--username', username, '--password-stdin',
+            hostname,
+        ),
+        input=password.encode(),
+        check=True,
+    )
+    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag}'))
+    tag_image, _, _ = tag.partition(':')
+    tag_latest = f'{tag_image}:latest'
+    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag_latest}'))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('tag')
+    args = parser.parse_args()
+
+    _push(
+        tag=args.tag,
+        hostname='docker.io',
+        username='precommitci',
+        password=os.environ['DOCKERHUB_PASSWORD'],
+        prefix='precommitci',
+    )
+
+    _push(
+        tag=args.tag,
+        hostname='https://docker.pkg.github.com',
+        username='github-actions[bot]',
+        password=os.environ['GITHUB_TOKEN'],
+        prefix='docker.pkg.github.com/pre-commit-ci/runner-image',
+    )
+
+    return 0
+
+
+if __name__ == '__main__':
+    exit(main())

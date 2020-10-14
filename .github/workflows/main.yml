@@ -15,3 +15,8 @@ jobs:
       name: set tag
     - run: podman build --pull-always --tag "$TAG" .
     - run: bin/test "$TAG"
+    - run: bin/push "$TAG"
+      env:
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: github.event_name != 'pull_request'

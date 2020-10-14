@@ -6,7 +6,7 @@ import subprocess
 def main() -> int:
     rev_parse = ('git', 'rev-parse', '--short', 'HEAD')
     revision = subprocess.check_output(rev_parse, text=True).strip()
-    print(f'precommitci/runner-image:{datetime.date.today()}-{revision}')
+    print(f'runner-image:{datetime.date.today()}-{revision}')
     return 0
 
 
