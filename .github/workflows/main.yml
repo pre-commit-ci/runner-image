@@ -13,7 +13,7 @@ jobs:
     - uses: actions/setup-python@v2
     - run: echo "TAG=$(bin/set-tag)" >> "$GITHUB_ENV"
       name: set tag
-    - run: podman build --pull-always --tag "$TAG" .
+    - run: docker build --pull --tag "$TAG" .
     - run: bin/test "$TAG"
     - run: bin/push "$TAG"
       env:

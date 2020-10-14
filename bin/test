@@ -33,7 +33,7 @@ def git_dir() -> Generator[str, None, None]:
 
 def test_can_build_python_tools(tag: str, pc: str) -> None:
     subprocess.check_call((
-        'podman', 'run', '--rm',
+        'docker', 'run', '--rm',
         '--volume', f'{os.getcwd()}:/git:ro',
         '--volume', f'{pc}:/pc:rw',
         '--workdir', '/git',
@@ -43,7 +43,7 @@ def test_can_build_python_tools(tag: str, pc: str) -> None:
 
 def test_can_run_built_python_tools(tag: str, pc: str) -> None:
     subprocess.check_call((
-        'podman', 'run', '--rm',
+        'docker', 'run', '--rm',
         '--volume', f'{os.getcwd()}:/git:rw',
         '--volume', f'{pc}:/pc:ro',
         '--workdir', '/git',
