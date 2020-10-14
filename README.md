@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/pre-commit-ci/runner-image/workflows/main/badge.svg)](https://github.com/pre-commit-ci/runner-image/actions)
+
 runner-image
 ============
 
