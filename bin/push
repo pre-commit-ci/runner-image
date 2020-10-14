@@ -14,16 +14,16 @@ def _push(
 ) -> None:
     subprocess.run(
         (
-            'docker', 'login', '--username', username, '--password-stdin',
+            'podman', 'login', '--username', username, '--password-stdin',
             hostname,
         ),
         input=password.encode(),
         check=True,
     )
-    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag}'))
+    subprocess.check_call(('podman', 'push', tag, f'{prefix}/{tag}'))
     tag_image, _, _ = tag.partition(':')
     tag_latest = f'{tag_image}:latest'
-    subprocess.check_call(('docker', 'push', tag, f'{prefix}/{tag_latest}'))
+    subprocess.check_call(('podman', 'push', tag, f'{prefix}/{tag_latest}'))
 
 
 def main() -> int:
