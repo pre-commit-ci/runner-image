@@ -42,10 +42,10 @@ def main() -> int:
 
     _push(
         tag=args.tag,
-        hostname='https://docker.pkg.github.com',
+        hostname='ghcr.io',
         username='github-actions[bot]',
         password=os.environ['GITHUB_TOKEN'],
-        prefix='docker.pkg.github.com/pre-commit-ci/runner-image',
+        prefix='ghcr.io/pre-commit-ci',
     )
 
     return 0
