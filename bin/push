@@ -36,15 +36,15 @@ def main() -> int:
         tag=args.tag,
         hostname='docker.io',
         username='precommitci',
-        password=os.environ['DOCKERHUB_PASSWORD'],
+        password=os.environ['DOCKERHUB_TOKEN'],
         prefix='precommitci',
     )
 
     _push(
         tag=args.tag,
         hostname='ghcr.io',
-        username='github-actions[bot]',
-        password=os.environ['GITHUB_TOKEN'],
+        username='pre-commit-ci-bot',
+        password=os.environ['GHCR_TOKEN'],
         prefix='ghcr.io/pre-commit-ci',
     )
 

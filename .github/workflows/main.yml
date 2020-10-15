@@ -17,6 +17,6 @@ jobs:
     - run: bin/test "$TAG"
     - run: bin/push "$TAG"
       env:
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
       if: github.event_name != 'pull_request'
