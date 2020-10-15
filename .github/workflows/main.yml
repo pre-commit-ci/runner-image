@@ -14,7 +14,7 @@ jobs:
     - run: echo "TAG=$(bin/set-tag)" >> "$GITHUB_ENV"
       name: set tag
     - run: docker build --pull --tag "$TAG" .
-    - run: true bin/test "$TAG"
+    - run: bin/test "$TAG"
     - run: bin/push "$TAG"
       env:
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
