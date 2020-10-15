@@ -11,9 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
-    - run: echo "TAG=$(bin/set-tag)" >> "$GITHUB_ENV"
-      name: set tag
-    - run: docker build --pull --tag "$TAG" .
+    - run: bin/set-tag >> "$GITHUB_ENV"
+    - run: bin/build "$TAG"
     - run: bin/test "$TAG"
     - run: bin/push "$TAG"
       env:
