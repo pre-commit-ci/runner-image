@@ -14,6 +14,7 @@ RUN : \
         python2-dev \
         python3-dev \
         python3-distutils \
+        ruby-dev \
         software-properties-common \
     && add-apt-repository -y ppa:deadsnakes \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
