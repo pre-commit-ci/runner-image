@@ -27,6 +27,16 @@ def test_can_run_built_python_tools(tag: str, pc: str) -> None:
     ))
 
 
+def test_considers_system_ruby_suitable(tag: str) -> None:
+    output = subprocess.check_output((
+        'docker', 'run', '--rm',
+        tag, 'python3', '-c',
+        'import pre_commit.languages.ruby;'
+        'print(pre_commit.languages.ruby.get_default_version())',
+    ))
+    assert output == b'system\n', output
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('tag')
@@ -37,6 +47,8 @@ def main() -> int:
         test_can_build_python_tools(args.tag, pc)
         print(' can run built python tools '.center(79, '='), flush=True)
         test_can_run_built_python_tools(args.tag, pc)
+        print(' considers system ruby suitable '.center(79, '='), flush=True)
+        test_considers_system_ruby_suitable(args.tag)
 
     return 0
 
