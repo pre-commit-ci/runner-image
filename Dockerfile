@@ -10,7 +10,9 @@ RUN : \
         g++ \
         git \
         gnupg2 \
+        libffi-dev \
         libyaml-dev \
+        make \
         python2-dev \
         python3-dev \
         python3-distutils \
