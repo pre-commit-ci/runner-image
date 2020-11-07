@@ -53,4 +53,15 @@ RUN : \
     && rm /tmp/virtualenv.pyz \
     && :
 
+ARG GO=1.15.4
+ARG GO_SHA256=eb61005f0b932c93b424a3a4eaa67d72196c79129d9a3ea8578047683e2c80d5
+ENV PATH=/opt/go/bin:$PATH
+RUN : \
+    && mkdir -p /opt \
+    && curl --location --silent --output go.tgz https://golang.org/dl/go${GO}.linux-amd64.tar.gz \
+    && echo "${GO_SHA256}  go.tgz" | sha256sum --check \
+    && tar -C /opt -xf go.tgz \
+    && rm -rf /opt/go/{doc,src,test} \
+    && rm go.tgz
+
 ENTRYPOINT ["dumb-init", "--"]
