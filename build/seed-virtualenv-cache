@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+import os.path
+import re
+import shutil
+import subprocess
+from typing import Set
+
+PYTHON_RE = re.compile(r'^python(\d+(\.\d+)?)?$')
+
+
+def main() -> int:
+    pythons: Set[str] = set()
+    for path_entry in os.environ['PATH'].split(os.pathsep):
+        if os.path.isdir(path_entry):
+            for exe in os.listdir(path_entry):
+                full_exe = os.path.join(path_entry, exe)
+                if (
+                        PYTHON_RE.match(exe) and
+                        os.path.isfile(full_exe) and
+                        os.access(full_exe, os.X_OK)
+                ):
+                    pythons.update((exe, full_exe))
+
+    for python in sorted(pythons):
+        print(f' {python} '.center(79, '='), flush=True)
+        subprocess.check_call(('virtualenv', '/tmp/venv', '-p', python))
+        shutil.rmtree('/tmp/venv')
+    return 0
+
+
+if __name__ == '__main__':
+    exit(main())
