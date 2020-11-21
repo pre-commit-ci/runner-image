@@ -48,10 +48,16 @@ RUN : \
         --disable-pip-version-check \
         --no-cache-dir \
         --requirement /tmp/requirements.txt \
-    # ensure the virtualenv appdata cache is populated
-    && rm -rf ~/.local && virtualenv /tmpvenv && rm -rf /tmpvenv \
-    && rm /tmp/virtualenv.pyz \
+    && rm -rf ~/.local /tmp/virtualenv.pyz \
     && :
+
+# ensure virtualenv appdata cache is populated
+ENV \
+    VIRTUALENV_OVERRIDE_APP_DATA=/opt/virtualenv/cache \
+    VIRTUALENV_SYMLINK_APP_DATA=1
+COPY build/seed-virtualenv-cache /tmp/seed-virtualenv-cache
+RUN /tmp/seed-virtualenv-cache
+ENV VIRTUALENV_READ_ONLY_APP_DATA=1
 
 ARG GO=1.15.4
 ARG GO_SHA256=eb61005f0b932c93b424a3a4eaa67d72196c79129d9a3ea8578047683e2c80d5
