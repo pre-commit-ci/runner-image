@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+import argparse
+import contextlib
+import shlex
+import subprocess
+from typing import Generator
+
+
+@contextlib.contextmanager
+def _console() -> Generator[None, None, None]:
+    print('```console')
+    try:
+        yield
+    finally:
+        print('```')
+
+
+def _call(*cmd: str) -> None:
+    print(f'$ {" ".join(shlex.quote(part) for part in cmd)}')
+    for line in subprocess.check_output(cmd).decode().splitlines():
+        print(line.rstrip())
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('tag')
+    args = parser.parse_args()
+
+    print(args.tag)
+    print('=' * len(args.tag))
+    print()
+    print('to pull this image:')
+    print()
+    print('```bash')
+    print(f'docker pull ghcr.io/pre-commit-ci/{args.tag}')
+    print()
+    print('# or from dockerhub')
+    print()
+    print(f'docker pull precommitci/{args.tag}')
+    print('```')
+    print()
+
+    print('## pre-commit')
+    print()
+    with _console():
+        _call('pip', 'freeze', '--all')
+    print()
+
+    print('## os')
+    print()
+    with _console():
+        _call('cat', '/etc/lsb-release')
+    print()
+
+    print('## python')
+    print()
+    print('default `python` / `python3`')
+    print()
+    with _console():
+        _call('python', '--version', '--version')
+        print()
+        _call('python3', '--version', '--version')
+    print()
+    print('others')
+    print()
+    with _console():
+        _call('python2.7', '-c', 'import sys; print(sys.version)')
+        print()
+        _call('python3.7', '--version', '--version')
+        print()
+        _call('python3.9', '--version', '--version')
+    print()
+
+    print('## go')
+    print()
+    with _console():
+        _call('go', 'version')
+    print()
+
+    print('## node')
+    print()
+    with _console():
+        _call('node', '--version')
+        print()
+        _call('npm', '--version')
+    print()
+
+    print('## ruby')
+    print()
+    with _console():
+        _call('ruby', '--version')
+
+    return 0
+
+
+if __name__ == '__main__':
+    exit(main())

@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import argparse
+import os.path
+import subprocess
+
+HERE = os.path.dirname(__file__)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('tag')
+    args = parser.parse_args()
+
+    with open(os.path.join(HERE, '_info'), 'rb') as f:
+        contents = f.read()
+
+    cmd = (
+        'docker', 'run', '--rm', '-i', args.tag,
+        'python3', '-u', '-', args.tag,
+    )
+    ret = subprocess.run(cmd, input=contents, stderr=subprocess.STDOUT)
+    return ret.returncode
+
+
+if __name__ == '__main__':
+    exit(main())
