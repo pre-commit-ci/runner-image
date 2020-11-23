@@ -2,7 +2,7 @@ appdirs==1.4.4
 cfgv==3.2.0
 distlib==0.3.1
 filelock==3.0.12
-identify==1.5.9
+identify==1.5.10
 nodeenv==1.5.0
 pre-commit==2.9.0
 PyYAML==5.3.1
