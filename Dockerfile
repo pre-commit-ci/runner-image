@@ -67,7 +67,7 @@ RUN : \
     && curl --location --silent --output go.tgz https://golang.org/dl/go${GO}.linux-amd64.tar.gz \
     && echo "${GO_SHA256}  go.tgz" | sha256sum --check \
     && tar -C /opt -xf go.tgz \
-    && rm -rf /opt/go/{doc,src,test} \
+    && rm -rf /opt/go/doc /opt/go/test \
     && rm go.tgz
 
 ENTRYPOINT ["dumb-init", "--"]
