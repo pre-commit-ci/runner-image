@@ -23,8 +23,11 @@ def main() -> int:
 
     for python in sorted(pythons):
         print(f' {python} '.center(79, '='), flush=True)
-        subprocess.check_call(('virtualenv', '/tmp/venv', '-p', python))
-        shutil.rmtree('/tmp/venv')
+        subprocess.check_call(('virtualenv', '/tmp/v', '-p', python))
+        shutil.rmtree('/tmp/v')
+    # additionally seed the `python3 -m` executable
+    subprocess.check_call(('python3', '-mvirtualenv', '/tmp/v', '-ppython3.7'))
+    shutil.rmtree('/tmp/v')
     return 0
 
 
