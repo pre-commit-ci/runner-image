@@ -5,30 +5,54 @@ import subprocess
 import tempfile
 
 
-def test_can_build_python_tools(tag: str, pc: str, *, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
-    subprocess.check_call((
-        'docker', 'run', '--rm',
-        '--user', f'{os.getuid()}:{os.getgid()}',
-        *userns,
-        '--volume', f'{os.getcwd()}:/git:ro',
-        '--volume', f'{pc}:/pc:rw',
-        '--workdir', '/git',
-        tag, 'pre-commit', 'install-hooks',
-    ))
+PYTHON_HOOKS = '''\
+repos:
+-   repo: local
+    hooks:
+    -   id: flake8-local
+        name: flake8-local
+        language: python
+        entry: flake8
+        additional_dependencies: [flake8]
+        types: [python]
+    -   id: flake8-local-lang
+        name: flake8-local
+        language: python
+        entry: flake8
+        additional_dependencies: [flake8]
+        types: [python]
+        language_version: python2.7
+'''
 
 
 def test_can_run_python_tools(tag: str, pc: str, *, podman: bool) -> None:
     userns = ('--userns=keep-id',) if podman else ()
-    subprocess.check_call((
-        'docker', 'run', '--rm',
-        '--user', f'{os.getuid()}:{os.getgid()}',
-        *userns,
-        '--volume', f'{os.getcwd()}:/git:rw',
-        '--volume', f'{pc}:/pc:ro',
-        '--workdir', '/git',
-        tag, 'pre-commit', 'run', '--all-files', '--show-diff-on-failure',
-    ))
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(PYTHON_HOOKS)
+        with open(os.path.join(tmpdir, 't.py'), 'w') as f:
+            f.write("print('hello hello world')\n")
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'run', '--all-files',
+        ))
 
 
 def test_considers_system_ruby_suitable(tag: str) -> None:
@@ -81,7 +105,7 @@ def test_can_run_node_hook(tag: str, pc: str, podman: bool) -> None:
             '--volume', f'{tmpdir}:/git:ro',
             '--volume', f'{pc}:/pc:rw',
             '--workdir', '/git',
-            tag, 'pre-commit', 'install-hooks',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
         ))
         subprocess.check_call((
             'docker', 'run', '--rm',
@@ -90,7 +114,7 @@ def test_can_run_node_hook(tag: str, pc: str, podman: bool) -> None:
             '--volume', f'{tmpdir}:/git:rw',
             '--volume', f'{pc}:/pc:ro',
             '--workdir', '/git',
-            tag, 'pre-commit', 'run', '--all-files', '--show-diff-on-failure',
+            tag, 'python3', '-mpre_commit', 'run', '--all-files',
         ))
 
 
@@ -112,8 +136,6 @@ def main() -> int:
     args = parser.parse_args()
 
     with tempfile.TemporaryDirectory() as pc:
-        print(' can build python tools '.center(79, '='), flush=True)
-        test_can_build_python_tools(args.tag, pc, podman=args.podman)
         print(' can run python tools '.center(79, '='), flush=True)
         test_can_run_python_tools(args.tag, pc, podman=args.podman)
         print(' considers system ruby suitable '.center(79, '='), flush=True)
