@@ -17,8 +17,15 @@ RUN : \
         python3-dev \
         python3-distutils \
         ruby-dev \
-        software-properties-common \
-    && add-apt-repository -y ppa:deadsnakes \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
+RUN : \
+    && . /etc/lsb-release \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
+    && echo deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $DISTRIB_CODENAME main > /etc/apt/sources.list.d/deadsnakes.list \
+    && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3.6-dev \
         python3.7-dev \
@@ -30,8 +37,9 @@ RUN : \
     && :
 
 RUN : \
+    && . /etc/lsb-release \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-    && echo deb https://deb.nodesource.com/node_14.x focal main > /etc/apt/sources.list.d/nodesource.list \
+    && echo deb https://deb.nodesource.com/node_14.x $DISTRIB_CODENAME main > /etc/apt/sources.list.d/nodesource.list \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         nodejs \
@@ -39,8 +47,17 @@ RUN : \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
+ENV \
+    PATH=/venv/bin:$PATH \
+    PRE_COMMIT_HOME=/pc \
+    npm_config_cache=/tmp/npm \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    VIRTUALENV_NO_PERIODIC_UPDATE=1 \
+    VIRTUALENV_PIP=embed \
+    VIRTUALENV_SETUPTOOLS=embed \
+    VIRTUALENV_WHEEL=embed
 COPY requirements.txt /tmp/requirements.txt
-ENV PRE_COMMIT_HOME=/pc PATH=/venv/bin:$PATH npm_config_cache=/tmp/npm
 RUN : \
     && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.8/virtualenv.pyz \
     && python3 /tmp/virtualenv.pyz /venv \
