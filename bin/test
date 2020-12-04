@@ -125,8 +125,57 @@ def test_can_install_ffi_gem(tag: str) -> None:
     ))
 
 
-def test_can_run_go(tag: str) -> None:
-    subprocess.check_call(('docker', 'run', '--rm', tag, 'go', 'version'))
+GO_HOOK = '''\
+repos:
+-   repo: https://github.com/golangci/golangci-lint
+    rev: v1.33.0
+    hooks:
+    -   id: golangci-lint
+'''
+
+GOLANGCI_LINT_CONFIG = '''\
+linters:
+  disable-all: true
+  enable:
+    - gofmt
+run:
+  deadline: 30s
+'''
+
+
+def test_can_run_go_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(GO_HOOK)
+        with open(os.path.join(tmpdir, '.golangci.yml'), 'w') as f:
+            f.write(GOLANGCI_LINT_CONFIG)
+        with open(os.path.join(tmpdir, 'pkg.go'), 'w') as f:
+            f.write('package somepkg\n')
+        with open(os.path.join(tmpdir, 'go.mod'), 'w') as f:
+            f.write('module github.com/example/mod\n\ngo 1.15\n')
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
 
 
 def main() -> int:
@@ -146,8 +195,8 @@ def main() -> int:
         test_can_run_node_hook(args.tag, pc, podman=args.podman)
         print(' can install ffi gem '.center(79, '='), flush=True)
         test_can_install_ffi_gem(args.tag)
-        print(' can run go '.center(79, '='), flush=True)
-        test_can_run_go(args.tag)
+        print(' can run go hooks '.center(79, '='), flush=True)
+        test_can_run_go_hook(args.tag, pc, podman=args.podman)
 
     return 0
 
