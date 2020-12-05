@@ -1,14 +1,14 @@
-runner-image:2020-12-05-d05279a
+runner-image:2020-12-05-476e94d
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-05-d05279a
+docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-05-476e94d
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2020-12-05-d05279a
+docker pull precommitci/runner-image:2020-12-05-476e94d
 ```
 
 ## pre-commit
@@ -75,7 +75,7 @@ Python 3.9.0+ (default, Oct 20 2020, 08:43:38)
 
 ```console
 $ go version
-go version go1.15.4 linux/amd64
+go version go1.15.6 linux/amd64
 ```
 
 ## node
