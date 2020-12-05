@@ -1,14 +1,14 @@
-runner-image:2020-11-26-dcc6d50
+runner-image:2020-12-05-d05279a
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2020-11-26-dcc6d50
+docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-05-d05279a
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2020-11-26-dcc6d50
+docker pull precommitci/runner-image:2020-12-05-d05279a
 ```
 
 ## pre-commit
