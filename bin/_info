@@ -89,6 +89,14 @@ def main() -> int:
     print()
     with _console():
         _call('ruby', '--version')
+    print()
+
+    print('## rust')
+    print()
+    with _console():
+        _call('cargo', '--version')
+        print()
+        _call('rustc', '--version')
 
     return 0
 

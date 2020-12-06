@@ -178,6 +178,59 @@ def test_can_run_go_hook(tag: str, pc: str, podman: bool) -> None:
         ))
 
 
+RUST_HOOK = '''\
+repos:
+-   repo: local
+    hooks:
+    -   id: rust-local
+        name: rust-local
+        language: rust
+        entry: shellharden
+        types: [rust]
+        additional_dependencies: [cli:shellharden:3.1.0]
+'''
+
+CARGO_TOML = '''\
+[package]
+name = "testing"
+version = "0.1.0"
+'''
+
+
+def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(RUST_HOOK)
+        with open(os.path.join(tmpdir, 'Cargo.toml'), 'w') as f:
+            f.write(CARGO_TOML)
+        os.mkdir(os.path.join(tmpdir, 'src'))
+        with open(os.path.join(tmpdir, 'src', 'main.rs'), 'w') as f:
+            f.write('fn main() {}')
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
@@ -197,6 +250,8 @@ def main() -> int:
         test_can_install_ffi_gem(args.tag)
         print(' can run go hooks '.center(79, '='), flush=True)
         test_can_run_go_hook(args.tag, pc, podman=args.podman)
+        print(' can run rust hooks '.center(79, '='), flush=True)
+        test_can_run_rust_hook(args.tag, pc, podman=args.podman)
 
     return 0
 
