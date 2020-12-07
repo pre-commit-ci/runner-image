@@ -87,4 +87,22 @@ RUN : \
     && rm -rf /opt/go/doc /opt/go/test \
     && rm go.tgz
 
+ARG RUST=1.48.0
+ARG RUSTUP_SHA256=ee7ade44063c96c6a37012cc599cb560dce95205c86d17b247c726d2285b230c
+ARG RUSTUP_VERSION=1.23.0
+ENV \
+    CARGO_HOME=/opt/rust/cargo \
+    RUSTUP_HOME=/opt/rust/rustup \
+    PATH=/opt/rust/cargo/bin:$PATH
+RUN : \
+    && rustArch='x86_64-unknown-linux-gnu' \
+    && curl --silent --location --output rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/${rustArch}/rustup-init" \
+    && echo "${RUSTUP_SHA256} rustup-init" | sha256sum --check \
+    && chmod +x rustup-init \
+    && ./rustup-init -y --profile minimal --no-modify-path --default-toolchain "$RUST" --default-host "$rustArch" \
+    && rm -rf rustup-init \
+    && rustup component add clippy rustfmt \
+    && :
+ENV CARGO_HOME=/tmp/cargo/home
+
 ENTRYPOINT ["dumb-init", "--"]
