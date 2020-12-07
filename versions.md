@@ -1,14 +1,14 @@
-runner-image:2020-12-05-476e94d
+runner-image:2020-12-07-c62fa6d
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-05-476e94d
+docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-07-c62fa6d
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2020-12-05-476e94d
+docker pull precommitci/runner-image:2020-12-07-c62fa6d
 ```
 
 ## pre-commit
@@ -93,4 +93,14 @@ $ npm --version
 ```console
 $ ruby --version
 ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
+```
+
+## rust
+
+```console
+$ cargo --version
+cargo 1.48.0 (65cbdd2dc 2020-10-14)
+
+$ rustc --version
+rustc 1.48.0 (7eac88abb 2020-11-16)
 ```
