@@ -102,7 +102,7 @@ def main() -> int:
     print('## swift')
     print()
     with _console():
-        _call('swift', '--version')
+        _call('swift', '-version')
 
     return 0
 
