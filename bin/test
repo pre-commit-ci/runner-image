@@ -242,7 +242,7 @@ repos:
 '''
 
 DUMMY_SWIFT_FILE = '''\
-class Dummy { }
+class Dummy {}
 '''
 
 
