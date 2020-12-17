@@ -229,6 +229,54 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
             tag, 'python3', '-mpre_commit',
             'run', '--all-files', '--show-diff-on-failure',
         ))
+        
+        
+        
+SWIFT_HOOK = '''\
+repos:
+-   repo: https://github.com/realm/SwiftLint
+    rev: 0.42.0
+    hooks:
+    -   id: swiftlint
+        name: swiftlint
+        entry: swiftlint lint
+        types: [swift]
+'''
+
+DUMMY_SWIFT_FILE = '''\
+class Dummy { }
+'''
+
+
+def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(SWIFT_HOOK)
+        with open(os.path.join(tmpdir, 'Dummy.swift'), 'w') as f:
+            f.write(DUMMY_SWIFT_FILE)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
 
 
 def main() -> int:
@@ -252,6 +300,8 @@ def main() -> int:
         test_can_run_go_hook(args.tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
         test_can_run_rust_hook(args.tag, pc, podman=args.podman)
+        print(' can run swift hooks '.center(79, '='), flush=True)
+        test_can_run_swift_hook(args.tag, pc, podman=args.podman)
 
     return 0
 
