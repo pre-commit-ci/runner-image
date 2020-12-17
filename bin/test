@@ -237,8 +237,6 @@ repos:
     rev: 0.47.8
     hooks:
     -   id: swiftformat
-        name: Swiftformat
-        types: [swift]
 '''
 
 DUMMY_SWIFT_FILE = '''\
