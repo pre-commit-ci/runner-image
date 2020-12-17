@@ -106,11 +106,11 @@ RUN : \
 ENV CARGO_HOME=/tmp/cargo/home
 
 ARG SWIFT=5.3.2
-ARG OS=ubuntu20.04
 RUN : \
-    && wget -P /tmp https://swift.org/builds/swift-$SWIFT-release/${OS//./}/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-$OS.tar.gz \
-    && tar xzf /tmp/swift-$SWIFT-RELEASE-$OS.tar.gz \
-    && mv swift-$SWIFT-RELEASE-$OS /usr/share/swift \
+    && . /etc/lsb-release \
+    && wget -P /tmp https://swift.org/builds/swift-$SWIFT-release/ubuntu${$DISTRIB_RELEASE//./}/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && tar xzf /tmp/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && mv swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE /usr/share/swift \
     && swift_bin=/usr/share/swift/usr/bin \
     && ln -s $swift_bin/swift /usr/local/bin/swift \
     && ln -s $swift_bin/swiftc /usr/local/bin/swiftc \
