@@ -115,6 +115,6 @@ RUN : \
     && ln -s $swift_bin/swift /usr/local/bin/swift \
     && ln -s $swift_bin/swiftc /usr/local/bin/swiftc \
     && ln -s /usr/share/swift/usr/lib/libsourcekitdInProc.so /usr/lib/libsourcekitdInProc.so
-    
+
 
 ENTRYPOINT ["dumb-init", "--"]
