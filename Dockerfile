@@ -6,12 +6,15 @@ RUN : \
         ca-certificates \
         curl \
         dumb-init \
-        gcc \
         g++ \
+        gcc \
         git \
         gnupg2 \
+        libedit2 \
         libffi-dev \
+        libxml2 \
         libyaml-dev \
+        libz3-dev \
         make \
         python2-dev \
         python3-dev \
@@ -102,5 +105,17 @@ RUN : \
     && rustup component add clippy rustfmt \
     && :
 ENV CARGO_HOME=/tmp/cargo/home
+
+ARG SWIFT=5.3.2
+RUN : \
+    && . /etc/lsb-release \
+    && curl --silent --location --output /tmp/swift.tar.gz https://swift.org/builds/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && tar xzf /tmp/swift.tar.gz \
+    && rm /tmp/swift.tar.gz \
+    && mv swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE /usr/share/swift \
+    && swift_bin=/usr/share/swift/usr/bin \
+    && ln -s $swift_bin/swift /usr/local/bin/swift \
+    && ln -s $swift_bin/swiftc /usr/local/bin/swiftc \
+    && ln -s /usr/share/swift/usr/lib/libsourcekitdInProc.so /usr/lib/libsourcekitdInProc.so
 
 ENTRYPOINT ["dumb-init", "--"]
