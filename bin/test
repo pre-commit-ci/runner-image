@@ -233,12 +233,11 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
 
 SWIFT_HOOK = '''\
 repos:
--   repo: https://github.com/realm/SwiftLint
-    rev: 0.42.0
+-   repo: https://github.com/nicklockwood/SwiftFormat
+    rev: 0.47.8
     hooks:
-    -   id: swiftlint
-        name: swiftlint
-        entry: swiftlint lint
+    -   id: swiftformat
+        name: Swiftformat
         types: [swift]
 '''
 
