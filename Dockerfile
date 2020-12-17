@@ -108,8 +108,8 @@ ENV CARGO_HOME=/tmp/cargo/home
 ARG SWIFT=5.3.2
 RUN : \
     && . /etc/lsb-release \
-    && wget -P /tmp https://swift.org/builds/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
-    && tar xzf /tmp/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && curl --silent --location --output /tmp/swift.tar.gz https://swift.org/builds/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && tar xzf /tmp/swift.tar.gz \
     && mv swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE /usr/share/swift \
     && swift_bin=/usr/share/swift/usr/bin \
     && ln -s $swift_bin/swift /usr/local/bin/swift \
