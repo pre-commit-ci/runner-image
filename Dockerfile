@@ -20,6 +20,8 @@ RUN : \
         libcurl4 \
         libxml2 \
         tzdata \
+        libedit2 \
+        libz3-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
