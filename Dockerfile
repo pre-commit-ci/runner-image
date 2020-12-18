@@ -17,19 +17,7 @@ RUN : \
         python3-dev \
         python3-distutils \
         ruby-dev \
-        binutils \
-        libc6-dev \
-        libcurl4 \
         libedit2 \
-        libgcc-9-dev \
-        libpython2.7 \
-        libsqlite3-0 \
-        libstdc++-9-dev \
-        libxml2 \
-        libz3-dev \
-        pkg-config \
-        tzdata \
-        zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
