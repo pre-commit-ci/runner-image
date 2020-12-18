@@ -17,9 +17,9 @@ RUN : \
         python3-dev \
         python3-distutils \
         ruby-dev \
-        libedit2 \
-        libz3-dev \
+        libcurl4 \
         libxml2 \
+        tzdata \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
