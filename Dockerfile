@@ -18,6 +18,7 @@ RUN : \
         python3-distutils \
         ruby-dev \
         libedit2 \
+        libz3-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
