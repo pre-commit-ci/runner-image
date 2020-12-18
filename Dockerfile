@@ -19,6 +19,7 @@ RUN : \
         ruby-dev \
         libedit2 \
         libz3-dev \
+        libxml2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :

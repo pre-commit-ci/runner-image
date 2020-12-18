@@ -282,6 +282,8 @@ def main() -> int:
     args = parser.parse_args()
 
     with tempfile.TemporaryDirectory() as pc:
+        print(' can run swift hooks '.center(79, '='), flush=True)
+        test_can_run_swift_hook(args.tag, pc, podman=args.podman)
         print(' can run python tools '.center(79, '='), flush=True)
         test_can_run_python_tools(args.tag, pc, podman=args.podman)
         print(' considers system ruby suitable '.center(79, '='), flush=True)
@@ -296,8 +298,6 @@ def main() -> int:
         test_can_run_go_hook(args.tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
         test_can_run_rust_hook(args.tag, pc, podman=args.podman)
-        print(' can run swift hooks '.center(79, '='), flush=True)
-        test_can_run_swift_hook(args.tag, pc, podman=args.podman)
 
     return 0
 
