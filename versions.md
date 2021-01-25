@@ -1,14 +1,14 @@
-runner-image:2020-12-18-bf9c7ca
+runner-image:2021-01-25-ed50674
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2020-12-18-bf9c7ca
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-01-25-ed50674
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2020-12-18-bf9c7ca
+docker pull precommitci/runner-image:2021-01-25-ed50674
 ```
 
 ## pre-commit
@@ -21,14 +21,14 @@ distlib==0.3.1
 filelock==3.0.12
 identify==1.5.10
 nodeenv==1.5.0
-pip==20.3.1
+pip==20.3.3
 pre-commit==2.9.3
 PyYAML==5.3.1
-setuptools==51.0.0
+setuptools==51.3.3
 six==1.15.0
 toml==0.10.2
 virtualenv==20.2.2
-wheel==0.36.1
+wheel==0.36.2
 ```
 
 ## os
@@ -67,7 +67,7 @@ Python 3.7.9 (default, Aug 18 2020, 02:07:21)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.0+ (default, Oct 20 2020, 08:43:38)
+Python 3.9.1 (default, Dec  8 2020, 02:26:20)
 [GCC 9.3.0]
 ```
 
@@ -82,10 +82,10 @@ go version go1.15.6 linux/amd64
 
 ```console
 $ node --version
-v14.15.1
+v14.15.4
 
 $ npm --version
-6.14.8
+6.14.10
 ```
 
 ## ruby
