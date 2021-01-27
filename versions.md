@@ -1,14 +1,14 @@
-runner-image:2021-01-25-ed50674
+runner-image:2021-01-27-563bdb9
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-01-25-ed50674
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-01-27-563bdb9
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-01-25-ed50674
+docker pull precommitci/runner-image:2021-01-27-563bdb9
 ```
 
 ## pre-commit
@@ -19,15 +19,15 @@ appdirs==1.4.4
 cfgv==3.2.0
 distlib==0.3.1
 filelock==3.0.12
-identify==1.5.10
+identify==1.5.13
 nodeenv==1.5.0
 pip==20.3.3
-pre-commit==2.9.3
-PyYAML==5.3.1
+pre-commit==2.10.0
+PyYAML==5.4.1
 setuptools==51.3.3
 six==1.15.0
 toml==0.10.2
-virtualenv==20.2.2
+virtualenv==20.4.0
 wheel==0.36.2
 ```
 
