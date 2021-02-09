@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 import os.path
 import re
 import shutil
 import subprocess
-from typing import Set
 
 PYTHON_RE = re.compile(r'^python(\d+(\.\d+)?)?$')
 
 
 def main() -> int:
-    pythons: Set[str] = set()
+    pythons: set[str] = set()
     for path_entry in os.environ['PATH'].split(os.pathsep):
         if os.path.isdir(path_entry):
             for exe in os.listdir(path_entry):
