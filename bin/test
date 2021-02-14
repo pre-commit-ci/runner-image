@@ -277,12 +277,10 @@ def test_can_run_docker_hook(tag: str, pc: str, podman: bool) -> None:
         with open(os.path.join(tmpdir, 'Dockerfile'), 'w') as f:
             f.write(HADOLINT_DOCKERFILE)
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
-        subprocess.check_call(
-            (
-                'git', '-C', tmpdir, '-c', 'user.email=foo@bar.com',
-                'commit', '-m', 'Initial commit',
-            ),
-        )
+        subprocess.check_call((
+            'git', '-C', tmpdir, '-c', 'user.name=bob',
+            '-c', 'user.email=foo@bar.com', 'commit', '-m', 'Initial commit',
+        ))
         subprocess.check_call(
             ('git', '-C', tmpdir, 'tag', 'v1.0'),
         )
@@ -360,12 +358,10 @@ def test_can_run_dind_hook(tag: str, pc: str, podman: bool) -> None:
         with open(os.path.join(tmpdir, 'Dockerfile'), 'w') as f:
             f.write(HADOLINT_DOCKERFILE)
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
-        subprocess.check_call(
-            (
-                'git', '-C', tmpdir, '-c', 'user.email=foo@bar.com',
-                'commit', '-m', 'Initial commit',
-            ),
-        )
+        subprocess.check_call((
+            'git', '-C', tmpdir, '-c', 'user.name=bob',
+            '-c', 'user.email=foo@bar.com', 'commit', '-m', 'Initial commit',
+        ))
         subprocess.check_call(
             ('git', '-C', tmpdir, 'tag', 'v1.0'),
         )
