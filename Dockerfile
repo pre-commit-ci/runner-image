@@ -103,4 +103,15 @@ RUN : \
     && :
 ENV CARGO_HOME=/tmp/cargo/home
 
+RUN : \
+    && . /etc/lsb-release \
+    && curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && echo deb https://download.docker.com/linux/ubuntu $DISTRIB_CODENAME stable > /etc/apt/sources.list.d/docker.list \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        docker-ce-cli \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
 ENTRYPOINT ["dumb-init", "--"]
