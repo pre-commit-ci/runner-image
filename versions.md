@@ -1,14 +1,14 @@
-runner-image:2021-02-09-fea18b7
+runner-image:2021-03-15-98f5065
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-02-09-fea18b7
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-03-15-98f5065
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-02-09-fea18b7
+docker pull precommitci/runner-image:2021-03-15-98f5065
 ```
 
 ## pre-commit
@@ -38,7 +38,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.1 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 20.04.2 LTS"
 ```
 
 ## python
@@ -47,11 +47,11 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+Python 3.8.5 (default, Jan 27 2021, 15:41:15)
 [GCC 9.3.0]
 
 $ python3 --version --version
-Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+Python 3.8.5 (default, Jan 27 2021, 15:41:15)
 [GCC 9.3.0]
 ```
 
@@ -59,15 +59,15 @@ others
 
 ```console
 $ python2.7 -c 'import sys; print(sys.version)'
-2.7.18 (default, Aug  4 2020, 11:16:42)
+2.7.18 (default, Mar  8 2021, 13:02:45)
 [GCC 9.3.0]
 
 $ python3.7 --version --version
-Python 3.7.9 (default, Aug 18 2020, 02:07:21)
+Python 3.7.10 (default, Feb 20 2021, 21:15:28)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.1 (default, Dec  8 2020, 02:26:20)
+Python 3.9.2 (default, Feb 20 2021, 20:56:08)
 [GCC 9.3.0]
 ```
 
@@ -82,10 +82,10 @@ go version go1.15.6 linux/amd64
 
 ```console
 $ node --version
-v14.15.4
+v14.16.0
 
 $ npm --version
-6.14.10
+6.14.11
 ```
 
 ## ruby
