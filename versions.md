@@ -1,14 +1,14 @@
-runner-image:2021-04-06-4930f42
+runner-image:2021-04-26-cc2124c
 ===============================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-04-06-4930f42
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-04-26-cc2124c
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-04-06-4930f42
+docker pull precommitci/runner-image:2021-04-26-cc2124c
 ```
 
 ## pre-commit
@@ -24,7 +24,7 @@ nodeenv==1.5.0
 pip==21.0.1
 pre-commit==2.12.0
 PyYAML==5.4.1
-setuptools==54.1.2
+setuptools==56.0.0
 six==1.15.0
 toml==0.10.2
 virtualenv==20.4.3
@@ -67,7 +67,7 @@ Python 3.7.10 (default, Feb 20 2021, 21:15:28)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.3 (default, Apr  3 2021, 00:10:26)
+Python 3.9.4 (default, Apr  9 2021, 01:03:21)
 [GCC 9.3.0]
 ```
 
@@ -82,10 +82,10 @@ go version go1.15.6 linux/amd64
 
 ```console
 $ node --version
-v14.16.0
+v14.16.1
 
 $ npm --version
-6.14.11
+6.14.12
 ```
 
 ## ruby
