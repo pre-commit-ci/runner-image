@@ -233,6 +233,50 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
         ))
 
 
+SWIFT_HOOK = '''\
+repos:
+-   repo: https://github.com/nicklockwood/SwiftFormat
+    rev: 0.47.8
+    hooks:
+    -   id: swiftformat
+'''
+
+DUMMY_SWIFT_FILE = '''\
+class Dummy {}
+'''
+
+
+def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(SWIFT_HOOK)
+        with open(os.path.join(tmpdir, 'Dummy.swift'), 'w') as f:
+            f.write(DUMMY_SWIFT_FILE)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
@@ -240,6 +284,8 @@ def main() -> int:
     args = parser.parse_args()
 
     with tempfile.TemporaryDirectory() as pc:
+        print(' can run swift hooks '.center(79, '='), flush=True)
+        test_can_run_swift_hook(args.tag, pc, podman=args.podman)
         print(' can run python tools '.center(79, '='), flush=True)
         test_can_run_python_tools(args.tag, pc, podman=args.podman)
         print(' considers system ruby suitable '.center(79, '='), flush=True)
