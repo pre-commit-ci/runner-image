@@ -1,5 +1,7 @@
 FROM ubuntu:focal
 
+ENTRYPOINT ["dumb-init", "--"]
+
 RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -106,16 +108,19 @@ RUN : \
     && :
 ENV CARGO_HOME=/tmp/cargo/home
 
+RUN echo 'end: minimal'
+
 ARG SWIFT=5.3.2
+ARG SWIFT_SHA256=dc360633c85ba16371646da55bcea9f4cf442e3312af2d3f5bb6e85f88d00f7c
+ENV \
+    PATH=/opt/swift/usr/bin:$PATH \
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/swift/usr/lib
 RUN : \
+    && echo 'lang: swift' \
     && . /etc/lsb-release \
     && curl --silent --location --output /tmp/swift.tar.gz https://swift.org/builds/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
-    && tar xzf /tmp/swift.tar.gz \
+    && echo "${SWIFT_SHA256} /tmp/swift.tar.gz" | sha256sum --check \
+    && mkdir /opt/swift \
+    && tar --strip-components 1 --directory /opt/swift -xf /tmp/swift.tar.gz \
     && rm /tmp/swift.tar.gz \
-    && mv swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE /usr/share/swift \
-    && swift_bin=/usr/share/swift/usr/bin \
-    && ln -s $swift_bin/swift /usr/local/bin/swift \
-    && ln -s $swift_bin/swiftc /usr/local/bin/swiftc \
-    && ln -s /usr/share/swift/usr/lib/libsourcekitdInProc.so /usr/lib/libsourcekitdInProc.so
-
-ENTRYPOINT ["dumb-init", "--"]
+    && :

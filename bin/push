@@ -10,7 +10,8 @@ HERE = os.path.dirname(__file__)
 
 def _push(
         *,
-        tag: str,
+        minimal_tag: str,
+        full_tag: str,
         hostname: str,
         username: str,
         password: str,
@@ -25,10 +26,18 @@ def _push(
         check=True,
     )
 
-    tag_image, _, _ = tag.partition(':')
-    for target_tag in (f'{prefix}/{tag}', f'{prefix}/{tag_image}:latest'):
-        subprocess.check_call(('docker', 'tag', tag, target_tag))
-        subprocess.check_call(('docker', 'push', target_tag))
+    tag_image, _, _ = minimal_tag.partition(':')
+
+    to_push = (
+        (minimal_tag, f'{prefix}/{minimal_tag}'),
+        (minimal_tag, f'{prefix}/{tag_image}:latest'),
+        (full_tag, f'{prefix}/{minimal_tag}'),
+        (full_tag, f'{prefix}/{tag_image}:latest-full'),
+    )
+
+    for src, target in to_push:
+        subprocess.check_call(('docker', 'tag', src, target))
+        subprocess.check_call(('docker', 'push', target))
 
 
 def _inspect(tag: str) -> bytes:
@@ -42,15 +51,20 @@ def main() -> int:
     parser.add_argument('tag')
     args = parser.parse_args()
 
-    push = _inspect(args.tag)
-    target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest')
+    minimal_tag = args.tag
+    full_tag = f'{args.tag}-full'
 
-    if push == target:
-        print('skipping push (up to date)')
-        return 0
+# TODO: the -full image isn't live yet
+#     push = _inspect(full_tag)
+#     target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
+#
+#     if push == target:
+#         print('skipping push (up to date)')
+#         return 0
 
     _push(
-        tag=args.tag,
+        minimal_tag=minimal_tag,
+        full_tag=full_tag,
         hostname='docker.io',
         username='precommitci',
         password=os.environ['DOCKERHUB_TOKEN'],
@@ -58,14 +72,15 @@ def main() -> int:
     )
 
     _push(
-        tag=args.tag,
+        minimal_tag=minimal_tag,
+        full_tag=full_tag,
         hostname='ghcr.io',
         username='pre-commit-ci-bot',
         password=os.environ['GHCR_TOKEN'],
         prefix='ghcr.io/pre-commit-ci',
     )
 
-    cmd = (os.path.join(HERE, 'info'), args.tag)
+    cmd = (os.path.join(HERE, 'info'), full_tag)
     with open(os.path.join(args.git_dir, 'versions.md'), 'wb') as f:
         subprocess.check_call(cmd, stdout=f)
 
