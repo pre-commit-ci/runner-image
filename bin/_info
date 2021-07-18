@@ -99,6 +99,12 @@ def main() -> int:
         _call('cargo', '--version')
         print()
         _call('rustc', '--version')
+    print()
+
+    print('## swift')
+    print()
+    with _console():
+        _call('swift', '-version')
 
     return 0
 

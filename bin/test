@@ -233,27 +233,76 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
         ))
 
 
+SWIFT_HOOK = '''\
+repos:
+-   repo: https://github.com/nicklockwood/SwiftFormat
+    rev: 0.47.8
+    hooks:
+    -   id: swiftformat
+'''
+
+DUMMY_SWIFT_FILE = '''\
+class Dummy {}
+'''
+
+
+def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(SWIFT_HOOK)
+        with open(os.path.join(tmpdir, 'Dummy.swift'), 'w') as f:
+            f.write(DUMMY_SWIFT_FILE)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
     parser.add_argument('tag')
     args = parser.parse_args()
 
+    minimal_tag = args.tag
+    full_tag = f'{args.tag}-full'
+
     with tempfile.TemporaryDirectory() as pc:
         print(' can run python tools '.center(79, '='), flush=True)
-        test_can_run_python_tools(args.tag, pc, podman=args.podman)
+        test_can_run_python_tools(minimal_tag, pc, podman=args.podman)
+        print(' can run swift hooks '.center(79, '='), flush=True)
+        test_can_run_swift_hook(full_tag, pc, podman=args.podman)
         print(' considers system ruby suitable '.center(79, '='), flush=True)
-        test_considers_system_ruby_suitable(args.tag)
+        test_considers_system_ruby_suitable(full_tag)
         print(' condiders system node suitable '.center(79, '='), flush=True)
-        test_considers_system_node_suitable(args.tag)
+        test_considers_system_node_suitable(full_tag)
         print(' can run node hook '.center(79, '='), flush=True)
-        test_can_run_node_hook(args.tag, pc, podman=args.podman)
+        test_can_run_node_hook(full_tag, pc, podman=args.podman)
         print(' can install ffi gem '.center(79, '='), flush=True)
-        test_can_install_ffi_gem(args.tag)
+        test_can_install_ffi_gem(full_tag)
         print(' can run go hooks '.center(79, '='), flush=True)
-        test_can_run_go_hook(args.tag, pc, podman=args.podman)
+        test_can_run_go_hook(full_tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
-        test_can_run_rust_hook(args.tag, pc, podman=args.podman)
+        test_can_run_rust_hook(full_tag, pc, podman=args.podman)
 
     return 0
 
