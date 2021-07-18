@@ -54,12 +54,11 @@ def main() -> int:
     minimal_tag = args.tag
     full_tag = f'{args.tag}-full'
 
-    # temporarily disabled
-    # push = _inspect(full_tag)
-    # target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
-    # if push == target:
-    #     print('skipping push (up to date)')
-    #     return 0
+    push = _inspect(full_tag)
+    target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
+    if push == target:
+        print('skipping push (up to date)')
+        return 0
 
     _push(
         minimal_tag=minimal_tag,
