@@ -31,7 +31,7 @@ def _push(
     to_push = (
         (minimal_tag, f'{prefix}/{minimal_tag}'),
         (minimal_tag, f'{prefix}/{tag_image}:latest'),
-        (full_tag, f'{prefix}/{minimal_tag}'),
+        (full_tag, f'{prefix}/{full_tag}'),
         (full_tag, f'{prefix}/{tag_image}:latest-full'),
     )
 
@@ -54,12 +54,12 @@ def main() -> int:
     minimal_tag = args.tag
     full_tag = f'{args.tag}-full'
 
-    push = _inspect(full_tag)
-    target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
-
-    if push == target:
-        print('skipping push (up to date)')
-        return 0
+    # temporarily disabled
+    # push = _inspect(full_tag)
+    # target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
+    # if push == target:
+    #     print('skipping push (up to date)')
+    #     return 0
 
     _push(
         minimal_tag=minimal_tag,
