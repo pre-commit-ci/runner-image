@@ -13,13 +13,12 @@ def main() -> int:
     full_tag = f'{args.tag}-full'
     minimal_tag = args.tag
 
-    # TODO: pull latest-full
-    # base = 'ghcr.io/pre-commit-ci/runner-image:latest-full'
-    # subprocess.check_call(('docker', 'pull', base))
+    base = 'ghcr.io/pre-commit-ci/runner-image:latest-full'
+    subprocess.check_call(('docker', 'pull', base))
     subprocess.check_call((
         'docker', 'build',
         '--pull',
-        # '--cache-from', base,
+        '--cache-from', base,
         '--tag', full_tag,
         '.',
     ))
