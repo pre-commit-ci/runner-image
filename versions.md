@@ -1,14 +1,14 @@
-runner-image:2021-08-02-4eea7bc-full
+runner-image:2021-08-03-bbb5838-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-08-02-4eea7bc-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-08-03-bbb5838-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-08-02-4eea7bc-full
+docker pull precommitci/runner-image:2021-08-03-bbb5838-full
 ```
 
 ## pre-commit
@@ -99,10 +99,10 @@ ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
 
 ```console
 $ cargo --version
-cargo 1.48.0 (65cbdd2dc 2020-10-14)
+cargo 1.54.0 (5ae8d74b3 2021-06-22)
 
 $ rustc --version
-rustc 1.48.0 (7eac88abb 2020-11-16)
+rustc 1.54.0 (a178d0322 2021-07-26)
 ```
 
 ## swift
