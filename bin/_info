@@ -106,6 +106,12 @@ def main() -> int:
     with _console():
         _call('swift', '-version')
 
+    print('## dotnet')
+    print()
+    with _console():
+        _call('dotnet', '--info')
+    print()
+
     return 0
 
 
