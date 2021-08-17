@@ -73,6 +73,17 @@ def main() -> int:
         _call('python3.9', '--version', '--version')
     print()
 
+    print('## conda')
+    print()
+    with _console():
+        _call('conda', '--version')
+
+    print('## dotnet')
+    print()
+    with _console():
+        _call('dotnet', '--info')
+    print()
+
     print('## go')
     print()
     with _console():
@@ -105,12 +116,6 @@ def main() -> int:
     print()
     with _console():
         _call('swift', '-version')
-
-    print('## dotnet')
-    print()
-    with _console():
-        _call('dotnet', '--info')
-    print()
 
     return 0
 
