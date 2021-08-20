@@ -98,14 +98,17 @@ RUN : \
     && rm -rf /opt/go/doc /opt/go/test \
     && rm go.tgz
 
+RUN echo 'end: minimal'
+
 ARG RUST=1.54.0
 ARG RUSTUP_SHA256=3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338
 ARG RUSTUP_VERSION=1.24.3
 ENV \
-    CARGO_HOME=/opt/rust/cargo \
+    CARGO_HOME=/tmp/cargo/home \
     RUSTUP_HOME=/opt/rust/rustup \
     PATH=/opt/rust/cargo/bin:$PATH
 RUN : \
+    && export CARGO_HOME=/opt/rust/cargo \
     && rustArch='x86_64-unknown-linux-gnu' \
     && curl --silent --location --output rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/${rustArch}/rustup-init" \
     && echo "${RUSTUP_SHA256} rustup-init" | sha256sum --check \
@@ -114,9 +117,6 @@ RUN : \
     && rm -rf rustup-init \
     && rustup component add clippy rustfmt \
     && :
-ENV CARGO_HOME=/tmp/cargo/home
-
-RUN echo 'end: minimal'
 
 ARG SWIFT=5.3.2
 ARG SWIFT_SHA256=dc360633c85ba16371646da55bcea9f4cf442e3312af2d3f5bb6e85f88d00f7c
