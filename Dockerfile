@@ -150,7 +150,7 @@ RUN : \
         --silent \
         --output /tmp/dotnet.tar.gz \
         https://dotnetcli.azureedge.net/dotnet/Sdk/"$DOTNET_VER"/dotnet-sdk-"$DOTNET_VER"-linux-x64.tar.gz \
-    && echo "${DOTNET_SHA512} /tmp/dotnet.tar.gz" | sha512sum --check \   
+    && echo "${DOTNET_SHA512} /tmp/dotnet.tar.gz" | sha512sum --check \
     && tar -C $dotnet_root -xf /tmp/dotnet.tar.gz \
     && rm /tmp/dotnet.tar.gz \
     # Trigger first run output
