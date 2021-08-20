@@ -342,6 +342,50 @@ def test_can_run_dotnet_hook(tag: str, pc: str, podman: bool) -> None:
         ))
 
 
+CONDA_HOOK = '''\
+repos:
+-   repo: local
+    hooks:
+    -   id: pyupgrade-conda
+        name: pyupgrade conda
+        entry: pyupgrade
+        language: conda
+        types: [python]
+        additional_dependencies: [-c, conda-forge, pyupgrade]
+'''
+
+
+def test_can_run_conda_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(CONDA_HOOK)
+        with open(os.path.join(tmpdir, 't.py'), 'w') as f:
+            f.write('print("hello world")')
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
@@ -354,8 +398,6 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as pc:
         print(' can run python tools '.center(79, '='), flush=True)
         test_can_run_python_tools(minimal_tag, pc, podman=args.podman)
-        print(' can run swift hooks '.center(79, '='), flush=True)
-        test_can_run_swift_hook(full_tag, pc, podman=args.podman)
         print(' considers system ruby suitable '.center(79, '='), flush=True)
         test_considers_system_ruby_suitable(full_tag)
         print(' condiders system node suitable '.center(79, '='), flush=True)
@@ -368,8 +410,12 @@ def main() -> int:
         test_can_run_go_hook(full_tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
         test_can_run_rust_hook(full_tag, pc, podman=args.podman)
+        print(' can run swift hooks '.center(79, '='), flush=True)
+        test_can_run_swift_hook(full_tag, pc, podman=args.podman)
         print(' can run dotnet hooks '.center(79, '='), flush=True)
         test_can_run_dotnet_hook(full_tag, pc, podman=args.podman)
+        print(' can run conda tools '.center(79, '='), flush=True)
+        test_can_run_conda_hook(full_tag, pc, podman=args.podman)
 
     return 0
 
