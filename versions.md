@@ -1,14 +1,14 @@
-runner-image:2021-08-20-81c0f66-full
+runner-image:2021-08-20-c3436f5-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-08-20-81c0f66-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-08-20-c3436f5-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-08-20-81c0f66-full
+docker pull precommitci/runner-image:2021-08-20-c3436f5-full
 ```
 
 ## pre-commit
@@ -71,6 +71,42 @@ Python 3.9.6 (default, Jul  3 2021, 16:40:50)
 [GCC 9.3.0]
 ```
 
+## conda
+
+```console
+$ conda --version
+conda 4.10.3
+```
+## dotnet
+
+```console
+$ dotnet --info
+.NET SDK (reflecting any global.json):
+ Version:   6.0.100-preview.7.21379.14
+ Commit:    22d70b47bc
+
+Runtime Environment:
+ OS Name:     ubuntu
+ OS Version:  20.04
+ OS Platform: Linux
+ RID:         ubuntu.20.04-x64
+ Base Path:   /opt/dotnet/sdk/6.0.100-preview.7.21379.14/
+
+Host (useful for support):
+  Version: 6.0.0-preview.7.21377.19
+  Commit:  91ba01788d
+
+.NET SDKs installed:
+  6.0.100-preview.7.21379.14 [/opt/dotnet/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 6.0.0-preview.7.21378.6 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 6.0.0-preview.7.21377.19 [/opt/dotnet/shared/Microsoft.NETCore.App]
+
+To install additional .NET runtimes or SDKs:
+  https://aka.ms/dotnet-download
+```
+
 ## go
 
 ```console
@@ -112,33 +148,3 @@ $ swift -version
 Swift version 5.3.2 (swift-5.3.2-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
-## dotnet
-
-```console
-$ dotnet --info
-.NET SDK (reflecting any global.json):
- Version:   6.0.100-preview.7.21379.14
- Commit:    22d70b47bc
-
-Runtime Environment:
- OS Name:     ubuntu
- OS Version:  20.04
- OS Platform: Linux
- RID:         ubuntu.20.04-x64
- Base Path:   /opt/dotnet/sdk/6.0.100-preview.7.21379.14/
-
-Host (useful for support):
-  Version: 6.0.0-preview.7.21377.19
-  Commit:  91ba01788d
-
-.NET SDKs installed:
-  6.0.100-preview.7.21379.14 [/opt/dotnet/sdk]
-
-.NET runtimes installed:
-  Microsoft.AspNetCore.App 6.0.0-preview.7.21378.6 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
-  Microsoft.NETCore.App 6.0.0-preview.7.21377.19 [/opt/dotnet/shared/Microsoft.NETCore.App]
-
-To install additional .NET runtimes or SDKs:
-  https://aka.ms/dotnet-download
-```
-
