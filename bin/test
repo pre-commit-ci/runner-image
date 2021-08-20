@@ -241,7 +241,7 @@ repos:
     -   id: swiftformat
 '''
 
-DUMMY_SWIFT_FILE = '''\
+PLACEHOLDER_SWIFT_FILE = '''\
 class Dummy {}
 '''
 
@@ -253,7 +253,72 @@ def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
             f.write(SWIFT_HOOK)
         with open(os.path.join(tmpdir, 'Dummy.swift'), 'w') as f:
-            f.write(DUMMY_SWIFT_FILE)
+            f.write(PLACEHOLDER_SWIFT_FILE)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:ro',
+            '--volume', f'{pc}:/pc:rw',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit', 'install-hooks',
+        ))
+        subprocess.check_call((
+            'docker', 'run', '--rm',
+            '--user', f'{os.getuid()}:{os.getgid()}',
+            *userns,
+            '--volume', f'{tmpdir}:/git:rw',
+            '--volume', f'{pc}:/pc:ro',
+            '--workdir', '/git',
+            tag, 'python3', '-mpre_commit',
+            'run', '--all-files', '--show-diff-on-failure',
+        ))
+
+
+DOTNET_HOOK = '''\
+repos:
+-   repo: https://github.com/dotnet/format
+    rev: v5.1.225507
+    hooks:
+    -   id: dotnet-format
+'''
+
+PLACEHOLDER_DOTNET_CSPROJ_FILE = '''\
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+</Project>
+'''
+
+PLACEHOLDER_DOTNET_PROGRAM_FILE = '''\
+using System;
+namespace Testeroni
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello Hello World!");
+        }
+    }
+}
+'''
+
+
+def test_can_run_dotnet_hook(tag: str, pc: str, podman: bool) -> None:
+    userns = ('--userns=keep-id',) if podman else ()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(DOTNET_HOOK)
+        with open(os.path.join(tmpdir, 'Testeroni.csproj'), 'w') as f:
+            f.write(PLACEHOLDER_DOTNET_CSPROJ_FILE)
+        with open(os.path.join(tmpdir, 'Program.cs'), 'w') as f:
+            f.write(PLACEHOLDER_DOTNET_PROGRAM_FILE)
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
         subprocess.check_call((
@@ -303,6 +368,8 @@ def main() -> int:
         test_can_run_go_hook(full_tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
         test_can_run_rust_hook(full_tag, pc, podman=args.podman)
+        print(' can run dotnet hooks '.center(79, '='), flush=True)
+        test_can_run_dotnet_hook(full_tag, pc, podman=args.podman)
 
     return 0
 

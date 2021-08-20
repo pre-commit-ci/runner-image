@@ -12,8 +12,15 @@ RUN : \
         gcc \
         git \
         gnupg2 \
+        libc6 \
         libedit2 \
         libffi-dev \
+        libgcc1 \
+        libgdiplus \
+        libgssapi-krb5-2 \
+        libicu66 \
+        libssl1.1 \
+        libstdc++6 \
         libxml2 \
         libyaml-dev \
         libz3-dev \
@@ -22,6 +29,7 @@ RUN : \
         python3-dev \
         python3-distutils \
         ruby-dev \
+        zlib1g \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
@@ -123,4 +131,27 @@ RUN : \
     && mkdir /opt/swift \
     && tar --strip-components 1 --directory /opt/swift -xf /tmp/swift.tar.gz \
     && rm /tmp/swift.tar.gz \
+    && :
+
+ARG DOTNET_VER=6.0.100-preview.7.21379.14
+ARG DOTNET_SHA512=c8757325407b5eb1e3870f0db87eeaf44df978313c0b2a7f465ec7d0a5647317cba597264ec81577ea0b3bd97bd33d782234392e8e592e073126792a0406df7b
+ENV \
+    PATH=/opt/dotnet:$PATH \
+    DOTNET_ROOT=/opt/dotnet \
+    DOTNET_CLI_HOME=/tmp \
+    DOTNET_CLI_TELEMETRY_OPTOUT=1
+RUN : \
+    && echo 'lang: dotnet' \
+    && dotnet_root=/opt/dotnet \
+    && mkdir -p $dotnet_root \
+    && curl \
+        --location \
+        --fail \
+        --silent \
+        --output /tmp/dotnet.tar.gz \
+        https://dotnetcli.azureedge.net/dotnet/Sdk/"$DOTNET_VER"/dotnet-sdk-"$DOTNET_VER"-linux-x64.tar.gz \
+    && tar -C $dotnet_root -xf /tmp/dotnet.tar.gz \
+    && rm /tmp/dotnet.tar.gz \
+    # Trigger first run output
+    && dotnet build > /dev/null || true \
     && :
