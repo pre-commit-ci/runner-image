@@ -27,8 +27,29 @@ repos:
 '''
 
 
-def test_can_run_python_tools(tag: str, pc: str, *, podman: bool) -> None:
+def _build_and_run(tag: str, tmpdir: str, pc: str, *, podman: bool) -> None:
     userns = ('--userns=keep-id',) if podman else ()
+    subprocess.check_call((
+        'docker', 'run', '--rm',
+        '--user', f'{os.getuid()}:{os.getgid()}',
+        *userns,
+        '--volume', f'{tmpdir}:/git:ro',
+        '--volume', f'{pc}:/pc:rw',
+        '--workdir', '/git',
+        tag, 'python3', '-mpre_commit', 'install-hooks',
+    ))
+    subprocess.check_call((
+        'docker', 'run', '--rm',
+        '--user', f'{os.getuid()}:{os.getgid()}',
+        *userns,
+        '--volume', f'{tmpdir}:/git:rw',
+        '--volume', f'{pc}:/pc:ro',
+        '--workdir', '/git',
+        tag, 'python3', '-mpre_commit', 'run', '--all-files',
+    ))
+
+
+def test_can_run_python_tools(tag: str, pc: str, *, podman: bool) -> None:
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -37,24 +58,7 @@ def test_can_run_python_tools(tag: str, pc: str, *, podman: bool) -> None:
             f.write("print('hello hello world')\n")
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'run', '--all-files',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 def test_considers_system_ruby_suitable(tag: str) -> None:
@@ -91,7 +95,6 @@ repos:
 
 
 def test_can_run_node_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -100,24 +103,7 @@ def test_can_run_node_hook(tag: str, pc: str, podman: bool) -> None:
             f.write("console.log('hello world');")
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'run', '--all-files',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 def test_can_install_ffi_gem(tag: str) -> None:
@@ -146,7 +132,6 @@ run:
 
 
 def test_can_run_go_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -159,25 +144,7 @@ def test_can_run_go_hook(tag: str, pc: str, podman: bool) -> None:
             f.write('module github.com/example/mod\n\ngo 1.15\n')
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit',
-            'run', '--all-files', '--show-diff-on-failure',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 RUST_HOOK = '''\
@@ -200,7 +167,6 @@ version = "0.1.0"
 
 
 def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -212,25 +178,7 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
             f.write('fn main() {}')
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit',
-            'run', '--all-files', '--show-diff-on-failure',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 SWIFT_HOOK = '''\
@@ -247,7 +195,6 @@ class Dummy {}
 
 
 def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -256,25 +203,7 @@ def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
             f.write(PLACEHOLDER_SWIFT_FILE)
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit',
-            'run', '--all-files', '--show-diff-on-failure',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 DOTNET_HOOK = '''\
@@ -310,7 +239,6 @@ namespace Testeroni
 
 
 def test_can_run_dotnet_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -321,25 +249,7 @@ def test_can_run_dotnet_hook(tag: str, pc: str, podman: bool) -> None:
             f.write(PLACEHOLDER_DOTNET_PROGRAM_FILE)
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit',
-            'run', '--all-files', '--show-diff-on-failure',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 CONDA_HOOK = '''\
@@ -356,7 +266,6 @@ repos:
 
 
 def test_can_run_conda_hook(tag: str, pc: str, podman: bool) -> None:
-    userns = ('--userns=keep-id',) if podman else ()
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
@@ -365,25 +274,7 @@ def test_can_run_conda_hook(tag: str, pc: str, podman: bool) -> None:
             f.write('print("hello world")')
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:ro',
-            '--volume', f'{pc}:/pc:rw',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit', 'install-hooks',
-        ))
-        subprocess.check_call((
-            'docker', 'run', '--rm',
-            '--user', f'{os.getuid()}:{os.getgid()}',
-            *userns,
-            '--volume', f'{tmpdir}:/git:rw',
-            '--volume', f'{pc}:/pc:ro',
-            '--workdir', '/git',
-            tag, 'python3', '-mpre_commit',
-            'run', '--all-files', '--show-diff-on-failure',
-        ))
+        _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
 def main() -> int:
