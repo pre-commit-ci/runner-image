@@ -108,6 +108,7 @@ ENV \
     RUSTUP_HOME=/opt/rust/rustup \
     PATH=/opt/rust/cargo/bin:$PATH
 RUN : \
+    && echo 'lang: rust' \
     && export CARGO_HOME=/opt/rust/cargo \
     && rustArch='x86_64-unknown-linux-gnu' \
     && curl --silent --location --output rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/${rustArch}/rustup-init" \
