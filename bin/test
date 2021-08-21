@@ -155,14 +155,8 @@ repos:
         name: rust-local
         language: rust
         entry: shellharden
-        types: [rust]
+        types: [shell]
         additional_dependencies: [cli:shellharden:3.1.0]
-'''
-
-CARGO_TOML = '''\
-[package]
-name = "testing"
-version = "0.1.0"
 '''
 
 
@@ -171,11 +165,8 @@ def test_can_run_rust_hook(tag: str, pc: str, podman: bool) -> None:
         subprocess.check_call(('git', 'init', tmpdir))
         with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
             f.write(RUST_HOOK)
-        with open(os.path.join(tmpdir, 'Cargo.toml'), 'w') as f:
-            f.write(CARGO_TOML)
-        os.mkdir(os.path.join(tmpdir, 'src'))
-        with open(os.path.join(tmpdir, 'src', 'main.rs'), 'w') as f:
-            f.write('fn main() {}')
+        with open(os.path.join(tmpdir, 'test.sh'), 'w') as f:
+            f.write('echo hi \n')
         subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
 
         _build_and_run(tag, tmpdir, pc, podman=podman)
