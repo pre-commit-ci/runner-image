@@ -98,6 +98,12 @@ def main() -> int:
         _call('npm', '--version')
     print()
 
+    print('## r')
+    print()
+    with _console():
+        _call('R', '--version')
+    print()
+
     print('## ruby')
     print()
     with _console():
