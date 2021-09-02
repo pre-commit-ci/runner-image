@@ -1,14 +1,14 @@
-runner-image:2021-08-28-8ce0d09-full
+runner-image:2021-09-02-6303588-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-08-28-8ce0d09-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-02-6303588-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-08-28-8ce0d09-full
+docker pull precommitci/runner-image:2021-09-02-6303588-full
 ```
 
 ## pre-commit
@@ -39,7 +39,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.2 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
 ```
 
 ## python
@@ -119,10 +119,10 @@ go version go1.15.6 linux/amd64
 
 ```console
 $ node --version
-v14.17.5
+v14.17.6
 
 $ npm --version
-6.14.14
+6.14.15
 ```
 
 ## ruby
