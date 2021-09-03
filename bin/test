@@ -268,6 +268,29 @@ def test_can_run_conda_hook(tag: str, pc: str, podman: bool) -> None:
         _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
+DART_HOOK = '''\
+repos:
+-   repo: local
+    hooks:
+    -   id: hello-world-dart
+        name: hello world dart
+        entry: hello-world-dart
+        language: dart
+        additional_dependencies: [hello_world_dart]
+        verbose: true
+'''
+
+
+def test_can_run_dart_hook(tag: str, pc: str, podman: bool) -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(DART_HOOK)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        _build_and_run(tag, tmpdir, pc, podman=podman)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
@@ -298,6 +321,9 @@ def main() -> int:
         test_can_run_dotnet_hook(full_tag, pc, podman=args.podman)
         print(' can run conda tools '.center(79, '='), flush=True)
         test_can_run_conda_hook(full_tag, pc, podman=args.podman)
+        print(' can run dart tools '.center(79, '='), flush=True)
+        test_can_run_dart_hook(full_tag, pc, podman=args.podman)
+        return 0
 
     return 0
 
