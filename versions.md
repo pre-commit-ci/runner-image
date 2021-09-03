@@ -1,14 +1,14 @@
-runner-image:2021-09-03-18fbbf1-full
+runner-image:2021-09-03-703f2a5-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-03-18fbbf1-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-03-703f2a5-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-09-03-18fbbf1-full
+docker pull precommitci/runner-image:2021-09-03-703f2a5-full
 ```
 
 ## pre-commit
@@ -123,6 +123,22 @@ v14.17.6
 
 $ npm --version
 6.14.15
+```
+
+## r
+
+```console
+$ R --version
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
 ```
 
 ## ruby
