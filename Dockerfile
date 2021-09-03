@@ -29,6 +29,7 @@ RUN : \
         python3-dev \
         python3-distutils \
         ruby-dev \
+        unzip \
         zlib1g \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -168,4 +169,19 @@ RUN : \
     && mkdir /opt/conda/bin \
     && ln -sf /opt/conda/install/bin/conda /opt/conda/bin \
     && rm -rf /tmp/conda.sh /root/.conda \
+    && :
+
+ARG DART=2.13.4
+ARG DART_SHA256=633a9aa4812b725ff587e2bbf16cd5839224cfe05dcd536e1a74804e80fdb4cd
+ENV PATH=/opt/dart/dart-sdk/bin:$PATH
+RUN : \
+    && echo 'lang: dart' \
+    && curl --silent --location --output /tmp/dart.zip "https://storage.googleapis.com/dart-archive/channels/stable/release/${DART}/sdk/dartsdk-linux-x64-release.zip" \
+    && echo "${DART_SHA256}  /tmp/dart.zip" | sha256sum --check \
+    && mkdir /opt/dart \
+    && unzip -q -d /opt/dart /tmp/dart.zip \
+    # permissions are wrong in the archive?
+    # https://github.com/dart-lang/sdk/issues/47093
+    && chmod -R og+rX /opt/dart \
+    && rm /tmp/dart.zip \
     && :
