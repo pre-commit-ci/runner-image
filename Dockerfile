@@ -12,6 +12,7 @@ RUN : \
         gcc \
         git \
         gnupg2 \
+        libblas3 \
         libc6 \
         libedit2 \
         libffi-dev \
@@ -19,6 +20,7 @@ RUN : \
         libgdiplus \
         libgssapi-krb5-2 \
         libicu66 \
+        liblapack3 \
         libssl1.1 \
         libstdc++6 \
         libxml2 \
@@ -184,4 +186,17 @@ RUN : \
     # https://github.com/dart-lang/sdk/issues/47093
     && chmod -R og+rX /opt/dart \
     && rm /tmp/dart.zip \
+    && :
+
+ENV \
+    PATH=/opt/r/bin/:$PATH \
+    RENV_CONFIG_CACHE_SYMLINKS=false \
+    RENV_PATHS_ROOT=/tmp/renv
+RUN : \
+    && echo 'lang: r' \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-20.04-r-4.0.2/r-4.0.2.tgz \
+    && echo 'f74f3227bbcb7f6464c0755441a2f0455fd6d2bde3c16ee8ef3302047f4e1eef /tmp/r.tgz' | sha256sum --check \
+    && mkdir /opt/r \
+    && tar -C /opt/r -xf /tmp/r.tgz \
+    && rm /tmp/r.tgz \
     && :
