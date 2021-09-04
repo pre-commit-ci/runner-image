@@ -77,6 +77,13 @@ def main() -> int:
     print()
     with _console():
         _call('conda', '--version')
+    print()
+
+    print('## dart')
+    print()
+    with _console():
+        _call('dart', '--version')
+    print()
 
     print('## dotnet')
     print()
