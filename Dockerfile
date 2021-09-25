@@ -190,6 +190,7 @@ RUN : \
 
 ENV \
     PATH=/opt/r/bin/:$PATH \
+    RENV_CONFIG_CACHE_ENABLED=false \
     RENV_CONFIG_CACHE_SYMLINKS=false \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
