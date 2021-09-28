@@ -1,14 +1,14 @@
-runner-image:2021-09-03-703f2a5-full
+runner-image:2021-09-28-a23e8c2-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-03-703f2a5-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-28-a23e8c2-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-09-03-703f2a5-full
+docker pull precommitci/runner-image:2021-09-28-a23e8c2-full
 ```
 
 ## pre-commit
@@ -78,6 +78,14 @@ Python 3.9.6 (default, Jul  3 2021, 16:40:50)
 $ conda --version
 conda 4.10.3
 ```
+
+## dart
+
+```console
+$ dart --version
+Dart SDK version: 2.13.4 (stable) (Wed Jun 23 13:08:41 2021 +0200) on "linux_x64"
+```
+
 ## dotnet
 
 ```console
