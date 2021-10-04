@@ -1,14 +1,14 @@
-runner-image:2021-09-28-a23e8c2-full
+runner-image:2021-10-04-08599a1-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-09-28-a23e8c2-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-10-04-08599a1-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-09-28-a23e8c2-full
+docker pull precommitci/runner-image:2021-10-04-08599a1-full
 ```
 
 ## pre-commit
@@ -21,11 +21,11 @@ distlib==0.3.2
 filelock==3.0.12
 identify==2.2.13
 nodeenv==1.6.0
-pip==21.2.3
+pip==21.2.4
 platformdirs==2.3.0
 pre-commit==2.15.0
 PyYAML==5.4.1
-setuptools==57.4.0
+setuptools==58.1.0
 six==1.16.0
 toml==0.10.2
 virtualenv==20.7.2
@@ -48,12 +48,12 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.8.10 (default, Jun  2 2021, 10:49:15)
-[GCC 9.4.0]
+Python 3.8.10 (default, Sep 28 2021, 16:10:42)
+[GCC 9.3.0]
 
 $ python3 --version --version
-Python 3.8.10 (default, Jun  2 2021, 10:49:15)
-[GCC 9.4.0]
+Python 3.8.10 (default, Sep 28 2021, 16:10:42)
+[GCC 9.3.0]
 ```
 
 others
@@ -64,11 +64,11 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 9.3.0]
 
 $ python3.7 --version --version
-Python 3.7.11 (default, Jul  3 2021, 17:58:19)
+Python 3.7.12 (default, Sep 10 2021, 00:20:04)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.6 (default, Jul  3 2021, 16:40:50)
+Python 3.9.7 (default, Sep  9 2021, 23:20:13)
 [GCC 9.3.0]
 ```
 
@@ -127,7 +127,7 @@ go version go1.16.7 linux/amd64
 
 ```console
 $ node --version
-v14.17.6
+v14.18.0
 
 $ npm --version
 6.14.15
