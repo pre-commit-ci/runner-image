@@ -48,6 +48,8 @@ RUN : \
         python3.7-distutils \
         python3.9-dev \
         python3.9-distutils \
+        python3.10-dev \
+        python3.10-distutils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
