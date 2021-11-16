@@ -1,14 +1,14 @@
-runner-image:2021-10-24-c22d19c-full
+runner-image:2021-11-16-3a2b490-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-10-24-c22d19c-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-11-16-3a2b490-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-10-24-c22d19c-full
+docker pull precommitci/runner-image:2021-11-16-3a2b490-full
 ```
 
 ## pre-commit
@@ -94,26 +94,26 @@ Dart SDK version: 2.13.4 (stable) (Wed Jun 23 13:08:41 2021 +0200) on "linux_x64
 ```console
 $ dotnet --info
 .NET SDK (reflecting any global.json):
- Version:   6.0.100-preview.7.21379.14
- Commit:    22d70b47bc
+ Version:   6.0.100
+ Commit:    9e8b04bbff
 
 Runtime Environment:
  OS Name:     ubuntu
  OS Version:  20.04
  OS Platform: Linux
  RID:         ubuntu.20.04-x64
- Base Path:   /opt/dotnet/sdk/6.0.100-preview.7.21379.14/
+ Base Path:   /opt/dotnet/sdk/6.0.100/
 
 Host (useful for support):
-  Version: 6.0.0-preview.7.21377.19
-  Commit:  91ba01788d
+  Version: 6.0.0
+  Commit:  4822e3c3aa
 
 .NET SDKs installed:
-  6.0.100-preview.7.21379.14 [/opt/dotnet/sdk]
+  6.0.100 [/opt/dotnet/sdk]
 
 .NET runtimes installed:
-  Microsoft.AspNetCore.App 6.0.0-preview.7.21378.6 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
-  Microsoft.NETCore.App 6.0.0-preview.7.21377.19 [/opt/dotnet/shared/Microsoft.NETCore.App]
+  Microsoft.AspNetCore.App 6.0.0 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 6.0.0 [/opt/dotnet/shared/Microsoft.NETCore.App]
 
 To install additional .NET runtimes or SDKs:
   https://aka.ms/dotnet-download
