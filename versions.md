@@ -1,34 +1,34 @@
-runner-image:2021-11-16-3a2b490-full
+runner-image:2021-11-30-f9c36eb-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-11-16-3a2b490-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2021-11-30-f9c36eb-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-11-16-3a2b490-full
+docker pull precommitci/runner-image:2021-11-30-f9c36eb-full
 ```
 
 ## pre-commit
 
 ```console
 $ pip freeze --all
-backports.entry-points-selectable==1.1.0
+backports.entry-points-selectable==1.1.1
 cfgv==3.3.1
-distlib==0.3.2
-filelock==3.0.12
-identify==2.2.13
+distlib==0.3.3
+filelock==3.4.0
+identify==2.4.0
 nodeenv==1.6.0
 pip==21.3.1
-platformdirs==2.3.0
-pre-commit==2.15.0
-PyYAML==5.4.1
+platformdirs==2.4.0
+pre-commit==2.16.0
+PyYAML==6.0
 setuptools==58.3.0
 six==1.16.0
 toml==0.10.2
-virtualenv==20.7.2
+virtualenv==20.10.0
 wheel==0.37.0
 ```
 
