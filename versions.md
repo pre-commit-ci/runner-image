@@ -1,14 +1,14 @@
-runner-image:2021-12-15-c0b06ff-full
+runner-image:2022-01-10-7c7618e-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2021-12-15-c0b06ff-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-10-7c7618e-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2021-12-15-c0b06ff-full
+docker pull precommitci/runner-image:2022-01-10-7c7618e-full
 ```
 
 ## pre-commit
@@ -25,11 +25,11 @@ pip==21.3.1
 platformdirs==2.4.0
 pre-commit==2.16.0
 PyYAML==6.0
-setuptools==58.3.0
+setuptools==60.2.0
 six==1.16.0
 toml==0.10.2
 virtualenv==20.10.0
-wheel==0.37.0
+wheel==0.37.1
 ```
 
 ## os
@@ -48,11 +48,11 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.8.10 (default, Sep 28 2021, 16:10:42)
+Python 3.8.10 (default, Nov 26 2021, 20:14:08)
 [GCC 9.3.0]
 
 $ python3 --version --version
-Python 3.8.10 (default, Sep 28 2021, 16:10:42)
+Python 3.8.10 (default, Nov 26 2021, 20:14:08)
 [GCC 9.3.0]
 ```
 
@@ -68,11 +68,11 @@ Python 3.7.12 (default, Sep 10 2021, 00:20:04)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.7 (default, Sep  9 2021, 23:20:13)
+Python 3.9.9 (main, Nov 16 2021, 03:08:02)
 [GCC 9.3.0]
 
 $ python3.10 --version --version
-Python 3.10.0 (default, Oct  4 2021, 22:09:55) [GCC 9.3.0]
+Python 3.10.1 (main, Dec 21 2021, 17:46:38) [GCC 9.3.0]
 ```
 
 ## conda
@@ -130,7 +130,7 @@ go version go1.16.7 linux/amd64
 
 ```console
 $ node --version
-v14.18.1
+v14.18.2
 
 $ npm --version
 6.14.15
