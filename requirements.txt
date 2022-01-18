@@ -1,11 +1,11 @@
 backports.entry-points-selectable==1.1.1
 cfgv==3.3.1
-distlib==0.3.3
-filelock==3.4.0
-identify==2.4.0
+distlib==0.3.4
+filelock==3.4.2
+identify==2.4.4
 nodeenv==1.6.0
-platformdirs==2.4.0
-pre-commit==2.16.0
+platformdirs==2.4.1
+pre-commit==2.17.0
 PyYAML==6.0
 six==1.16.0
 toml==0.10.2
