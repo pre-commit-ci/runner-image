@@ -1,14 +1,14 @@
-runner-image:2022-01-19-08b0de8-full
+runner-image:2022-01-19-acfb517-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-19-08b0de8-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-19-acfb517-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-01-19-08b0de8-full
+docker pull precommitci/runner-image:2022-01-19-acfb517-full
 ```
 
 ## pre-commit
@@ -64,15 +64,15 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 9.3.0]
 
 $ python3.7 --version --version
-Python 3.7.12 (default, Sep 10 2021, 00:20:04)
+Python 3.7.12 (default, Jan 15 2022, 18:42:10)
 [GCC 9.3.0]
 
 $ python3.9 --version --version
-Python 3.9.9 (main, Nov 16 2021, 03:08:02)
+Python 3.9.10 (main, Jan 15 2022, 18:17:56)
 [GCC 9.3.0]
 
 $ python3.10 --version --version
-Python 3.10.1 (main, Dec 21 2021, 17:46:38) [GCC 9.3.0]
+Python 3.10.2 (main, Jan 15 2022, 18:02:07) [GCC 9.3.0]
 ```
 
 ## conda
@@ -142,7 +142,7 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v14.18.2
+v14.18.3
 
 $ npm --version
 6.14.15
