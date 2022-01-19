@@ -203,3 +203,23 @@ RUN : \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
     && :
+
+ARG LUA=5.4.3
+ARG LUA_SHA256=f8612276169e3bfcbcfb8f226195bfc6e466fe13042f1076cbde92b7ec96bbfb
+ARG LUAROCKS=3.8.0
+ARG LUAROCKS_SHA256=56ab9b90f5acbc42eb7a94cf482e6c058a63e8a1effdf572b8b2a6323a06d923
+ENV PATH=/opt/lua/bin:$PATH
+RUN : \
+    && echo 'lang: lua' \
+    && curl --location --silent --output /tmp/lua.tgz "https://www.lua.org/ftp/lua-${LUA}.tar.gz" \
+    && echo "${LUA_SHA256}  /tmp/lua.tgz" | sha256sum --check \
+    && curl --location --silent --output /tmp/luarocks.tgz "https://luarocks.org/releases/luarocks-${LUAROCKS}.tar.gz" \
+    && echo "${LUAROCKS_SHA256}  /tmp/luarocks.tgz" | sha256sum --check \
+    && tar -C /tmp --strip-components=1 --one-top-level -xf /tmp/lua.tgz \
+    && make -C /tmp/lua INSTALL_TOP=/opt/lua all \
+    && make -C /tmp/lua INSTALL_TOP=/opt/lua install \
+    && tar -C /tmp --strip-components=1 --one-top-level -xf /tmp/luarocks.tgz \
+    && cd /tmp/luarocks \
+    && ./configure --prefix=/opt/lua \
+    && make install \
+    && rm -rf /tmp/lua /tmp/luarocks /tmp/lua.tgz /tmp/luarocks.tgz
