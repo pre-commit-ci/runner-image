@@ -1,14 +1,14 @@
-runner-image:2022-01-19-ec7da74-full
+runner-image:2022-01-19-08b0de8-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-19-ec7da74-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-19-08b0de8-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-01-19-ec7da74-full
+docker pull precommitci/runner-image:2022-01-19-08b0de8-full
 ```
 
 ## pre-commit
@@ -124,6 +124,18 @@ To install additional .NET runtimes or SDKs:
 ```console
 $ go version
 go version go1.16.7 linux/amd64
+```
+
+## lua
+
+```console
+$ lua -v
+Lua 5.4.3  Copyright (C) 1994-2021 Lua.org, PUC-Rio
+
+$ luarocks --version
+/opt/lua/bin/luarocks 3.8.0
+LuaRocks main command-line interface
+
 ```
 
 ## node
