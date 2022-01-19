@@ -99,6 +99,14 @@ def main() -> int:
         _call('go', 'version')
     print()
 
+    print('## lua')
+    print()
+    with _console():
+        _call('lua', '-v')
+        print()
+        _call('luarocks', '--version')
+    print()
+
     print('## node')
     print()
     with _console():
