@@ -1,34 +1,33 @@
-runner-image:2022-01-19-acfb517-full
+runner-image:2022-02-28-2c7db94-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-01-19-acfb517-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-02-28-2c7db94-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-01-19-acfb517-full
+docker pull precommitci/runner-image:2022-02-28-2c7db94-full
 ```
 
 ## pre-commit
 
 ```console
 $ pip freeze --all
-backports.entry-points-selectable==1.1.1
 cfgv==3.3.1
 distlib==0.3.4
-filelock==3.4.2
-identify==2.4.4
+filelock==3.6.0
+identify==2.4.11
 nodeenv==1.6.0
-pip==21.3.1
-platformdirs==2.4.1
+pip==22.0.3
+platformdirs==2.5.1
 pre-commit==2.17.0
 PyYAML==6.0
-setuptools==60.2.0
+setuptools==60.9.3
 six==1.16.0
 toml==0.10.2
-virtualenv==20.10.0
+virtualenv==20.13.2
 wheel==0.37.1
 ```
 
@@ -142,10 +141,10 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v14.18.3
+v14.19.0
 
 $ npm --version
-6.14.15
+6.14.16
 ```
 
 ## r
