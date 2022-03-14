@@ -1,14 +1,14 @@
-runner-image:2022-02-28-2c7db94-full
+runner-image:2022-03-14-295b559-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-02-28-2c7db94-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-03-14-295b559-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-02-28-2c7db94-full
+docker pull precommitci/runner-image:2022-03-14-295b559-full
 ```
 
 ## pre-commit
@@ -20,7 +20,7 @@ distlib==0.3.4
 filelock==3.6.0
 identify==2.4.11
 nodeenv==1.6.0
-pip==22.0.3
+pip==22.0.4
 platformdirs==2.5.1
 pre-commit==2.17.0
 PyYAML==6.0
@@ -38,7 +38,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
 ```
 
 ## python
