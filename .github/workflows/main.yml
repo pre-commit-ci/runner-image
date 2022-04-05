@@ -23,5 +23,5 @@ jobs:
     - run: bin/push info "$TAG"
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name != 'pull_request'

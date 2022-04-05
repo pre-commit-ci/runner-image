@@ -93,8 +93,8 @@ COPY build/seed-virtualenv-cache /tmp/seed-virtualenv-cache
 RUN /tmp/seed-virtualenv-cache
 ENV VIRTUALENV_READ_ONLY_APP_DATA=1
 
-ARG GO=1.16.7
-ARG GO_SHA256=7fe7a73f55ba3e2285da36f8b085e5c0159e9564ef5f63ee0ed6b818ade8ef04
+ARG GO=1.18
+ARG GO_SHA256=e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f
 ENV PATH=/opt/go/bin:$PATH XDG_CACHE_HOME=/tmp/cache GOFLAGS=-modcacherw
 RUN : \
     && mkdir -p /opt \
