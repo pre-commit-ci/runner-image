@@ -73,7 +73,7 @@ def main() -> int:
         minimal_tag=minimal_tag,
         full_tag=full_tag,
         hostname='ghcr.io',
-        username='pre-commit-ci-bot',
+        username=os.environ['GHCR_USER'],
         password=os.environ['GHCR_TOKEN'],
         prefix='ghcr.io/pre-commit-ci',
     )
