@@ -1,14 +1,14 @@
-runner-image:2022-04-03-b6f0772-full
+runner-image:2022-04-05-7cf362a-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-04-03-b6f0772-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-04-05-7cf362a-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-04-03-b6f0772-full
+docker pull precommitci/runner-image:2022-04-05-7cf362a-full
 ```
 
 ## pre-commit
@@ -122,7 +122,7 @@ To install additional .NET runtimes or SDKs:
 
 ```console
 $ go version
-go version go1.16.7 linux/amd64
+go version go1.18 linux/amd64
 ```
 
 ## lua
