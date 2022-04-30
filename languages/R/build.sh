@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-R_VERSION=4.0.2
-R_SHA256=d3bceab364da0876625e4097808b42512395fdf41292f4915ab1fd257c1bbe75
+R_VERSION=4.2.0
+R_SHA256=38eab7719b7ad095388f06aa090c5a2b202791945de60d3e2bb0eab1f5097488
+# https://hypatia.math.ethz.ch/pipermail/r-announce/2022/000683.html
 
 podman build \
     --build-arg=R_VERSION="$R_VERSION" \
