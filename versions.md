@@ -1,14 +1,14 @@
-runner-image:2022-04-11-8f4cc96-full
+runner-image:2022-04-30-ee0d179-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-04-11-8f4cc96-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-04-30-ee0d179-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-04-11-8f4cc96-full
+docker pull precommitci/runner-image:2022-04-30-ee0d179-full
 ```
 
 ## pre-commit
@@ -24,7 +24,7 @@ pip==22.0.4
 platformdirs==2.5.1
 pre-commit==2.18.1
 PyYAML==6.0
-setuptools==61.0.0
+setuptools==62.1.0
 six==1.16.0
 toml==0.10.2
 virtualenv==20.14.0
@@ -63,15 +63,15 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 9.3.0]
 
 $ python3.7 --version --version
-Python 3.7.13 (default, Mar 16 2022, 17:35:37)
+Python 3.7.13 (default, Apr 24 2022, 01:05:22)
 [GCC 9.4.0]
 
 $ python3.9 --version --version
-Python 3.9.12 (main, Mar 24 2022, 16:20:11)
+Python 3.9.12 (main, Apr 18 2022, 22:40:46)
 [GCC 9.4.0]
 
 $ python3.10 --version --version
-Python 3.10.4 (main, Mar 24 2022, 16:12:56) [GCC 9.4.0]
+Python 3.10.4 (main, Apr  8 2022, 17:35:13) [GCC 9.4.0]
 ```
 
 ## conda
