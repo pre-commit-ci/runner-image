@@ -56,17 +56,6 @@ RUN : \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
-RUN : \
-    && . /etc/lsb-release \
-    && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-    && echo deb https://deb.nodesource.com/node_14.x $DISTRIB_CODENAME main > /etc/apt/sources.list.d/nodesource.list \
-    && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && :
-
 ENV \
     PATH=/venv/bin:$PATH \
     PRE_COMMIT_HOME=/pc \
@@ -106,6 +95,18 @@ RUN : \
     && rm go.tgz
 
 RUN echo 'end: minimal'
+
+ARG NODE=18.0.0
+ARG NODE_SHA256=6260d3526dff25d43451ea8e90e0174975b4cd067e8535dc1d85a6d6b29f3043
+ENV PATH=/opt/node/bin:$PATH
+RUN : \
+    && echo 'lang: node' \
+    && curl --silent --location --output /tmp/node.tar.gz "https://nodejs.org/dist/v${NODE}/node-v${NODE}-linux-x64.tar.gz" \
+    && echo "${NODE_SHA256}  /tmp/node.tar.gz" | sha256sum --check \
+    && mkdir /opt/node \
+    && tar --strip-components 1 --directory /opt/node -xf /tmp/node.tar.gz \
+    && rm /tmp/node.tar.gz \
+    && :
 
 ARG RUST=1.56.0
 ARG RUSTUP_SHA256=3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338
