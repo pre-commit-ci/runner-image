@@ -1,14 +1,14 @@
-runner-image:2022-05-01-1c03a9b-full
+runner-image:2022-05-01-a36d7e9-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-05-01-1c03a9b-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-05-01-a36d7e9-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-05-01-1c03a9b-full
+docker pull precommitci/runner-image:2022-05-01-a36d7e9-full
 ```
 
 ## pre-commit
@@ -141,10 +141,10 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v14.19.1
+v18.0.0
 
 $ npm --version
-6.14.16
+8.6.0
 ```
 
 ## r
