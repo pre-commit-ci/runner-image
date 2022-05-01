@@ -1,14 +1,14 @@
-runner-image:2022-04-30-ee0d179-full
+runner-image:2022-05-01-a268ad3-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-04-30-ee0d179-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-05-01-a268ad3-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-04-30-ee0d179-full
+docker pull precommitci/runner-image:2022-05-01-a268ad3-full
 ```
 
 ## pre-commit
@@ -151,8 +151,8 @@ $ npm --version
 
 ```console
 $ R --version
-R version 4.0.2 (2020-06-22) -- "Taking Off Again"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics"
+Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
