@@ -45,6 +45,7 @@ RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         python3.6-dev \
+        python3.6-distutils \
         python3.7-dev \
         python3.7-distutils \
         python3.9-dev \
