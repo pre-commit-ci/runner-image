@@ -1,11 +1,11 @@
 cfgv==3.3.1
 distlib==0.3.4
 filelock==3.6.0
-identify==2.4.12
+identify==2.5.0
 nodeenv==1.6.0
-platformdirs==2.5.1
-pre-commit==2.18.1
+platformdirs==2.5.2
+pre-commit==2.19.0
 PyYAML==6.0
 six==1.16.0
 toml==0.10.2
-virtualenv==20.14.0
+virtualenv==20.14.1
