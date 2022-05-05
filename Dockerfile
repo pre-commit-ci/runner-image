@@ -83,6 +83,9 @@ COPY build/seed-virtualenv-cache /tmp/seed-virtualenv-cache
 RUN /tmp/seed-virtualenv-cache
 ENV VIRTUALENV_READ_ONLY_APP_DATA=1
 
+# pre-commit.ci requires cross-user readonly `/src` repo access
+RUN git config --system --add safe.directory /src
+
 ARG GO=1.18
 ARG GO_SHA256=e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f
 ENV PATH=/opt/go/bin:$PATH XDG_CACHE_HOME=/tmp/cache GOFLAGS=-modcacherw
