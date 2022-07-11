@@ -1,14 +1,14 @@
-runner-image:2022-07-11-dab3809-full
+runner-image:2022-07-11-918b14b-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-07-11-dab3809-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-07-11-918b14b-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-07-11-dab3809-full
+docker pull precommitci/runner-image:2022-07-11-918b14b-full
 ```
 
 ## pre-commit
@@ -47,12 +47,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.8.10 (default, Mar 15 2022, 12:22:08)
-[GCC 9.4.0]
+Python 3.10.4 (main, Apr  8 2022, 17:35:13) [GCC 9.4.0]
 
 $ python3 --version --version
-Python 3.8.10 (default, Mar 15 2022, 12:22:08)
-[GCC 9.4.0]
+Python 3.10.4 (main, Apr  8 2022, 17:35:13) [GCC 9.4.0]
 ```
 
 others
