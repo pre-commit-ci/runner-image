@@ -70,9 +70,9 @@ def main() -> int:
         print()
         _call('python3.7', '--version', '--version')
         print()
-        _call('python3.9', '--version', '--version')
+        _call('python3.8', '--version', '--version')
         print()
-        _call('python3.10', '--version', '--version')
+        _call('python3.9', '--version', '--version')
     print()
 
     print('## conda')
