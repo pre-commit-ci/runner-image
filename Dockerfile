@@ -70,7 +70,7 @@ ENV \
 COPY requirements.txt /tmp/requirements.txt
 RUN : \
     && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.8/virtualenv.pyz \
-    && python3 /tmp/virtualenv.pyz /venv \
+    && python3.10 /tmp/virtualenv.pyz /venv \
     && pip install --requirement /tmp/requirements.txt \
     && rm -rf ~/.local /tmp/virtualenv.pyz \
     && :
