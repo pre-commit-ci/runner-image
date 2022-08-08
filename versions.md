@@ -1,14 +1,14 @@
-runner-image:2022-07-12-5bd062a-full
+runner-image:2022-08-08-63acb9e-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-07-12-5bd062a-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-08-08-63acb9e-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-07-12-5bd062a-full
+docker pull precommitci/runner-image:2022-08-08-63acb9e-full
 ```
 
 ## pre-commit
@@ -20,7 +20,7 @@ distlib==0.3.4
 filelock==3.7.1
 identify==2.5.1
 nodeenv==1.7.0
-pip==22.1.2
+pip==22.2.2
 platformdirs==2.5.2
 pre-commit==2.20.0
 PyYAML==6.0
@@ -47,25 +47,25 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.4 (main, Apr  8 2022, 17:35:13) [GCC 9.4.0]
+Python 3.10.6 (main, Aug  2 2022, 15:11:28) [GCC 9.4.0]
 
 $ python3 --version --version
-Python 3.10.4 (main, Apr  8 2022, 17:35:13) [GCC 9.4.0]
+Python 3.10.6 (main, Aug  2 2022, 15:11:28) [GCC 9.4.0]
 ```
 
 others
 
 ```console
 $ python2.7 -c 'import sys; print(sys.version)'
-2.7.18 (default, Mar  8 2021, 13:02:45)
-[GCC 9.3.0]
+2.7.18 (default, Jul  1 2022, 12:27:04)
+[GCC 9.4.0]
 
 $ python3.7 --version --version
 Python 3.7.13 (default, Apr 24 2022, 01:05:22)
 [GCC 9.4.0]
 
 $ python3.8 --version --version
-Python 3.8.10 (default, Mar 15 2022, 12:22:08)
+Python 3.8.10 (default, Jun 22 2022, 20:18:18)
 [GCC 9.4.0]
 
 $ python3.9 --version --version
