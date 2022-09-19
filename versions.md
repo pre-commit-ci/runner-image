@@ -1,14 +1,14 @@
-runner-image:2022-08-08-63acb9e-full
+runner-image:2022-09-19-e3362ca-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-08-08-63acb9e-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-09-19-e3362ca-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-08-08-63acb9e-full
+docker pull precommitci/runner-image:2022-09-19-e3362ca-full
 ```
 
 ## pre-commit
@@ -38,7 +38,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 20.04.5 LTS"
 ```
 
 ## python
@@ -47,10 +47,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.6 (main, Aug  2 2022, 15:11:28) [GCC 9.4.0]
+Python 3.10.7 (main, Sep  7 2022, 15:22:19) [GCC 9.4.0]
 
 $ python3 --version --version
-Python 3.10.6 (main, Aug  2 2022, 15:11:28) [GCC 9.4.0]
+Python 3.10.7 (main, Sep  7 2022, 15:22:19) [GCC 9.4.0]
 ```
 
 others
@@ -61,7 +61,7 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 9.4.0]
 
 $ python3.7 --version --version
-Python 3.7.13 (default, Apr 24 2022, 01:05:22)
+Python 3.7.14 (default, Sep  8 2022, 00:06:29)
 [GCC 9.4.0]
 
 $ python3.8 --version --version
@@ -69,7 +69,7 @@ Python 3.8.10 (default, Jun 22 2022, 20:18:18)
 [GCC 9.4.0]
 
 $ python3.9 --version --version
-Python 3.9.13 (main, May 23 2022, 22:01:06)
+Python 3.9.14 (main, Sep  7 2022, 23:43:29)
 [GCC 9.4.0]
 ```
 
