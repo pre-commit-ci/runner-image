@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 ENTRYPOINT ["dumb-init", "--"]
 
@@ -20,9 +20,9 @@ RUN : \
         libgcc1 \
         libgdiplus \
         libgssapi-krb5-2 \
-        libicu66 \
+        libicu70 \
         liblapack3 \
-        libssl1.1 \
+        libssl3 \
         libstdc++6 \
         libxml2 \
         libyaml-dev \
@@ -44,14 +44,12 @@ RUN : \
     && echo deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $DISTRIB_CODENAME main > /etc/apt/sources.list.d/deadsnakes.list \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        python3.6-dev \
-        python3.6-distutils \
         python3.7-dev \
         python3.7-distutils \
+        python3.8-dev \
+        python3.8-distutils \
         python3.9-dev \
         python3.9-distutils \
-        python3.10-dev \
-        python3.10-distutils \
         python3.11-dev \
         python3.11-distutils \
     && apt-get clean \
@@ -131,8 +129,8 @@ RUN : \
     && rustup component add clippy rustfmt \
     && :
 
-ARG SWIFT=5.3.2
-ARG SWIFT_SHA256=dc360633c85ba16371646da55bcea9f4cf442e3312af2d3f5bb6e85f88d00f7c
+ARG SWIFT=5.7
+ARG SWIFT_SHA256=642f76399556947f9ebf83d4b31580395459032be66d29a218f36b99fae37be8
 ENV \
     PATH=/opt/swift/usr/bin:$PATH \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/swift/usr/lib
@@ -204,8 +202,8 @@ ENV \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
     && echo 'lang: r' \
-    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-20.04-r-4.2.0/r-4.2.0.tgz \
-    && echo 'c07ffc4bb2a18886191c1cad0a9bc1b4535f8c07650b7ed780590e529cb8f0c2 /tmp/r.tgz' | sha256sum --check \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-22.04-r-4.2.1/r-4.2.1.tgz \
+    && echo 'c42675b6612c617d4eeee1eef1635eab2c2db4067bcabfc9b1b2bbde9df0f930 /tmp/r.tgz' | sha256sum --check \
     && mkdir /opt/r \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
