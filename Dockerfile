@@ -52,6 +52,8 @@ RUN : \
         python3.9-distutils \
         python3.10-dev \
         python3.10-distutils \
+        python3.11-dev \
+        python3.11-distutils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
