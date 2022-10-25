@@ -1,14 +1,14 @@
-runner-image:2022-10-10-d10a21e-full
+runner-image:2022-10-25-02212c6-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-10-d10a21e-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-25-02212c6-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-10-10-d10a21e-full
+docker pull precommitci/runner-image:2022-10-25-02212c6-full
 ```
 
 ## pre-commit
@@ -47,10 +47,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.7 (main, Sep  7 2022, 15:22:19) [GCC 9.4.0]
+Python 3.10.8 (main, Oct 12 2022, 19:14:26) [GCC 9.4.0]
 
 $ python3 --version --version
-Python 3.10.7 (main, Sep  7 2022, 15:22:19) [GCC 9.4.0]
+Python 3.10.8 (main, Oct 12 2022, 19:14:26) [GCC 9.4.0]
 ```
 
 others
@@ -61,7 +61,7 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 9.4.0]
 
 $ python3.7 --version --version
-Python 3.7.14 (default, Sep  8 2022, 00:06:29)
+Python 3.7.15 (default, Oct 12 2022, 19:14:38)
 [GCC 9.4.0]
 
 $ python3.8 --version --version
@@ -69,7 +69,7 @@ Python 3.8.10 (default, Jun 22 2022, 20:18:18)
 [GCC 9.4.0]
 
 $ python3.9 --version --version
-Python 3.9.14 (main, Sep  7 2022, 23:43:29)
+Python 3.9.15 (main, Oct 12 2022, 19:14:24)
 [GCC 9.4.0]
 ```
 
