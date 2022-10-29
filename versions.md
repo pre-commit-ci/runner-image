@@ -1,14 +1,14 @@
-runner-image:2022-10-25-02212c6-full
+runner-image:2022-10-29-81f4b4b-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-25-02212c6-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-29-81f4b4b-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-10-25-02212c6-full
+docker pull precommitci/runner-image:2022-10-29-81f4b4b-full
 ```
 
 ## pre-commit
@@ -71,6 +71,9 @@ Python 3.8.10 (default, Jun 22 2022, 20:18:18)
 $ python3.9 --version --version
 Python 3.9.15 (main, Oct 12 2022, 19:14:24)
 [GCC 9.4.0]
+
+$ python3.11 --version --version
+Python 3.11.0 (main, Oct 24 2022, 19:55:51) [GCC 9.4.0]
 ```
 
 ## conda
