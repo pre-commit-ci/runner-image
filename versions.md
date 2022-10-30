@@ -1,14 +1,14 @@
-runner-image:2022-10-29-81f4b4b-full
+runner-image:2022-10-30-856fdc6-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-29-81f4b4b-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-10-30-856fdc6-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-10-29-81f4b4b-full
+docker pull precommitci/runner-image:2022-10-30-856fdc6-full
 ```
 
 ## pre-commit
@@ -36,9 +36,9 @@ wheel==0.37.1
 ```console
 $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=20.04
-DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.5 LTS"
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu 22.04.1 LTS"
 ```
 
 ## python
@@ -47,33 +47,33 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.8 (main, Oct 12 2022, 19:14:26) [GCC 9.4.0]
+Python 3.10.6 (main, Aug 10 2022, 11:40:04) [GCC 11.3.0]
 
 $ python3 --version --version
-Python 3.10.8 (main, Oct 12 2022, 19:14:26) [GCC 9.4.0]
+Python 3.10.6 (main, Aug 10 2022, 11:40:04) [GCC 11.3.0]
 ```
 
 others
 
 ```console
 $ python2.7 -c 'import sys; print(sys.version)'
-2.7.18 (default, Jul  1 2022, 12:27:04)
-[GCC 9.4.0]
+2.7.18 (default, Jul  1 2022, 10:30:50)
+[GCC 11.2.0]
 
 $ python3.7 --version --version
-Python 3.7.15 (default, Oct 12 2022, 19:14:38)
-[GCC 9.4.0]
+Python 3.7.15 (default, Oct 12 2022, 19:14:01)
+[GCC 11.2.0]
 
 $ python3.8 --version --version
-Python 3.8.10 (default, Jun 22 2022, 20:18:18)
-[GCC 9.4.0]
+Python 3.8.15 (default, Oct 12 2022, 19:15:16)
+[GCC 11.2.0]
 
 $ python3.9 --version --version
-Python 3.9.15 (main, Oct 12 2022, 19:14:24)
-[GCC 9.4.0]
+Python 3.9.15 (main, Oct 12 2022, 19:14:37)
+[GCC 11.2.0]
 
 $ python3.11 --version --version
-Python 3.11.0 (main, Oct 24 2022, 19:55:51) [GCC 9.4.0]
+Python 3.11.0 (main, Oct 24 2022, 19:56:13) [GCC 11.2.0]
 ```
 
 ## conda
@@ -100,9 +100,9 @@ $ dotnet --info
 
 Runtime Environment:
  OS Name:     ubuntu
- OS Version:  20.04
+ OS Version:  22.04
  OS Platform: Linux
- RID:         ubuntu.20.04-x64
+ RID:         linux-x64
  Base Path:   /opt/dotnet/sdk/6.0.100/
 
 Host (useful for support):
@@ -153,7 +153,7 @@ $ npm --version
 
 ```console
 $ R --version
-R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics"
+R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
 Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -169,7 +169,7 @@ https://www.gnu.org/licenses/.
 
 ```console
 $ ruby --version
-ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
+ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
 ```
 
 ## rust
@@ -186,6 +186,6 @@ rustc 1.62.0 (a8314ef7d 2022-06-27)
 
 ```console
 $ swift -version
-Swift version 5.3.2 (swift-5.3.2-RELEASE)
+Swift version 5.7 (swift-5.7-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
