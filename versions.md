@@ -1,14 +1,14 @@
-runner-image:2022-11-01-aac7721-full
+runner-image:2022-11-10-3d97fb9-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-11-01-aac7721-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-11-10-3d97fb9-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-11-01-aac7721-full
+docker pull precommitci/runner-image:2022-11-10-3d97fb9-full
 ```
 
 ## pre-commit
@@ -47,10 +47,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.6 (main, Aug 10 2022, 11:40:04) [GCC 11.3.0]
+Python 3.10.6 (main, Nov  2 2022, 18:53:38) [GCC 11.3.0]
 
 $ python3 --version --version
-Python 3.10.6 (main, Aug 10 2022, 11:40:04) [GCC 11.3.0]
+Python 3.10.6 (main, Nov  2 2022, 18:53:38) [GCC 11.3.0]
 ```
 
 others
@@ -176,10 +176,10 @@ ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
 
 ```console
 $ cargo --version
-cargo 1.62.0 (a748cf5a3 2022-06-08)
+cargo 1.65.0 (4bc8f24d3 2022-10-20)
 
 $ rustc --version
-rustc 1.62.0 (a8314ef7d 2022-06-27)
+rustc 1.65.0 (897e37553 2022-11-02)
 ```
 
 ## swift
