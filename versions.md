@@ -1,14 +1,14 @@
-runner-image:2022-11-10-3d97fb9-full
+runner-image:2022-12-21-fadee1c-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-11-10-3d97fb9-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-12-21-fadee1c-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-11-10-3d97fb9-full
+docker pull precommitci/runner-image:2022-12-21-fadee1c-full
 ```
 
 ## pre-commit
@@ -20,7 +20,7 @@ distlib==0.3.4
 filelock==3.7.1
 identify==2.5.1
 nodeenv==1.7.0
-pip==22.2.2
+pip==22.3.1
 platformdirs==2.5.2
 pre-commit==2.20.0
 PyYAML==6.0
@@ -28,7 +28,7 @@ setuptools==63.1.0
 six==1.16.0
 toml==0.10.2
 virtualenv==20.15.1
-wheel==0.37.1
+wheel==0.38.4
 ```
 
 ## os
@@ -47,10 +47,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.6 (main, Nov  2 2022, 18:53:38) [GCC 11.3.0]
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
 
 $ python3 --version --version
-Python 3.10.6 (main, Nov  2 2022, 18:53:38) [GCC 11.3.0]
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
 ```
 
 others
@@ -61,19 +61,19 @@ $ python2.7 -c 'import sys; print(sys.version)'
 [GCC 11.2.0]
 
 $ python3.7 --version --version
-Python 3.7.15 (default, Oct 12 2022, 19:14:01)
-[GCC 11.2.0]
+Python 3.7.16 (default, Dec  7 2022, 01:12:33)
+[GCC 11.3.0]
 
 $ python3.8 --version --version
-Python 3.8.15 (default, Oct 12 2022, 19:15:16)
-[GCC 11.2.0]
+Python 3.8.16 (default, Dec  7 2022, 01:12:06)
+[GCC 11.3.0]
 
 $ python3.9 --version --version
-Python 3.9.15 (main, Oct 12 2022, 19:14:37)
-[GCC 11.2.0]
+Python 3.9.16 (main, Dec  7 2022, 01:12:08)
+[GCC 11.3.0]
 
 $ python3.11 --version --version
-Python 3.11.0 (main, Oct 24 2022, 19:56:13) [GCC 11.2.0]
+Python 3.11.1 (main, Dec  7 2022, 01:11:34) [GCC 11.3.0]
 ```
 
 ## conda
@@ -94,30 +94,43 @@ Dart SDK version: 2.13.4 (stable) (Wed Jun 23 13:08:41 2021 +0200) on "linux_x64
 
 ```console
 $ dotnet --info
-.NET SDK (reflecting any global.json):
- Version:   6.0.100
- Commit:    9e8b04bbff
+.NET SDK:
+ Version:   7.0.101
+ Commit:    bb24aafa11
 
 Runtime Environment:
  OS Name:     ubuntu
  OS Version:  22.04
  OS Platform: Linux
- RID:         linux-x64
- Base Path:   /opt/dotnet/sdk/6.0.100/
+ RID:         ubuntu.22.04-x64
+ Base Path:   /opt/dotnet/sdk/7.0.101/
 
-Host (useful for support):
-  Version: 6.0.0
-  Commit:  4822e3c3aa
+Host:
+  Version:      7.0.1
+  Architecture: x64
+  Commit:       97203d38ba
 
 .NET SDKs installed:
-  6.0.100 [/opt/dotnet/sdk]
+  7.0.101 [/opt/dotnet/sdk]
 
 .NET runtimes installed:
-  Microsoft.AspNetCore.App 6.0.0 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
-  Microsoft.NETCore.App 6.0.0 [/opt/dotnet/shared/Microsoft.NETCore.App]
+  Microsoft.AspNetCore.App 7.0.1 [/opt/dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 7.0.1 [/opt/dotnet/shared/Microsoft.NETCore.App]
 
-To install additional .NET runtimes or SDKs:
-  https://aka.ms/dotnet-download
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_ROOT       [/opt/dotnet]
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download
 ```
 
 ## go
