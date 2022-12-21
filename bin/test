@@ -199,10 +199,11 @@ def test_can_run_swift_hook(tag: str, pc: str, podman: bool) -> None:
 
 DOTNET_HOOK = '''\
 repos:
--   repo: https://github.com/dotnet/format
-    rev: v5.1.225507
+# switch back to rkm once pre-commit 2.21 lands
+-   repo: https://github.com/pre-commit-ci/sample-dotnet-tool
+    rev: asottile-patch-1
     hooks:
-    -   id: dotnet-format
+    -   id: sample-dotnet-tool
 '''
 
 PLACEHOLDER_DOTNET_CSPROJ_FILE = '''\
