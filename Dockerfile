@@ -82,7 +82,7 @@ RUN : \
 ENV \
     VIRTUALENV_OVERRIDE_APP_DATA=/opt/virtualenv/cache \
     VIRTUALENV_SYMLINK_APP_DATA=1
-COPY build/seed-virtualenv-cache /tmp/seed-virtualenv-cache
+COPY build/* /tmp/
 RUN /tmp/seed-virtualenv-cache
 ENV VIRTUALENV_READ_ONLY_APP_DATA=1
 
@@ -231,3 +231,7 @@ RUN : \
     && ./configure --prefix=/opt/lua \
     && make install \
     && rm -rf /tmp/lua /tmp/luarocks /tmp/lua.tgz /tmp/luarocks.tgz
+
+RUN : \
+    && echo 'lang: meta' \
+    && /tmp/language-info --dest /opt/meta
