@@ -67,13 +67,15 @@ ENV \
     VIRTUALENV_NO_PERIODIC_UPDATE=1 \
     VIRTUALENV_PIP=embed \
     VIRTUALENV_SETUPTOOLS=embed \
-    VIRTUALENV_WHEEL=embed
+    VIRTUALENV_WHEEL=embed \
+    XDG_CACHE_HOME=/tmp/cache \
+    XDG_DATA_HOME=/tmp/data
 COPY requirements.txt /tmp/requirements.txt
 RUN : \
     && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.8/virtualenv.pyz \
     && python3.10 /tmp/virtualenv.pyz /venv \
     && pip install --requirement /tmp/requirements.txt \
-    && rm -rf ~/.local /tmp/virtualenv.pyz \
+    && rm -rf "$XDG_DATA_HOME" /tmp/virtualenv.pyz \
     && :
 
 # ensure virtualenv appdata cache is populated
@@ -89,7 +91,7 @@ RUN git config --system --add safe.directory /src
 
 ARG GO=1.18
 ARG GO_SHA256=e85278e98f57cdb150fe8409e6e5df5343ecb13cebf03a5d5ff12bd55a80264f
-ENV PATH=/opt/go/bin:$PATH XDG_CACHE_HOME=/tmp/cache GOFLAGS=-modcacherw
+ENV PATH=/opt/go/bin:$PATH GOFLAGS=-modcacherw
 RUN : \
     && mkdir -p /opt \
     && curl --location --silent --output go.tgz https://golang.org/dl/go${GO}.linux-amd64.tar.gz \
@@ -145,13 +147,15 @@ RUN : \
     && rm /tmp/swift.tar.gz \
     && :
 
-ARG DOTNET_URL=https://download.visualstudio.microsoft.com/download/pr/17b6759f-1af0-41bc-ab12-209ba0377779/e8d02195dbf1434b940e0f05ae086453/dotnet-sdk-6.0.100-linux-x64.tar.gz
-ARG DOTNET_SHA512=cb0d174a79d6294c302261b645dba6a479da8f7cf6c1fe15ae6998bc09c5e0baec810822f9e0104e84b0efd51fdc0333306cb2a0a6fcdbaf515a8ad8cf1af25b
+ARG DOTNET_URL=https://download.visualstudio.microsoft.com/download/pr/7fe73a07-575d-4cb4-b2d3-c23d89e5085f/d8b2b7e1c0ed99c1144638d907c6d152/dotnet-sdk-7.0.101-linux-x64.tar.gz
+ARG DOTNET_SHA512=cf289ad0e661c38dcda7f415b3078a224e8347528448429d62c0f354ee951f4e7bef9cceaf3db02fb52b5dd7be987b7a4327ca33fb9239b667dc1c41c678095c
 ENV \
     PATH=/opt/dotnet:$PATH \
     DOTNET_ROOT=/opt/dotnet \
     DOTNET_CLI_HOME=/tmp \
-    DOTNET_CLI_TELEMETRY_OPTOUT=1
+    DOTNET_CLI_TELEMETRY_OPTOUT=1 \
+    DOTNET_NOLOGO=1 \
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 RUN : \
     && echo 'lang: dotnet' \
     && dotnet_root=/opt/dotnet \
@@ -165,8 +169,6 @@ RUN : \
     && echo "${DOTNET_SHA512} /tmp/dotnet.tar.gz" | sha512sum --check \
     && tar -C $dotnet_root -xf /tmp/dotnet.tar.gz \
     && rm /tmp/dotnet.tar.gz \
-    # Trigger first run output
-    && dotnet build > /dev/null || true \
     && :
 
 ARG CONDA=py39_4.10.3
