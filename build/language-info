@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import gzip
+import json
+import os.path
+import tarfile
+
+from pre_commit import resources
+from pre_commit.languages.all import languages
+
+
+def reset(tarinfo: tarfile.TarInfo) -> tarfile.TarInfo:
+    tarinfo.uid = tarinfo.gid = 0
+    tarinfo.uname = tarinfo.gname = 'root'
+    tarinfo.mtime = 0
+    return tarinfo
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dest', required=True)
+
+    args = parser.parse_args()
+
+    os.makedirs(args.dest, exist_ok=True)
+
+    data = {
+        'languages': {
+            k: {
+                'default_version': v.get_default_version(),
+                'env_dir': v.ENVIRONMENT_DIR,
+            }
+            for k, v in languages.items()
+        },
+    }
+
+    info_json = os.path.join(args.dest, 'info.json')
+    with open(info_json, 'w') as f:
+        json.dump(data, f)
+
+    resources_dir = os.path.dirname(resources.__file__)
+    arcs = [
+        (
+            fname.removeprefix('empty_template_'),
+            os.path.abspath(os.path.join(resources_dir, fname)),
+        )
+        for fname in os.listdir(resources_dir)
+        if fname.startswith('empty_template_')
+    ]
+    arcs.sort()
+
+    empty_tgz = os.path.join(args.dest, 'empty.tgz')
+    with gzip.GzipFile(empty_tgz, 'wb', mtime=0) as gzipf:
+        # https://github.com/python/typeshed/issues/5491
+        with tarfile.open(fileobj=gzipf, mode='w') as tf:  # type:ignore
+            for arcname, abspath in arcs:
+                tf.add(
+                    abspath,
+                    arcname=arcname,
+                    recursive=False,
+                    filter=reset,
+                )
+
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
