@@ -51,8 +51,8 @@ def main() -> int:
     ]
     arcs.sort()
 
-    empty_tgz = os.path.join(args.dest, 'empty.tgz')
-    with gzip.GzipFile(empty_tgz, 'wb', mtime=0) as gzipf:
+    local_tgz = os.path.join(args.dest, 'local.tgz')
+    with gzip.GzipFile(local_tgz, 'wb', mtime=0) as gzipf:
         # https://github.com/python/typeshed/issues/5491
         with tarfile.open(fileobj=gzipf, mode='w') as tf:  # type:ignore
             for arcname, abspath in arcs:
