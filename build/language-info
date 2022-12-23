@@ -10,6 +10,7 @@ import subprocess
 import tarfile
 import tempfile
 
+from pre_commit import constants
 from pre_commit import resources
 from pre_commit.languages.all import languages
 
@@ -37,6 +38,7 @@ def main() -> int:
             }
             for k, v in languages.items()
         },
+        'local_repo_version': constants.LOCAL_REPO_VERSION,
     }
 
     info_json = os.path.join(args.dest, 'info.json')
