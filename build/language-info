@@ -5,7 +5,10 @@ import argparse
 import gzip
 import json
 import os.path
+import shutil
+import subprocess
 import tarfile
+import tempfile
 
 from pre_commit import resources
 from pre_commit.languages.all import languages
@@ -40,28 +43,52 @@ def main() -> int:
     with open(info_json, 'w') as f:
         json.dump(data, f)
 
-    resources_dir = os.path.dirname(resources.__file__)
-    arcs = [
-        (
-            fname.removeprefix('empty_template_'),
-            os.path.abspath(os.path.join(resources_dir, fname)),
-        )
-        for fname in os.listdir(resources_dir)
-        if fname.startswith('empty_template_')
-    ]
-    arcs.sort()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        resources_dir = os.path.dirname(resources.__file__)
+        empty_prefix = 'empty_template_'
+        for fname in os.listdir(resources_dir):
+            if fname.startswith(empty_prefix):
+                dest = os.path.join(tmpdir, fname.removeprefix(empty_prefix))
+                shutil.copy(os.path.join(resources_dir, fname), dest)
+                os.utime(dest, (0, 0))
 
-    local_tgz = os.path.join(args.dest, 'local.tgz')
-    with gzip.GzipFile(local_tgz, 'wb', mtime=0) as gzipf:
-        # https://github.com/python/typeshed/issues/5491
-        with tarfile.open(fileobj=gzipf, mode='w') as tf:  # type:ignore
-            for arcname, abspath in arcs:
-                tf.add(
-                    abspath,
-                    arcname=arcname,
-                    recursive=False,
-                    filter=reset,
-                )
+        git = ('git', '-C', tmpdir)
+        subprocess.check_call((*git, 'init', '.', '--template=', '-qq'))
+        subprocess.check_call((*git, 'add', '.'))
+        subprocess.check_call(
+            (*git, 'commit', '-m', 'init', '-qq'),
+            env={
+                'GIT_AUTHOR_NAME': 'pre-commit-ci',
+                'GIT_AUTHOR_EMAIL': 'pre-commit-ci@example.com',
+                'GIT_AUTHOR_DATE': '2022-01-01 00:00:00Z',
+                'GIT_COMMITTER_NAME': 'pre-commit-ci',
+                'GIT_COMMITTER_EMAIL': 'pre-commit-ci@example.com',
+                'GIT_COMMITTER_DATE': '2022-01-01 00:00:00Z',
+            },
+        )
+        subprocess.check_call((*git, 'gc', '--aggressive', '-qq'))
+        # this file is not determinstic for some reason...
+        # but it seems not needed?
+        os.remove(os.path.join(tmpdir, '.git/index'))
+
+        arcs = []
+        for root, dirs, filenames in os.walk(tmpdir):
+            for filename in dirs + filenames:
+                abspath = os.path.abspath(os.path.join(root, filename))
+                arcs.append((os.path.relpath(abspath, tmpdir), abspath))
+        arcs.sort()
+
+        local_tgz = os.path.join(args.dest, 'local.tgz')
+        with gzip.GzipFile(local_tgz, 'wb', mtime=0) as gzipf:
+            # https://github.com/python/typeshed/issues/5491
+            with tarfile.open(fileobj=gzipf, mode='w') as tf:  # type:ignore
+                for arcname, abspath in arcs:
+                    tf.add(
+                        abspath,
+                        arcname=arcname,
+                        recursive=False,
+                        filter=reset,
+                    )
 
     return 0
 
