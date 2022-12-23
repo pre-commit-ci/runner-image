@@ -1,14 +1,14 @@
-runner-image:2022-12-23-fd6e68f-full
+runner-image:2022-12-23-7f49d2e-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-12-23-fd6e68f-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-12-23-7f49d2e-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-12-23-fd6e68f-full
+docker pull precommitci/runner-image:2022-12-23-7f49d2e-full
 ```
 
 ## pre-commit
