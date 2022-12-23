@@ -52,11 +52,14 @@ def main() -> int:
                 shutil.copy(os.path.join(resources_dir, fname), dest)
                 os.utime(dest, (0, 0))
 
-        git = ('git', '-C', tmpdir)
-        subprocess.check_call((*git, 'init', '.', '--template=', '-qq'))
-        subprocess.check_call((*git, 'add', '.'))
-        subprocess.check_call(
-            (*git, 'commit', '-m', 'init', '-qq'),
+        def git(*cmd: str, env: dict[str, str] | None = None) -> None:
+            subprocess.check_call(('git', '-C', tmpdir, *cmd), env=env)
+
+        git('init', '.', '--template=', '-qq')
+        git('config', 'remote.origin.url', '<<unknown>>')
+        git('add', '.')
+        git(
+            'commit', '-m', 'init', '-qq',
             env={
                 'GIT_AUTHOR_NAME': 'pre-commit-ci',
                 'GIT_AUTHOR_EMAIL': 'pre-commit-ci@example.com',
@@ -66,7 +69,7 @@ def main() -> int:
                 'GIT_COMMITTER_DATE': '2022-01-01 00:00:00Z',
             },
         )
-        subprocess.check_call((*git, 'gc', '--aggressive', '-qq'))
+        git('gc', '--aggressive', '-qq')
         # this file is not determinstic for some reason...
         # but it seems not needed?
         os.remove(os.path.join(tmpdir, '.git/index'))
