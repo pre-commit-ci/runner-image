@@ -46,11 +46,19 @@ def main() -> int:
         json.dump(data, f)
 
     with tempfile.TemporaryDirectory() as tmpdir:
+        # renv needs some files outside of the base directory
+        os.makedirs(os.path.join(tmpdir, 'renv'))
+        renv_subdir = {'activate.R', 'LICENSE.renv'}
+
         resources_dir = os.path.dirname(resources.__file__)
         empty_prefix = 'empty_template_'
         for fname in os.listdir(resources_dir):
             if fname.startswith(empty_prefix):
-                dest = os.path.join(tmpdir, fname.removeprefix(empty_prefix))
+                basename = fname.removeprefix(empty_prefix)
+                if basename in renv_subdir:
+                    dest = os.path.join(tmpdir, 'renv', basename)
+                else:
+                    dest = os.path.join(tmpdir, basename)
                 shutil.copy(os.path.join(resources_dir, fname), dest)
                 os.utime(dest, (0, 0))
 
