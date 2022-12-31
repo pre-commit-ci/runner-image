@@ -1,14 +1,14 @@
-runner-image:2022-12-31-4b3f90e-full
+runner-image:2022-12-31-4be2246-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2022-12-31-4b3f90e-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2022-12-31-4be2246-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2022-12-31-4b3f90e-full
+docker pull precommitci/runner-image:2022-12-31-4be2246-full
 ```
 
 ## pre-commit
@@ -45,10 +45,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+Python 3.11.1 (main, Dec  7 2022, 01:11:34) [GCC 11.3.0]
 
 $ python3 --version --version
-Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+Python 3.11.1 (main, Dec  7 2022, 01:11:34) [GCC 11.3.0]
 ```
 
 others
@@ -70,8 +70,8 @@ $ python3.9 --version --version
 Python 3.9.16 (main, Dec  7 2022, 01:12:08)
 [GCC 11.3.0]
 
-$ python3.11 --version --version
-Python 3.11.1 (main, Dec  7 2022, 01:11:34) [GCC 11.3.0]
+$ python3.10 --version --version
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
 ```
 
 ## conda
@@ -135,7 +135,7 @@ Download .NET:
 
 ```console
 $ go version
-go version go1.18 linux/amd64
+go version go1.19.4 linux/amd64
 ```
 
 ## lua
@@ -158,6 +158,14 @@ v18.0.0
 
 $ npm --version
 8.6.0
+```
+
+## perl
+
+```console
+$ perl -E 'print "$^V
+"'
+v5.34.0
 ```
 
 ## r
