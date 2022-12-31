@@ -18,6 +18,7 @@ RUN : \
         libc6 \
         libedit2 \
         libffi-dev \
+        libfile-homedir-perl \
         libgcc1 \
         libgdiplus \
         libgssapi-krb5-2 \
@@ -34,6 +35,7 @@ RUN : \
         python3-distutils \
         ruby-dev \
         unzip \
+        xdg-user-dirs \
         zlib1g \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
