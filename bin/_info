@@ -120,7 +120,7 @@ def main() -> int:
     print('## perl')
     print()
     with _console():
-        _call('cpan', '--version')
+        _call('perl', '-E', 'print "$^V\n"')
     print()
 
     print('## r')
