@@ -339,6 +339,32 @@ def test_can_run_lua_hook(tag: str, pc: str, podman: bool) -> None:
         _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
+PERL_HOOK = '''\
+repos:
+- repo: https://github.com/cmhughes/latexindent.pl
+  rev: V3.19.1
+  hooks:
+  - id: latexindent
+'''
+
+
+def test_can_run_perl_hook(tag: str, pc: str, podman: bool) -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(PERL_HOOK)
+        tex = r'''\
+\begin{document}
+hello world
+\end{document}
+'''
+        with open(os.path.join(tmpdir, 't.tex'), 'w') as f:
+            f.write(tex)
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        _build_and_run(tag, tmpdir, pc, podman=podman)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--podman', action='store_true')
@@ -375,6 +401,8 @@ def main() -> int:
         test_can_run_r_hook(full_tag, pc, podman=args.podman)
         print(' can run lua hooks '.center(79, '='), flush=True)
         test_can_run_lua_hook(full_tag, pc, podman=args.podman)
+        print(' can run perl hooks '.center(79, '='), flush=True)
+        test_can_run_perl_hook(full_tag, pc, podman=args.podman)
 
     return 0
 
