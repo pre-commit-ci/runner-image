@@ -65,6 +65,7 @@ ENV \
     npm_config_cache=/tmp/npm \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=1 \
+    PIP_ONLY_BINARY=numpy,pandas,scipy,scikit-learn \
     VIRTUALENV_ACTIVATORS=bash \
     VIRTUALENV_NO_PERIODIC_UPDATE=1 \
     VIRTUALENV_PIP=embed \
