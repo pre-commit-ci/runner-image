@@ -1,14 +1,14 @@
-runner-image:2023-01-16-e13e24d-full
+runner-image:2023-01-24-8393c51-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-16-e13e24d-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-24-8393c51-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2023-01-16-e13e24d-full
+docker pull precommitci/runner-image:2023-01-24-8393c51-full
 ```
 
 ## pre-commit
@@ -17,14 +17,14 @@ docker pull precommitci/runner-image:2023-01-16-e13e24d-full
 $ pip freeze --all
 cfgv==3.3.1
 distlib==0.3.6
-filelock==3.8.2
-identify==2.5.11
+filelock==3.9.0
+identify==2.5.15
 nodeenv==1.7.0
 pip==22.3.1
-platformdirs==2.6.0
-pre-commit==2.21.0
+platformdirs==2.6.2
+pre-commit==3.0.0
 PyYAML==6.0
-setuptools==65.6.3
+setuptools==66.1.1
 virtualenv==20.17.1
 wheel==0.38.4
 ```
