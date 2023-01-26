@@ -236,6 +236,23 @@ RUN : \
     && make install \
     && rm -rf /tmp/lua /tmp/luarocks /tmp/lua.tgz /tmp/luarocks.tgz
 
+ARG CS=v2.1.0-RC4
+ARG CS_SHA256=176e92e08ab292531aa0c4993dbc9f2c99dec79578752f3b9285f54f306db572
+ARG JDK_SHA256=aef49cc7aa606de2044302e757fa94c8e144818e93487081c4fd319ca858134b
+ENV PATH=/opt/coursier/bin:$PATH
+RUN : \
+    && echo 'lang: coursier' \
+    && curl --location --silent --output /tmp/cs.gz "https://github.com/coursier/coursier/releases/download/${CS}/cs-x86_64-pc-linux.gz" \
+    && echo "${CS_SHA256}  /tmp/cs.gz" | sha256sum --check \
+    && curl --location --silent --output /tmp/jdk.tgz "https://download.java.net/openjdk/jdk17/ri/openjdk-17+35_linux-x64_bin.tar.gz" \
+    && echo "${JDK_SHA256}  /tmp/jdk.tgz" | sha256sum --check \
+    && mkdir -p /opt/coursier \
+    && tar --strip-components=1 -C /opt/coursier -xf /tmp/jdk.tgz \
+    && gunzip /tmp/cs.gz \
+    && mv /tmp/cs /opt/coursier/bin \
+    && chmod +x /opt/coursier/bin/cs \
+    && rm /tmp/jdk.tgz
+
 RUN : \
     && echo 'lang: meta' \
     && /tmp/language-info --dest /opt/meta
