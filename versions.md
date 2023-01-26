@@ -1,14 +1,14 @@
-runner-image:2023-01-26-7d769a9-full
+runner-image:2023-01-26-2b2ef2c-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-26-7d769a9-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-26-2b2ef2c-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2023-01-26-7d769a9-full
+docker pull precommitci/runner-image:2023-01-26-2b2ef2c-full
 ```
 
 ## pre-commit
@@ -79,6 +79,17 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
 ```console
 $ conda --version
 conda 4.10.3
+```
+
+## coursier
+
+```console
+$ cs version
+2.1.0-RC5
+$ java --version
+openjdk 17 2021-09-14
+OpenJDK Runtime Environment (build 17+35-2724)
+OpenJDK 64-Bit Server VM (build 17+35-2724, mixed mode, sharing)
 ```
 
 ## dart
