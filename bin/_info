@@ -83,6 +83,13 @@ def main() -> int:
         _call('conda', '--version')
     print()
 
+    print('## coursier')
+    print()
+    with _console():
+        _call('cs', 'version')
+        _call('java', '--version')
+    print()
+
     print('## dart')
     print()
     with _console():
