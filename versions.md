@@ -1,14 +1,14 @@
-runner-image:2023-01-24-8393c51-full
+runner-image:2023-01-26-7d769a9-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-24-8393c51-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-01-26-7d769a9-full
 
 # or from dockerhub
 
-docker pull precommitci/runner-image:2023-01-24-8393c51-full
+docker pull precommitci/runner-image:2023-01-26-7d769a9-full
 ```
 
 ## pre-commit
@@ -22,7 +22,7 @@ identify==2.5.15
 nodeenv==1.7.0
 pip==22.3.1
 platformdirs==2.6.2
-pre-commit==3.0.0
+pre-commit==3.0.1
 PyYAML==6.0
 setuptools==66.1.1
 virtualenv==20.17.1
