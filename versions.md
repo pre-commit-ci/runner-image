@@ -1,16 +1,3 @@
-runner-image:2023-02-01-ff0792d-full
-====================================
-
-to pull this image:
-
-```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-01-ff0792d-full
-
-# or from dockerhub
-
-docker pull precommitci/runner-image:2023-02-01-ff0792d-full
-```
-
 ## pre-commit
 
 ```console
@@ -22,7 +9,7 @@ identify==2.5.17
 nodeenv==1.7.0
 pip==22.3.1
 platformdirs==2.6.2
-pre-commit==3.0.3
+pre-commit==3.0.4
 PyYAML==6.0
 setuptools==67.1.0
 virtualenv==20.17.1
@@ -219,3 +206,25 @@ $ swift -version
 Swift version 5.7 (swift-5.7-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
+runner-image:2023-02-03-2b9905f-full
+====================================
+
+to pull this image:
+
+```bash
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-03-2b9905f-full
+
+# or from dockerhub
+
+docker pull precommitci/runner-image:2023-02-03-2b9905f-full
+```
+
+digests:
+
+```
+# minimal
+sha256:49f14783bb64019baed96f4aadac5bdd33dd6e493e7ff81a985fe479c0d0985b
+# full
+sha256:cecab4a02de24b2ddad631ba5e2a1ecb20ed3619566be2170996b8da4037a805
+```
+
