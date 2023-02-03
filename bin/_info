@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import argparse
 import contextlib
 import shlex
 import subprocess
@@ -24,24 +23,6 @@ def _call(*cmd: str) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('tag')
-    args = parser.parse_args()
-
-    print(args.tag)
-    print('=' * len(args.tag))
-    print()
-    print('to pull this image:')
-    print()
-    print('```bash')
-    print(f'docker pull ghcr.io/pre-commit-ci/{args.tag}')
-    print()
-    print('# or from dockerhub')
-    print()
-    print(f'docker pull precommitci/{args.tag}')
-    print('```')
-    print()
-
     print('## pre-commit')
     print()
     with _console():

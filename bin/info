@@ -8,18 +8,45 @@ import subprocess
 HERE = os.path.dirname(__file__)
 
 
+def _digest(tag: str) -> str:
+    cmd = ('docker', 'inspect', '--format={{index .RepoDigests 0}}', tag)
+    out = subprocess.check_output(cmd).strip().decode()
+    _, _, digest = out.partition('@')
+    return digest
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('tag')
     args = parser.parse_args()
 
+    print(args.tag)
+    print('=' * len(args.tag))
+    print()
+    print('to pull this image:')
+    print()
+    print('```bash')
+    print(f'docker pull ghcr.io/pre-commit-ci/{args.tag}')
+    print()
+    print('# or from dockerhub')
+    print()
+    print(f'docker pull precommitci/{args.tag}')
+    print('```')
+    print()
+    print('digests:')
+    print()
+    print('```')
+    print('# minimal')
+    print(_digest(args.tag.removesuffix('-full')))
+    print('# full')
+    print(_digest(args.tag))
+    print('```')
+    print()
+
     with open(os.path.join(HERE, '_info'), 'rb') as f:
         contents = f.read()
 
-    cmd = (
-        'docker', 'run', '--rm', '-i', args.tag,
-        'python3', '-u', '-', args.tag,
-    )
+    cmd = ('docker', 'run', '--rm', '-i', args.tag, 'python3', '-uS', '-')
     ret = subprocess.run(cmd, input=contents, stderr=subprocess.STDOUT)
     return ret.returncode
 
