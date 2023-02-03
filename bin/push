@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import os.path
 import subprocess
+import sys
 
 HERE = os.path.dirname(__file__)
 
@@ -78,7 +79,7 @@ def main() -> int:
         prefix='ghcr.io/pre-commit-ci',
     )
 
-    cmd = (os.path.join(HERE, 'info'), full_tag)
+    cmd = (sys.executable, '-uS', os.path.join(HERE, 'info'), full_tag)
     with open(os.path.join(args.git_dir, 'versions.md'), 'wb') as f:
         subprocess.check_call(cmd, stdout=f)
 
