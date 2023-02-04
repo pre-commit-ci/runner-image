@@ -8,13 +8,6 @@ import subprocess
 HERE = os.path.dirname(__file__)
 
 
-def _digest(tag: str) -> str:
-    cmd = ('docker', 'inspect', '--format={{index .RepoDigests 0}}', tag)
-    out = subprocess.check_output(cmd).strip().decode()
-    _, _, digest = out.partition('@')
-    return digest
-
-
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('tag')
@@ -31,15 +24,6 @@ def main() -> int:
     print('# or from dockerhub')
     print()
     print(f'docker pull precommitci/{args.tag}')
-    print('```')
-    print()
-    print('digests:')
-    print()
-    print('```')
-    print('# minimal')
-    print(_digest(args.tag.removesuffix('-full')))
-    print('# full')
-    print(_digest(args.tag))
     print('```')
     print()
 
