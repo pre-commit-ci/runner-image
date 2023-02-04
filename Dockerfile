@@ -136,15 +136,15 @@ RUN : \
     && rustup component add clippy rustfmt \
     && :
 
-ARG SWIFT=5.7
-ARG SWIFT_SHA256=642f76399556947f9ebf83d4b31580395459032be66d29a218f36b99fae37be8
+ARG SWIFT=5.7.3
+ARG SWIFT_SHA256=312a18d0d2f207620349e3a373200f369fc1a6aad1b7f2365d55aa8a10881a59
 ENV \
     PATH=/opt/swift/usr/bin:$PATH \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/swift/usr/lib
 RUN : \
     && echo 'lang: swift' \
     && . /etc/lsb-release \
-    && curl --silent --location --output /tmp/swift.tar.gz https://swift.org/builds/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
+    && curl --silent --location --output /tmp/swift.tar.gz https://download.swift.org/swift-$SWIFT-release/ubuntu$(echo $DISTRIB_RELEASE | tr -d ".")/swift-$SWIFT-RELEASE/swift-$SWIFT-RELEASE-ubuntu$DISTRIB_RELEASE.tar.gz \
     && echo "${SWIFT_SHA256} /tmp/swift.tar.gz" | sha256sum --check \
     && mkdir /opt/swift \
     && tar --strip-components 1 --directory /opt/swift -xf /tmp/swift.tar.gz \
