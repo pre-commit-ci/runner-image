@@ -2,10 +2,69 @@
 from __future__ import annotations
 
 import argparse
+import ast
+import functools
+import json
 import os.path
 import subprocess
+import urllib.error
+import urllib.parse
+import urllib.request
+from typing import Mapping
 
 HERE = os.path.dirname(__file__)
+
+
+def _parse_auth_header(s: str) -> dict[str, str]:
+    bearer = 'Bearer '
+    assert s.startswith(bearer)
+    s = s[len(bearer):]
+
+    ret = {}
+    for part in s.split(','):
+        k, _, v = part.partition('=')
+        v = ast.literal_eval(v)
+        ret[k] = v
+    return ret
+
+
+@functools.lru_cache(maxsize=None)
+def _auth_challenge(registry: str) -> tuple[str, Mapping[str, str]]:
+    try:
+        urllib.request.urlopen(f'https://{registry}/v2/', timeout=5)
+    except urllib.error.HTTPError as e:
+        if e.code != 401 or 'www-authenticate' not in e.headers:
+            raise
+
+        auth = _parse_auth_header(e.headers['www-authenticate'])
+    else:
+        raise AssertionError(f'expected auth challenge: {registry}')
+
+    realm = auth.pop('realm')
+    auth.setdefault('scope', 'repository:user/image:pull')
+
+    return realm, auth
+
+
+def _digest_impl(registry: str, image: str, tag: str) -> str:
+    realm, auth = _auth_challenge(registry)
+    auth = {k: v.replace('user/image', image) for k, v in auth.items()}
+
+    auth_url = f'{realm}?{urllib.parse.urlencode(auth)}'
+    token = json.load(urllib.request.urlopen(auth_url))['token']
+
+    req = urllib.request.Request(
+        f'https://{registry}/v2/{image}/manifests/{tag}',
+        headers={'Authorization': f'Bearer {token}'},
+    )
+    resp = urllib.request.urlopen(req)
+    return resp.headers['Docker-Content-Digest']
+
+
+def _digest(img: str) -> str:
+    base, tag = img.split(':')
+    registry, image = base.split('/', 1)
+    return _digest_impl(registry, image, tag)
 
 
 def main() -> int:
@@ -13,19 +72,40 @@ def main() -> int:
     parser.add_argument('tag')
     args = parser.parse_args()
 
-    print(args.tag)
-    print('=' * len(args.tag))
-    print()
-    print('to pull this image:')
-    print()
-    print('```bash')
-    print(f'docker pull ghcr.io/pre-commit-ci/{args.tag}')
-    print()
-    print('# or from dockerhub')
-    print()
-    print(f'docker pull precommitci/{args.tag}')
-    print('```')
-    print()
+    full_tag = args.tag
+    tag = full_tag.removesuffix('-full')
+
+    src = f'''\
+{full_tag}
+{'=' * len(full_tag)}
+
+to pull this image:
+
+```bash
+docker pull ghcr.io/pre-commit-ci/{full_tag}
+
+# or from dockerhub
+docker pull precommitci/{full_tag}
+```
+
+digests:
+
+```python
+IMAGE = {tag!r}
+DIGESTS = (
+    Image(
+        name='ghcr.io/pre-commit-ci/runner-image',
+        minimal={_digest(f'ghcr.io/pre-commit-ci/{tag}')!r},  # noqa: E501
+        full={_digest(f'ghcr.io/pre-commit-ci/{full_tag}')!r},  # noqa: E501
+    ),
+    Image(
+        name='registry-1.docker.io/precommitci/runner-image',
+        minimal={_digest(f'registry-1.docker.io/precommitci/{tag}')!r},  # noqa: E501
+        full={_digest(f'registry-1.docker.io/precommitci/{full_tag}')!r},  # noqa: E501
+    ),
+)
+'''
+    print(src)
 
     with open(os.path.join(HERE, '_info'), 'rb') as f:
         contents = f.read()
