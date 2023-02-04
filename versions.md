@@ -1,24 +1,31 @@
-runner-image:2023-02-04-975afd5-full
+runner-image:2023-02-04-fe4aa98-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-04-975afd5-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-04-fe4aa98-full
 
 # or from dockerhub
-
-docker pull precommitci/runner-image:2023-02-04-975afd5-full
+docker pull precommitci/runner-image:2023-02-04-fe4aa98-full
 ```
 
 digests:
 
-```
-# minimal
-sha256:bc6c4ed71f4fb77477354fa08ca9c93e1902ccd4c3fe9cb73ca5100344e2db2e
-# full
-sha256:1317cdb110db860b65941e973edeacbb18c6f64c05433140b5d650421095ada9
-```
+```python
+IMAGE = 'runner-image:2023-02-04-fe4aa98'
+DIGESTS = (
+    Image(
+        name='ghcr.io/pre-commit-ci/runner-image',
+        minimal='sha256:e2ab1ab0d07d515e5a927ace84b640b0b7ab0ac1d251c6c665b3293c4979ea42',  # noqa: E501
+        full='sha256:510a9e235f609d7e082634db15c3876dbba6114b78710467ff6088fd988771d0',  # noqa: E501
+    ),
+    Image(
+        name='registry-1.docker.io/precommitci/runner-image',
+        minimal='sha256:29b47c85d9c6867fee7cc4388621b255fb699c7a13c49b1cf61a58d5ead3da2e',  # noqa: E501
+        full='sha256:94f27ac58aa172e2c825e7bc1e263fb8199b0c6ecdf2eb9e74dbdddff12d6610',  # noqa: E501
+    ),
+)
 
 ## pre-commit
 
@@ -225,6 +232,6 @@ rustc 1.65.0 (897e37553 2022-11-02)
 
 ```console
 $ swift -version
-Swift version 5.7 (swift-5.7-RELEASE)
+Swift version 5.7.3 (swift-5.7.3-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
