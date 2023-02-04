@@ -104,6 +104,7 @@ DIGESTS = (
         full={_digest(f'registry-1.docker.io/precommitci/{full_tag}')!r},  # noqa: E501
     ),
 )
+```
 '''
     print(src)
 
