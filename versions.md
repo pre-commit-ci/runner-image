@@ -1,3 +1,25 @@
+runner-image:2023-02-04-975afd5-full
+====================================
+
+to pull this image:
+
+```bash
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-04-975afd5-full
+
+# or from dockerhub
+
+docker pull precommitci/runner-image:2023-02-04-975afd5-full
+```
+
+digests:
+
+```
+# minimal
+sha256:bc6c4ed71f4fb77477354fa08ca9c93e1902ccd4c3fe9cb73ca5100344e2db2e
+# full
+sha256:1317cdb110db860b65941e973edeacbb18c6f64c05433140b5d650421095ada9
+```
+
 ## pre-commit
 
 ```console
@@ -206,25 +228,3 @@ $ swift -version
 Swift version 5.7 (swift-5.7-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
-runner-image:2023-02-03-2b9905f-full
-====================================
-
-to pull this image:
-
-```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-02-03-2b9905f-full
-
-# or from dockerhub
-
-docker pull precommitci/runner-image:2023-02-03-2b9905f-full
-```
-
-digests:
-
-```
-# minimal
-sha256:49f14783bb64019baed96f4aadac5bdd33dd6e493e7ff81a985fe479c0d0985b
-# full
-sha256:cecab4a02de24b2ddad631ba5e2a1ecb20ed3619566be2170996b8da4037a805
-```
-
