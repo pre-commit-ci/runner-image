@@ -9,7 +9,7 @@ import tarfile
 import tempfile
 
 from pre_commit import constants
-from pre_commit.languages.all import languages
+from pre_commit.all_languages import languages
 from pre_commit.store import _make_local_repo
 from pre_commit.store import Store
 
