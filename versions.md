@@ -1,26 +1,26 @@
-runner-image:2023-03-07-d3ed390-full
+runner-image:2023-03-07-64cbf38-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-03-07-d3ed390-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-03-07-64cbf38-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-03-07-d3ed390'
+IMAGE = 'runner-image:2023-03-07-64cbf38'
 DIGESTS = (
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:3cf9f35145ce9a5543828052f3ee90ecd148979c861db76b6f4d6a0f612dcab9',  # noqa: E501
-        full='sha256:671d04bb2d15cb5918ef7b818b63a95dc646c0806582f605b6efc86dd8d9c012',  # noqa: E501
+        minimal='sha256:f40feedcccb81768af111ddb51aec7a767c810f30cc97713199b4bd7908e519e',  # noqa: E501
+        full='sha256:6b78467c7589280b90181035e6f0312d05492478a321514d04ca72044cc6a79c',  # noqa: E501
     ),
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal=None,  # noqa: E501
-        full=None,  # noqa: E501
+        minimal='sha256:f40feedcccb81768af111ddb51aec7a767c810f30cc97713199b4bd7908e519e',  # noqa: E501
+        full='sha256:6b78467c7589280b90181035e6f0312d05492478a321514d04ca72044cc6a79c',  # noqa: E501
     ),
 )
 ```
@@ -99,7 +99,7 @@ conda 4.10.3
 
 ```console
 $ cs version
-2.1.0-RC5
+2.1.0-RC6
 $ java --version
 openjdk 17 2021-09-14
 OpenJDK Runtime Environment (build 17+35-2724)
