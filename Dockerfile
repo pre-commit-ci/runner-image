@@ -236,8 +236,8 @@ RUN : \
     && make install \
     && rm -rf /tmp/lua /tmp/luarocks /tmp/lua.tgz /tmp/luarocks.tgz
 
-ARG CS=v2.1.0-RC5
-ARG CS_SHA256=37829301505ffe47984b621b023391d9bd041dc36914c92d18e0df1243caa929
+ARG CS=v2.1.0-RC6
+ARG CS_SHA256=ef2bc32c8d1975d9373f518ee24ecbd9a96e99cbb523afa309a45cb44009eeb7
 ARG JDK_SHA256=aef49cc7aa606de2044302e757fa94c8e144818e93487081c4fd319ca858134b
 ENV PATH=/opt/coursier/bin:$PATH
 RUN : \

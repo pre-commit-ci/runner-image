@@ -55,7 +55,11 @@ def _digest_impl(registry: str, image: str, tag: str) -> str:
 
     req = urllib.request.Request(
         f'https://{registry}/v2/{image}/manifests/{tag}',
-        headers={'Authorization': f'Bearer {token}'},
+        headers={
+            'Authorization': f'Bearer {token}',
+            'Accept': 'application/vnd.docker.distribution.manifest.v2+json',
+        },
+        method='HEAD',
     )
     resp = urllib.request.urlopen(req)
     return resp.headers['Docker-Content-Digest']
