@@ -16,7 +16,7 @@ def _push(
         hostname: str,
         username: str,
         password: str,
-        prefix: str,
+        target: str,
 ) -> None:
     subprocess.run(
         (
@@ -27,13 +27,14 @@ def _push(
         check=True,
     )
 
-    tag_image, _, _ = minimal_tag.partition(':')
+    _, _, minimal_version = minimal_tag.partition(':')
+    _, _, full_version = full_tag.partition(':')
 
     to_push = (
-        (minimal_tag, f'{prefix}/{minimal_tag}'),
-        (minimal_tag, f'{prefix}/{tag_image}:latest'),
-        (full_tag, f'{prefix}/{full_tag}'),
-        (full_tag, f'{prefix}/{tag_image}:latest-full'),
+        (minimal_tag, f'{target}:{minimal_version}'),
+        (minimal_tag, f'{target}:latest'),
+        (full_tag, f'{target}:{full_version}'),
+        (full_tag, f'{target}:latest-full'),
     )
 
     for src, target in to_push:
@@ -61,13 +62,16 @@ def main() -> int:
         print('skipping push (up to date)')
         return 0
 
+    aws_password_cmd = ('aws', 'ecr-public', 'get-login-password')
+    ecr_password = subprocess.check_output(aws_password_cmd).strip().decode()
+
     _push(
         minimal_tag=minimal_tag,
         full_tag=full_tag,
-        hostname='docker.io',
-        username='precommitci',
-        password=os.environ['DOCKERHUB_TOKEN'],
-        prefix='precommitci',
+        hostname='public.ecr.aws',
+        username='AWS',
+        password=ecr_password,
+        target='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
     )
 
     _push(
@@ -76,7 +80,7 @@ def main() -> int:
         hostname='ghcr.io',
         username=os.environ['GHCR_USER'],
         password=os.environ['GHCR_TOKEN'],
-        prefix='ghcr.io/pre-commit-ci',
+        target='ghcr.io/pre-commit-ci/runner-image',
     )
 
     cmd = (sys.executable, '-uS', os.path.join(HERE, 'info'), full_tag)

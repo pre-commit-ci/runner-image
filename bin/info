@@ -83,9 +83,6 @@ to pull this image:
 
 ```bash
 docker pull ghcr.io/pre-commit-ci/{full_tag}
-
-# or from dockerhub
-docker pull precommitci/{full_tag}
 ```
 
 digests:
@@ -99,9 +96,9 @@ DIGESTS = (
         full={_digest(f'ghcr.io/pre-commit-ci/{full_tag}')!r},  # noqa: E501
     ),
     Image(
-        name='registry-1.docker.io/precommitci/runner-image',
-        minimal={_digest(f'registry-1.docker.io/precommitci/{tag}')!r},  # noqa: E501
-        full={_digest(f'registry-1.docker.io/precommitci/{full_tag}')!r},  # noqa: E501
+        name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
+        minimal={_digest(f'public.ecr.aws/k7o0k5z0/pre-commit-ci-{tag}')!r},  # noqa: E501
+        full={_digest(f'public.ecr.aws/k7o0k5z0/pre-commit-ci-{full_tag}')!r},  # noqa: E501
     ),
 )
 ```

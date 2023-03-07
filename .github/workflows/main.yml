@@ -24,7 +24,9 @@ jobs:
       if: github.event_name != 'pull_request'
     - run: bin/push info "$TAG"
       env:
-        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.ECR_DEPLOY_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_DEPLOY_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-1
         GHCR_USER: ${{ github.actor }}
         GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name != 'pull_request'
