@@ -95,14 +95,14 @@ digests:
 IMAGE = {tag!r}
 DIGESTS = (
     Image(
-        name='ghcr.io/pre-commit-ci/runner-image',
-        minimal={_digest(f'ghcr.io/pre-commit-ci/{tag}')!r},  # noqa: E501
-        full={_digest(f'ghcr.io/pre-commit-ci/{full_tag}')!r},  # noqa: E501
-    ),
-    Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
         minimal={_digest(f'public.ecr.aws/k7o0k5z0/pre-commit-ci-{tag}')!r},  # noqa: E501
         full={_digest(f'public.ecr.aws/k7o0k5z0/pre-commit-ci-{full_tag}')!r},  # noqa: E501
+    ),
+    Image(
+        name='ghcr.io/pre-commit-ci/runner-image',
+        minimal={_digest(f'ghcr.io/pre-commit-ci/{tag}')!r},  # noqa: E501
+        full={_digest(f'ghcr.io/pre-commit-ci/{full_tag}')!r},  # noqa: E501
     ),
 )
 ```
