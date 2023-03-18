@@ -92,8 +92,8 @@ ENV VIRTUALENV_READ_ONLY_APP_DATA=1
 # pre-commit.ci requires cross-user readonly `/src` repo access
 RUN git config --system --add safe.directory /src
 
-ARG GO=1.19.4
-ARG GO_SHA256=c9c08f783325c4cf840a94333159cc937f05f75d36a8b307951d5bd959cf2ab8
+ARG GO=1.20.2
+ARG GO_SHA256=4eaea32f59cde4dc635fbc42161031d13e1c780b87097f4b4234cfce671f1768
 ENV PATH=/opt/go/bin:$PATH GOFLAGS=-modcacherw
 RUN : \
     && mkdir -p /opt \
