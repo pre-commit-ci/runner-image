@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
   packages: write
 
 jobs:
@@ -22,11 +23,13 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: info
       if: github.event_name != 'pull_request'
+    - uses: pre-commit-ci/configure-aws-credentials@7fc5f080e5992f77207d1ea0a8d33d4bcd1c80c8
+      with:
+        role-to-assume: ${{ secrets.ECR_DEPLOY_ROLE_ARN }}
+        aws-region: us-east-1
+      if: github.event_name != 'pull_request'
     - run: bin/push info "$TAG"
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.ECR_DEPLOY_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_DEPLOY_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-1
         GHCR_USER: ${{ github.actor }}
         GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name != 'pull_request'
