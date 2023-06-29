@@ -23,7 +23,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: info
       if: github.event_name != 'pull_request'
-    - uses: pre-commit-ci/configure-aws-credentials@7fc5f080e5992f77207d1ea0a8d33d4bcd1c80c8
+    - uses: pre-commit-ci/configure-aws-credentials@5fd3084fc36e372ff1fff382a39b10d03659f355  # v2.2.0
       with:
         role-to-assume: ${{ secrets.ECR_DEPLOY_ROLE_ARN }}
         aws-region: us-east-1
