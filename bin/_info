@@ -17,7 +17,7 @@ def _console() -> Generator[None, None, None]:
 
 
 def _call(*cmd: str) -> None:
-    print(f'$ {" ".join(shlex.quote(part) for part in cmd)}')
+    print(f'$ {shlex.join(cmd)}')
     for line in subprocess.check_output(cmd).decode().splitlines():
         print(line.rstrip())
 
