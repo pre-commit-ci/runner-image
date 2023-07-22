@@ -4,7 +4,7 @@ from __future__ import annotations
 import contextlib
 import shlex
 import subprocess
-from typing import Generator
+from collections.abc import Generator
 
 
 @contextlib.contextmanager

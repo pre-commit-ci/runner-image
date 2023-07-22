@@ -10,7 +10,7 @@ import subprocess
 import urllib.error
 import urllib.parse
 import urllib.request
-from typing import Mapping
+from collections.abc import Mapping
 
 HERE = os.path.dirname(__file__)
 
@@ -28,7 +28,7 @@ def _parse_auth_header(s: str) -> dict[str, str]:
     return ret
 
 
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def _auth_challenge(registry: str) -> tuple[str, Mapping[str, str]]:
     try:
         urllib.request.urlopen(f'https://{registry}/v2/', timeout=5)

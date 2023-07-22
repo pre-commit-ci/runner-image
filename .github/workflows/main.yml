@@ -14,6 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
     - run: bin/set-tag >> "$GITHUB_ENV"
     - run: bin/build "$TAG"
     - run: bin/test "$TAG"
