@@ -1,26 +1,26 @@
-runner-image:2023-07-11-7bed479-full
+runner-image:2023-08-31-22741ec-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-07-11-7bed479-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-08-31-22741ec-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-07-11-7bed479'
+IMAGE = 'runner-image:2023-08-31-22741ec'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:97ec97bb86900130325abd3327ce7b2ece27a91f5e3b39435545c7093d4424a4',  # noqa: E501
-        full='sha256:ece0e6a14e2b9c77a3fdef3811b2dd5b1b236b0927cc5b83a38071cf4dfc8ac5',  # noqa: E501
+        minimal='sha256:7848d4bbea223c402011a15b0f409dd7c529f648d8c91a3c81363972815e585f',  # noqa: E501
+        full='sha256:c11f5f485169dd542516bad011886e2db9ab9bab45c22f71b5d57512483a4971',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:97ec97bb86900130325abd3327ce7b2ece27a91f5e3b39435545c7093d4424a4',  # noqa: E501
-        full='sha256:ece0e6a14e2b9c77a3fdef3811b2dd5b1b236b0927cc5b83a38071cf4dfc8ac5',  # noqa: E501
+        minimal='sha256:7848d4bbea223c402011a15b0f409dd7c529f648d8c91a3c81363972815e585f',  # noqa: E501
+        full='sha256:c11f5f485169dd542516bad011886e2db9ab9bab45c22f71b5d57512483a4971',  # noqa: E501
     ),
 )
 ```
@@ -34,13 +34,13 @@ distlib==0.3.6
 filelock==3.10.4
 identify==2.5.22
 nodeenv==1.7.0
-pip==23.1.2
+pip==23.2.1
 platformdirs==3.1.1
 pre-commit==3.2.1
 PyYAML==6.0
 setuptools==67.6.0
 virtualenv==20.21.0
-wheel==0.40.0
+wheel==0.41.2
 ```
 
 ## os
@@ -50,7 +50,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=22.04
 DISTRIB_CODENAME=jammy
-DISTRIB_DESCRIPTION="Ubuntu 22.04.2 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 22.04.3 LTS"
 ```
 
 ## python
@@ -59,10 +59,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.11.4 (main, Jun  7 2023, 12:45:48) [GCC 11.3.0]
+Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
 
 $ python3 --version --version
-Python 3.11.4 (main, Jun  7 2023, 12:45:48) [GCC 11.3.0]
+Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
 ```
 
 others
@@ -77,15 +77,15 @@ Python 3.7.17 (default, Jun  6 2023, 20:10:09)
 [GCC 11.3.0]
 
 $ python3.8 --version --version
-Python 3.8.17 (default, Jun  6 2023, 20:10:50)
-[GCC 11.3.0]
+Python 3.8.18 (default, Aug 25 2023, 13:20:30)
+[GCC 11.4.0]
 
 $ python3.9 --version --version
-Python 3.9.17 (main, Jun  6 2023, 20:11:21)
-[GCC 11.3.0]
+Python 3.9.18 (main, Aug 25 2023, 13:20:14)
+[GCC 11.4.0]
 
 $ python3.10 --version --version
-Python 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0]
+Python 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]
 ```
 
 ## conda
