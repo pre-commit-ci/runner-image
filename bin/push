@@ -42,11 +42,6 @@ def _push(
         subprocess.check_call(('docker', 'push', target))
 
 
-def _inspect(tag: str) -> bytes:
-    cmd = ('docker', 'image', 'inspect', tag, '--format', '{{.Id}}')
-    return subprocess.check_output(cmd)
-
-
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('git_dir')
@@ -55,12 +50,6 @@ def main() -> int:
 
     minimal_tag = args.tag
     full_tag = f'{args.tag}-full'
-
-    push = _inspect(full_tag)
-    target = _inspect('ghcr.io/pre-commit-ci/runner-image:latest-full')
-    if push == target:
-        print('skipping push (up to date)')
-        return 0
 
     aws_password_cmd = ('aws', 'ecr-public', 'get-login-password')
     ecr_password = subprocess.check_output(aws_password_cmd).strip().decode()
