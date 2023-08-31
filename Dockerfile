@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:jammy AS minimal
 
 ENTRYPOINT ["dumb-init", "--"]
 
@@ -104,6 +104,8 @@ RUN : \
     && rm go.tgz
 
 RUN echo 'end: minimal'
+
+FROM minimal AS final
 
 ARG NODE=18.0.0
 ARG NODE_SHA256=6260d3526dff25d43451ea8e90e0174975b4cd067e8535dc1d85a6d6b29f3043

@@ -10,38 +10,20 @@ def main() -> int:
     parser.add_argument('tag')
     args = parser.parse_args()
 
-    full_tag = f'{args.tag}-full'
-    minimal_tag = args.tag
-
-    base = 'ghcr.io/pre-commit-ci/runner-image:latest-full'
-    subprocess.check_call(('docker', 'pull', base))
     subprocess.check_call((
         'docker', 'build',
         '--pull',
-        '--cache-from', base,
-        '--tag', full_tag,
+        '--cache-from', 'ghcr.io/pre-commit-ci/runner-image:latest-full',
+        '--cache-to', 'type=inline',
+        '--tag', f'{args.tag}-full',
         '.',
     ))
-
-    history = subprocess.check_output((
-        'docker', 'image', 'history',
-        '--format={{.ID}}\t{{.CreatedBy}}', '--no-trunc', full_tag,
+    subprocess.check_call((
+        'docker', 'build',
+        '--tag', args.tag,
+        '--target', 'minimal',
+        '.',
     ))
-
-    found_end_minimal = False
-    for line in history.decode().splitlines():
-        if (
-                not found_end_minimal and
-                line.endswith("echo 'end: minimal'")
-        ):
-            found_end_minimal = True
-        elif found_end_minimal and not line.startswith('<missing>'):
-            image_id = line.split()[0]
-            break
-    else:
-        raise AssertionError("expected an `echo 'end: minimal'` layer")
-
-    subprocess.check_call(('docker', 'tag', image_id, minimal_tag))
 
     return 0
 
