@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-R_VERSION=4.2.1
-R_SHA256=4d52db486d27848e54613d4ee977ad952ec08ce17807e1b525b10cd4436c643f
+R_VERSION=4.3.1
+R_SHA256=8dd0bf24f1023c6f618c3b317383d291b4a494f40d73b983ac22ffea99e4ba99
 # https://www.r-project.org/
 
 podman build \
