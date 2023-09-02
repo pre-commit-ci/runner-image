@@ -107,8 +107,8 @@ RUN echo 'end: minimal'
 
 FROM minimal AS final
 
-ARG NODE=18.0.0
-ARG NODE_SHA256=6260d3526dff25d43451ea8e90e0174975b4cd067e8535dc1d85a6d6b29f3043
+ARG NODE=18.17.1
+ARG NODE_SHA256=2cb75f2bc04b0a3498733fbee779b2f76fe3f655188b4ac69ef2887b6721da2d
 ENV PATH=/opt/node/bin:$PATH
 RUN : \
     && echo 'lang: node' \
