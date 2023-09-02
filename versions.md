@@ -1,26 +1,26 @@
-runner-image:2023-09-02-6df6c56-full
+runner-image:2023-09-02-d10dad3-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-09-02-6df6c56-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-09-02-d10dad3-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-09-02-6df6c56'
+IMAGE = 'runner-image:2023-09-02-d10dad3'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
         minimal='sha256:d9a57c3d9b7c11ab77347e3beefef8067b9bec45c9f80e9fd85bc504f45ba065',  # noqa: E501
-        full='sha256:f00c6081c0997b4205bb35d48ca5df11a43d4a515765031b8451257fa7a55f9e',  # noqa: E501
+        full='sha256:2926e0cdcca00c335a76190ba6d410312fa435ec3630a9d5825e6ac144d6eb59',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
         minimal='sha256:d9a57c3d9b7c11ab77347e3beefef8067b9bec45c9f80e9fd85bc504f45ba065',  # noqa: E501
-        full='sha256:f00c6081c0997b4205bb35d48ca5df11a43d4a515765031b8451257fa7a55f9e',  # noqa: E501
+        full='sha256:2926e0cdcca00c335a76190ba6d410312fa435ec3630a9d5825e6ac144d6eb59',  # noqa: E501
     ),
 )
 ```
@@ -193,8 +193,8 @@ v5.34.0
 
 ```console
 $ R --version
-R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
-Copyright (C) 2022 The R Foundation for Statistical Computing
+R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
+Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
