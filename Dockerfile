@@ -210,8 +210,8 @@ ENV \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
     && echo 'lang: r' \
-    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-22.04-r-4.2.1/r-4.2.1.tgz \
-    && echo 'c42675b6612c617d4eeee1eef1635eab2c2db4067bcabfc9b1b2bbde9df0f930 /tmp/r.tgz' | sha256sum --check \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-22.04-r-4.3.1/r-4.3.1.tgz \
+    && echo '5c62bee0d4787fd92b7c6101f3a80e65377308b711816d671fb5513f05c1870c /tmp/r.tgz' | sha256sum --check \
     && mkdir /opt/r \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
