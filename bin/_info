@@ -47,8 +47,6 @@ def main() -> int:
     print('others')
     print()
     with _console():
-        _call('python2.7', '-c', 'import sys; print(sys.version)')
-        print()
         _call('python3.7', '--version', '--version')
         print()
         _call('python3.8', '--version', '--version')
