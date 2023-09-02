@@ -1,26 +1,26 @@
-runner-image:2023-08-31-4ee83f6-full
+runner-image:2023-09-02-6bb49b3-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-08-31-4ee83f6-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-09-02-6bb49b3-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-08-31-4ee83f6'
+IMAGE = 'runner-image:2023-09-02-6bb49b3'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:7848d4bbea223c402011a15b0f409dd7c529f648d8c91a3c81363972815e585f',  # noqa: E501
-        full='sha256:e575d580133084a23b5f02dbcc8562efc13585727590e74ceb5eb0ee3547e915',  # noqa: E501
+        minimal='sha256:d9a57c3d9b7c11ab77347e3beefef8067b9bec45c9f80e9fd85bc504f45ba065',  # noqa: E501
+        full='sha256:dc3109a083fac88bfef6ab5a8d56223bc8b5f31005e7a578a4729d4bbe54d10a',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:7848d4bbea223c402011a15b0f409dd7c529f648d8c91a3c81363972815e585f',  # noqa: E501
-        full='sha256:e575d580133084a23b5f02dbcc8562efc13585727590e74ceb5eb0ee3547e915',  # noqa: E501
+        minimal='sha256:d9a57c3d9b7c11ab77347e3beefef8067b9bec45c9f80e9fd85bc504f45ba065',  # noqa: E501
+        full='sha256:dc3109a083fac88bfef6ab5a8d56223bc8b5f31005e7a578a4729d4bbe54d10a',  # noqa: E501
     ),
 )
 ```
@@ -29,17 +29,17 @@ DIGESTS = (
 
 ```console
 $ pip freeze --all
-cfgv==3.3.1
-distlib==0.3.6
-filelock==3.10.4
-identify==2.5.22
-nodeenv==1.7.0
+cfgv==3.4.0
+distlib==0.3.7
+filelock==3.12.3
+identify==2.5.27
+nodeenv==1.8.0
 pip==23.2.1
-platformdirs==3.1.1
-pre-commit==3.2.1
-PyYAML==6.0
-setuptools==67.6.0
-virtualenv==20.21.0
+platformdirs==3.10.0
+pre-commit==3.4.0
+PyYAML==6.0.1
+setuptools==68.1.2
+virtualenv==20.24.4
 wheel==0.41.2
 ```
 
@@ -68,10 +68,6 @@ Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
 others
 
 ```console
-$ python2.7 -c 'import sys; print(sys.version)'
-2.7.18 (default, Jul  1 2022, 10:30:50)
-[GCC 11.2.0]
-
 $ python3.7 --version --version
 Python 3.7.17 (default, Jun  6 2023, 20:10:09)
 [GCC 11.3.0]
@@ -160,7 +156,7 @@ Download .NET:
 
 ```console
 $ go version
-go version go1.20.2 linux/amd64
+go version go1.21.0 linux/amd64
 ```
 
 ## lua
@@ -179,10 +175,10 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v18.0.0
+v18.17.1
 
 $ npm --version
-8.6.0
+9.6.7
 ```
 
 ## perl
@@ -220,10 +216,10 @@ ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
 
 ```console
 $ cargo --version
-cargo 1.65.0 (4bc8f24d3 2022-10-20)
+cargo 1.72.0 (103a7ff2e 2023-08-15)
 
 $ rustc --version
-rustc 1.65.0 (897e37553 2022-11-02)
+rustc 1.72.0 (5680fa18f 2023-08-23)
 ```
 
 ## swift
