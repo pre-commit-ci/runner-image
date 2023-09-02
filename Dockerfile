@@ -30,7 +30,6 @@ RUN : \
         libyaml-dev \
         libz3-dev \
         make \
-        python2-dev \
         python3-dev \
         python3-distutils \
         ruby-dev \
