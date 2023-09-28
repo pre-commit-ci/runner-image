@@ -46,6 +46,7 @@ RUN : \
     && echo deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $DISTRIB_CODENAME main > /etc/apt/sources.list.d/deadsnakes.list \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        pypy3-dev \
         python3.7-dev \
         python3.7-distutils \
         python3.8-dev \
