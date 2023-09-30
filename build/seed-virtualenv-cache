@@ -6,7 +6,7 @@ import re
 import shutil
 import subprocess
 
-PYTHON_RE = re.compile(r'^python(\d+(\.\d+)?)?$')
+PYTHON_RE = re.compile(r'^(python|pypy)(\d+(\.\d+)?)?$')
 
 
 def main() -> int:
