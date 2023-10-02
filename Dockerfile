@@ -47,14 +47,13 @@ RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         pypy3-dev \
-        python3.7-dev \
-        python3.7-distutils \
         python3.8-dev \
         python3.8-distutils \
         python3.9-dev \
         python3.9-distutils \
         python3.11-dev \
         python3.11-distutils \
+        python3.12-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
