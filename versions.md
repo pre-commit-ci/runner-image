@@ -1,26 +1,26 @@
-runner-image:2023-09-30-1bf1452-full
+runner-image:2023-10-02-d016aa1-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-09-30-1bf1452-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-10-02-d016aa1-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-09-30-1bf1452'
+IMAGE = 'runner-image:2023-10-02-d016aa1'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:138e28f72d58122f539e060cbfecd53addd0086d9e9bd053bd454e72a48873cc',  # noqa: E501
-        full='sha256:a101a47ee69ca2312cd7d7343e1b35e431c1bcf8ba8c842929d5edf56d0bb021',  # noqa: E501
+        minimal='sha256:b30a9b447adf97a1426d1108952fdca1eaabed982e467fce7f1cc4770eb0537a',  # noqa: E501
+        full='sha256:b15fd21c7b3374702fdba19822ec32f8a941f5fec10669951cb18c81fa652bad',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:138e28f72d58122f539e060cbfecd53addd0086d9e9bd053bd454e72a48873cc',  # noqa: E501
-        full='sha256:a101a47ee69ca2312cd7d7343e1b35e431c1bcf8ba8c842929d5edf56d0bb021',  # noqa: E501
+        minimal='sha256:b30a9b447adf97a1426d1108952fdca1eaabed982e467fce7f1cc4770eb0537a',  # noqa: E501
+        full='sha256:b15fd21c7b3374702fdba19822ec32f8a941f5fec10669951cb18c81fa652bad',  # noqa: E501
     ),
 )
 ```
@@ -68,10 +68,6 @@ Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
 others
 
 ```console
-$ python3.7 --version --version
-Python 3.7.17 (default, Jun  6 2023, 20:10:09)
-[GCC 11.3.0]
-
 $ python3.8 --version --version
 Python 3.8.18 (default, Aug 25 2023, 13:20:30)
 [GCC 11.4.0]
@@ -82,6 +78,9 @@ Python 3.9.18 (main, Aug 25 2023, 13:20:14)
 
 $ python3.10 --version --version
 Python 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]
+
+$ python3.12 --version --version
+Python 3.12.0 (main, Oct  2 2023, 15:04:50) [GCC 11.4.0]
 
 $ pypy3 --version --version
 Python 3.8.13 (7.3.9+dfsg-1, Apr 01 2022, 21:41:47)
