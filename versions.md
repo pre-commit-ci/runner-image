@@ -1,26 +1,26 @@
-runner-image:2023-11-27-26a8d1c-full
+runner-image:2023-12-26-9018653-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2023-11-27-26a8d1c-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2023-12-26-9018653-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2023-11-27-26a8d1c'
+IMAGE = 'runner-image:2023-12-26-9018653'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:8d416d35b8b0ebe6dd4056014e3c868b1f581664a8cc1520657a5c346fe0bd08',  # noqa: E501
-        full='sha256:0978de9b1689fc6c2b1b6e7135b32d080fddc5d1b2332b758233348a3e28008d',  # noqa: E501
+        minimal='sha256:6bca24216a261c94be4fcd25da72240d2884bfb13ae6f63b7c679e1e4b9ce56b',  # noqa: E501
+        full='sha256:9db478417f99977c404f797caf60914fd23aceb6b1bf0b4e0579921410738adc',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:8d416d35b8b0ebe6dd4056014e3c868b1f581664a8cc1520657a5c346fe0bd08',  # noqa: E501
-        full='sha256:0978de9b1689fc6c2b1b6e7135b32d080fddc5d1b2332b758233348a3e28008d',  # noqa: E501
+        minimal='sha256:6bca24216a261c94be4fcd25da72240d2884bfb13ae6f63b7c679e1e4b9ce56b',  # noqa: E501
+        full='sha256:9db478417f99977c404f797caf60914fd23aceb6b1bf0b4e0579921410738adc',  # noqa: E501
     ),
 )
 ```
@@ -34,13 +34,13 @@ distlib==0.3.7
 filelock==3.12.3
 identify==2.5.27
 nodeenv==1.8.0
-pip==23.2.1
+pip==23.3.1
 platformdirs==3.10.0
 pre-commit==3.4.0
 PyYAML==6.0.1
 setuptools==68.1.2
 virtualenv==20.24.4
-wheel==0.41.2
+wheel==0.42.0
 ```
 
 ## os
@@ -59,10 +59,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
+Python 3.11.7 (main, Dec  8 2023, 18:56:58) [GCC 11.4.0]
 
 $ python3 --version --version
-Python 3.11.5 (main, Aug 25 2023, 13:19:50) [GCC 11.4.0]
+Python 3.11.7 (main, Dec  8 2023, 18:56:58) [GCC 11.4.0]
 ```
 
 others
@@ -77,14 +77,14 @@ Python 3.9.18 (main, Aug 25 2023, 13:20:14)
 [GCC 11.4.0]
 
 $ python3.10 --version --version
-Python 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]
+Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
 
 $ python3.12 --version --version
-Python 3.12.0 (main, Oct  2 2023, 15:04:50) [GCC 11.4.0]
+Python 3.12.1 (main, Dec 10 2023, 15:07:36) [GCC 11.4.0]
 
 $ pypy3 --version --version
-Python 3.8.13 (7.3.9+dfsg-1, Apr 01 2022, 21:41:47)
-[PyPy 7.3.9 with GCC 11.2.0]
+Python 3.8.13 (7.3.9+dfsg-1ubuntu0.1, Nov 15 2022, 06:22:50)
+[PyPy 7.3.9 with GCC 11.3.0]
 ```
 
 ## conda
