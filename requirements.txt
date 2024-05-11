@@ -4,7 +4,7 @@ filelock==3.13.4
 identify==2.5.36
 nodeenv==1.8.0
 platformdirs==4.2.0
-pre-commit==3.7.0
+pre-commit==3.7.1
 PyYAML==6.0.1
 setuptools==69.5.1
 virtualenv==20.25.3
