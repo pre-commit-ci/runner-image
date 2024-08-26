@@ -1,26 +1,26 @@
-runner-image:2024-08-26-972a87b-full
+runner-image:2024-08-26-7d4d12e-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2024-08-26-972a87b-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2024-08-26-7d4d12e-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2024-08-26-972a87b'
+IMAGE = 'runner-image:2024-08-26-7d4d12e'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:8ba6b1c69fb83ee62879dd4234fe88cb3a111bffc029aa3abc537a108b8c765b',  # noqa: E501
-        full='sha256:78ab4490e8bc69eb9a917a4c8208565c84dc9b3cf319b9ffc5550277c18e8d9c',  # noqa: E501
+        minimal='sha256:2e544b251d648a36a770f21a866819b139e1bfc1c3e5d2d35667ed7ba6a7129b',  # noqa: E501
+        full='sha256:e8b6b778f339acf492aa9fde2eaa49a6b63fb7888c75ecf43962b66b2b691cfd',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:8ba6b1c69fb83ee62879dd4234fe88cb3a111bffc029aa3abc537a108b8c765b',  # noqa: E501
-        full='sha256:78ab4490e8bc69eb9a917a4c8208565c84dc9b3cf319b9ffc5550277c18e8d9c',  # noqa: E501
+        minimal='sha256:2e544b251d648a36a770f21a866819b139e1bfc1c3e5d2d35667ed7ba6a7129b',  # noqa: E501
+        full='sha256:e8b6b778f339acf492aa9fde2eaa49a6b63fb7888c75ecf43962b66b2b691cfd',  # noqa: E501
     ),
 )
 ```
@@ -159,7 +159,7 @@ Download .NET:
 
 ```console
 $ go version
-go version go1.21.0 linux/amd64
+go version go1.22.4 linux/amd64
 ```
 
 ## lua
