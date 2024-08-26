@@ -1,26 +1,26 @@
-runner-image:2024-08-05-ca45c47-full
+runner-image:2024-08-26-972a87b-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2024-08-05-ca45c47-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2024-08-26-972a87b-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2024-08-05-ca45c47'
+IMAGE = 'runner-image:2024-08-26-972a87b'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:864d194534eb9f7445abcb5debad5ef0206d7cdb7492b782757472cfa8bd0139',  # noqa: E501
-        full='sha256:756575700f879cb3cc176540cc766148493f79b89131fae2a39d619749b2855b',  # noqa: E501
+        minimal='sha256:8ba6b1c69fb83ee62879dd4234fe88cb3a111bffc029aa3abc537a108b8c765b',  # noqa: E501
+        full='sha256:78ab4490e8bc69eb9a917a4c8208565c84dc9b3cf319b9ffc5550277c18e8d9c',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:864d194534eb9f7445abcb5debad5ef0206d7cdb7492b782757472cfa8bd0139',  # noqa: E501
-        full='sha256:756575700f879cb3cc176540cc766148493f79b89131fae2a39d619749b2855b',  # noqa: E501
+        minimal='sha256:8ba6b1c69fb83ee62879dd4234fe88cb3a111bffc029aa3abc537a108b8c765b',  # noqa: E501
+        full='sha256:78ab4490e8bc69eb9a917a4c8208565c84dc9b3cf319b9ffc5550277c18e8d9c',  # noqa: E501
     ),
 )
 ```
@@ -59,10 +59,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.12.4 (main, Jun  8 2024, 18:29:57) [GCC 11.4.0]
+Python 3.12.5 (main, Aug 17 2024, 16:46:05) [GCC 11.4.0]
 
 $ python3 --version --version
-Python 3.12.4 (main, Jun  8 2024, 18:29:57) [GCC 11.4.0]
+Python 3.12.5 (main, Aug 17 2024, 16:46:05) [GCC 11.4.0]
 ```
 
 others
@@ -77,7 +77,7 @@ Python 3.9.19 (main, Apr  6 2024, 17:57:55)
 [GCC 11.4.0]
 
 $ python3.10 --version --version
-Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+Python 3.10.12 (main, Jul 29 2024, 16:56:48) [GCC 11.4.0]
 
 $ python3.11 --version --version
 Python 3.11.9 (main, Apr  6 2024, 17:59:24) [GCC 11.4.0]
