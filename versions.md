@@ -1,26 +1,26 @@
-runner-image:2024-08-26-7d4d12e-full
+runner-image:2024-10-01-5d3a1aa-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2024-08-26-7d4d12e-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2024-10-01-5d3a1aa-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2024-08-26-7d4d12e'
+IMAGE = 'runner-image:2024-10-01-5d3a1aa'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:2e544b251d648a36a770f21a866819b139e1bfc1c3e5d2d35667ed7ba6a7129b',  # noqa: E501
-        full='sha256:e8b6b778f339acf492aa9fde2eaa49a6b63fb7888c75ecf43962b66b2b691cfd',  # noqa: E501
+        minimal='sha256:5e5de28972f8adfabd44df35481f31dd9b3b8e53726e53ed0964711956682309',  # noqa: E501
+        full='sha256:4b1a9f7df887724f8703214c441dee131709db2e939173fbea8fd3831d811125',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:2e544b251d648a36a770f21a866819b139e1bfc1c3e5d2d35667ed7ba6a7129b',  # noqa: E501
-        full='sha256:e8b6b778f339acf492aa9fde2eaa49a6b63fb7888c75ecf43962b66b2b691cfd',  # noqa: E501
+        minimal='sha256:5e5de28972f8adfabd44df35481f31dd9b3b8e53726e53ed0964711956682309',  # noqa: E501
+        full='sha256:4b1a9f7df887724f8703214c441dee131709db2e939173fbea8fd3831d811125',  # noqa: E501
     ),
 )
 ```
@@ -34,13 +34,13 @@ distlib==0.3.8
 filelock==3.13.4
 identify==2.5.36
 nodeenv==1.8.0
-pip==24.1
+pip==24.2
 platformdirs==4.2.0
 pre-commit==3.7.1
 PyYAML==6.0.1
 setuptools==70.0.0
 virtualenv==20.25.3
-wheel==0.43.0
+wheel==0.44.0
 ```
 
 ## os
@@ -50,7 +50,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=22.04
 DISTRIB_CODENAME=jammy
-DISTRIB_DESCRIPTION="Ubuntu 22.04.4 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 22.04.5 LTS"
 ```
 
 ## python
@@ -59,28 +59,28 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.12.5 (main, Aug 17 2024, 16:46:05) [GCC 11.4.0]
+Python 3.12.7 (main, Oct  1 2024, 08:52:12) [GCC 11.4.0]
 
 $ python3 --version --version
-Python 3.12.5 (main, Aug 17 2024, 16:46:05) [GCC 11.4.0]
+Python 3.12.7 (main, Oct  1 2024, 08:52:12) [GCC 11.4.0]
 ```
 
 others
 
 ```console
 $ python3.8 --version --version
-Python 3.8.19 (default, Apr  6 2024, 17:58:10)
+Python 3.8.20 (default, Sep  7 2024, 18:35:08)
 [GCC 11.4.0]
 
 $ python3.9 --version --version
-Python 3.9.19 (main, Apr  6 2024, 17:57:55)
+Python 3.9.20 (main, Sep  7 2024, 18:35:25)
 [GCC 11.4.0]
 
 $ python3.10 --version --version
-Python 3.10.12 (main, Jul 29 2024, 16:56:48) [GCC 11.4.0]
+Python 3.10.12 (main, Sep 11 2024, 15:47:36) [GCC 11.4.0]
 
 $ python3.11 --version --version
-Python 3.11.9 (main, Apr  6 2024, 17:59:24) [GCC 11.4.0]
+Python 3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]
 
 $ pypy3 --version --version
 Python 3.8.13 (7.3.9+dfsg-1ubuntu0.1, Nov 15 2022, 06:22:50)
@@ -178,10 +178,10 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v18.17.1
+v20.17.0
 
 $ npm --version
-9.6.7
+10.8.2
 ```
 
 ## perl
