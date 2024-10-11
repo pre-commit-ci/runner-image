@@ -1,26 +1,26 @@
-runner-image:2024-10-07-b365cc9-full
+runner-image:2024-10-11-d1d12eb-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2024-10-07-b365cc9-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2024-10-11-d1d12eb-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2024-10-07-b365cc9'
+IMAGE = 'runner-image:2024-10-11-d1d12eb'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:2414ac2df220ed066f8b266c6e9a9ac2e065023e60623c5a04a2eeb202f919e2',  # noqa: E501
-        full='sha256:ca7d042e35f5470c20b1ac07c901f8cc9415b972f0198a7d4dd1b9ddef213106',  # noqa: E501
+        minimal='sha256:639808f2b8932fc8ce25cba7c2b5326ffb57f8198b2cf2c8d80a2cc9bc525213',  # noqa: E501
+        full='sha256:ed0812761f72e64f0a4aee5b9fdc656441ac264f85700b283b5895ec38b9aa90',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:2414ac2df220ed066f8b266c6e9a9ac2e065023e60623c5a04a2eeb202f919e2',  # noqa: E501
-        full='sha256:ca7d042e35f5470c20b1ac07c901f8cc9415b972f0198a7d4dd1b9ddef213106',  # noqa: E501
+        minimal='sha256:639808f2b8932fc8ce25cba7c2b5326ffb57f8198b2cf2c8d80a2cc9bc525213',  # noqa: E501
+        full='sha256:ed0812761f72e64f0a4aee5b9fdc656441ac264f85700b283b5895ec38b9aa90',  # noqa: E501
     ),
 )
 ```
@@ -68,10 +68,6 @@ Python 3.12.7 (main, Oct  1 2024, 08:52:12) [GCC 11.4.0]
 others
 
 ```console
-$ python3.8 --version --version
-Python 3.8.20 (default, Sep  7 2024, 18:35:08)
-[GCC 11.4.0]
-
 $ python3.9 --version --version
 Python 3.9.20 (main, Sep  7 2024, 18:35:25)
 [GCC 11.4.0]
@@ -81,6 +77,9 @@ Python 3.10.12 (main, Sep 11 2024, 15:47:36) [GCC 11.4.0]
 
 $ python3.11 --version --version
 Python 3.11.10 (main, Sep  7 2024, 18:35:41) [GCC 11.4.0]
+
+$ python3.13 --version --version
+Python 3.13.0 (main, Oct  8 2024, 08:51:28) [GCC 11.4.0]
 
 $ pypy3 --version --version
 Python 3.8.13 (7.3.9+dfsg-1ubuntu0.1, Nov 15 2022, 06:22:50)
