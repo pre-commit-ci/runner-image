@@ -42,6 +42,16 @@ RUN : \
 
 RUN : \
     && . /etc/lsb-release \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 59FDA1CE1B84B3FAD89366C027557F056DC33CA5 \
+    && echo deb https://ppa.launchpadcontent.net/fish-shell/release-3/ubuntu/ $DISTRIB_CODENAME main > /etc/apt/sources.list.d/fish-shell-ubuntu-release-3-jammy.list \
+    && apt-get update \
+    && apt-get install -y fish \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && :
+
+RUN : \
+    && . /etc/lsb-release \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
     && echo deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $DISTRIB_CODENAME main > /etc/apt/sources.list.d/deadsnakes.list \
     && apt-get update \
