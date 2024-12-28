@@ -117,7 +117,7 @@ RUN : \
     && rm /tmp/node.tar.gz \
     && :
 
-ARG RUST=1.77.0
+ARG RUST=1.83.0
 ARG RUSTUP_SHA256=0b2f6c8f85a3d02fde2efc0ced4657869d73fccfce59defb4e8d29233116e6db
 ARG RUSTUP_VERSION=1.26.0
 ENV \
