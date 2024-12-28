@@ -1,26 +1,26 @@
-runner-image:2024-12-24-e3cb366-full
+runner-image:2024-12-28-67c6c9a-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2024-12-24-e3cb366-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2024-12-28-67c6c9a-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2024-12-24-e3cb366'
+IMAGE = 'runner-image:2024-12-28-67c6c9a'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
         minimal='sha256:11509d6dde284776ca682829bfc7baf999c878fb9aeefd43877fe1ff1f758094',  # noqa: E501
-        full='sha256:4007743f26013faf4d91947955a518d7f681240c926d80077d6dc6ac4a27ca1d',  # noqa: E501
+        full='sha256:056a123f76cc20a13d0b348f61bce334c9bb50a4f4305592fc144cf62bf82cea',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
         minimal='sha256:11509d6dde284776ca682829bfc7baf999c878fb9aeefd43877fe1ff1f758094',  # noqa: E501
-        full='sha256:4007743f26013faf4d91947955a518d7f681240c926d80077d6dc6ac4a27ca1d',  # noqa: E501
+        full='sha256:056a123f76cc20a13d0b348f61bce334c9bb50a4f4305592fc144cf62bf82cea',  # noqa: E501
     ),
 )
 ```
@@ -218,10 +218,10 @@ ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
 
 ```console
 $ cargo --version
-cargo 1.77.0 (3fe68eabf 2024-02-29)
+cargo 1.83.0 (5ffbef321 2024-10-29)
 
 $ rustc --version
-rustc 1.77.0 (aedd173a2 2024-03-17)
+rustc 1.83.0 (90b35a623 2024-11-26)
 ```
 
 ## swift
