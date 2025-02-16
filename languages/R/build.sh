@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-R_VERSION=4.3.1
-R_SHA256=8dd0bf24f1023c6f618c3b317383d291b4a494f40d73b983ac22ffea99e4ba99
+R_VERSION=4.4.2
+R_SHA256=1578cd603e8d866b58743e49d8bf99c569e81079b6a60cf33cdf7bdffeb817ec
 # https://www.r-project.org/
+
+cd "$(dirname "$0")"
 
 podman build \
     --build-arg=R_VERSION="$R_VERSION" \
