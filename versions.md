@@ -1,26 +1,26 @@
-runner-image:2025-02-16-58cc4de-full
+runner-image:2025-02-16-fb6c3e9-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2025-02-16-58cc4de-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2025-02-16-fb6c3e9-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2025-02-16-58cc4de'
+IMAGE = 'runner-image:2025-02-16-fb6c3e9'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:77e16f2c22793c39979e232469f9b2f350c952c8b9eea8c9389a53d887e4811a',  # noqa: E501
-        full='sha256:1c1e556d209d817229e6d13819f04f51010eb2f8e4a30bb860c8ec732d8d8ae9',  # noqa: E501
+        minimal='sha256:748a2cd80e5ef2be3c2d0d5958e20d1bcf1929afd8c8af9720e48f84037d2bcd',  # noqa: E501
+        full='sha256:14b4b6ecb8b0a66f2eec17378d40b55d05c3590c1afb6c87df25dff6d28cedd0',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:77e16f2c22793c39979e232469f9b2f350c952c8b9eea8c9389a53d887e4811a',  # noqa: E501
-        full='sha256:1c1e556d209d817229e6d13819f04f51010eb2f8e4a30bb860c8ec732d8d8ae9',  # noqa: E501
+        minimal='sha256:748a2cd80e5ef2be3c2d0d5958e20d1bcf1929afd8c8af9720e48f84037d2bcd',  # noqa: E501
+        full='sha256:14b4b6ecb8b0a66f2eec17378d40b55d05c3590c1afb6c87df25dff6d28cedd0',  # noqa: E501
     ),
 )
 ```
@@ -48,9 +48,9 @@ wheel==0.45.1
 ```console
 $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=22.04
-DISTRIB_CODENAME=jammy
-DISTRIB_DESCRIPTION="Ubuntu 22.04.5 LTS"
+DISTRIB_RELEASE=24.04
+DISTRIB_CODENAME=noble
+DISTRIB_DESCRIPTION="Ubuntu 24.04.1 LTS"
 ```
 
 ## python
@@ -59,31 +59,31 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.12.9 (main, Feb  5 2025, 08:49:00) [GCC 11.4.0]
+Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0]
 
 $ python3 --version --version
-Python 3.12.9 (main, Feb  5 2025, 08:49:00) [GCC 11.4.0]
+Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0]
 ```
 
 others
 
 ```console
 $ python3.9 --version --version
-Python 3.9.21 (main, Dec  4 2024, 08:53:33)
-[GCC 11.4.0]
+Python 3.9.21 (main, Dec  4 2024, 08:53:34)
+[GCC 13.2.0]
 
 $ python3.10 --version --version
-Python 3.10.12 (main, Jan 17 2025, 14:35:34) [GCC 11.4.0]
+Python 3.10.16 (main, Dec  4 2024, 08:53:38) [GCC 13.2.0]
 
 $ python3.11 --version --version
-Python 3.11.11 (main, Dec  4 2024, 08:55:07) [GCC 11.4.0]
+Python 3.11.11 (main, Dec  4 2024, 08:55:08) [GCC 13.2.0]
 
 $ python3.13 --version --version
-Python 3.13.2 (main, Feb  5 2025, 08:49:07) [GCC 11.4.0]
+Python 3.13.2 (main, Feb  5 2025, 08:49:06) [GCC 13.3.0]
 
 $ pypy3 --version --version
-Python 3.8.13 (7.3.9+dfsg-1ubuntu0.1, Nov 15 2022, 06:22:50)
-[PyPy 7.3.9 with GCC 11.3.0]
+Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
+[PyPy 7.3.15 with GCC 13.2.0]
 ```
 
 ## conda
@@ -121,9 +121,9 @@ $ dotnet --info
 
 Runtime Environment:
  OS Name:     ubuntu
- OS Version:  22.04
+ OS Version:  24.04
  OS Platform: Linux
- RID:         ubuntu.22.04-x64
+ RID:         linux-x64
  Base Path:   /opt/dotnet/sdk/7.0.101/
 
 Host:
@@ -188,16 +188,16 @@ $ npm --version
 ```console
 $ perl -E 'print "$^V
 "'
-v5.34.0
+v5.38.2
 ```
 
 ## r
 
 ```console
 $ R --version
-R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
-Copyright (C) 2023 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 4.4.2 (2024-10-31) -- "Pile of Leaves"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under the terms of the
@@ -211,7 +211,7 @@ https://www.gnu.org/licenses/.
 
 ```console
 $ ruby --version
-ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
+ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x86_64-linux-gnu]
 ```
 
 ## rust
@@ -228,6 +228,6 @@ rustc 1.83.0 (90b35a623 2024-11-26)
 
 ```console
 $ swift -version
-Swift version 5.7.3 (swift-5.7.3-RELEASE)
+Swift version 6.0.3 (swift-6.0.3-RELEASE)
 Target: x86_64-unknown-linux-gnu
 ```
