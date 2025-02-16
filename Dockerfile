@@ -1,4 +1,4 @@
-FROM ubuntu:jammy AS minimal
+FROM ubuntu:noble AS minimal
 
 ENTRYPOINT ["dumb-init", "--"]
 
@@ -22,7 +22,7 @@ RUN : \
         libgcc1 \
         libgdiplus \
         libgssapi-krb5-2 \
-        libicu70 \
+        libicu74 \
         liblapack3 \
         libssl3 \
         libstdc++6 \
@@ -31,7 +31,6 @@ RUN : \
         libz3-dev \
         make \
         python3-dev \
-        python3-distutils \
         ruby-dev \
         unzip \
         xdg-user-dirs \
@@ -49,9 +48,10 @@ RUN : \
         pypy3-dev \
         python3.9-dev \
         python3.9-distutils \
+        python3.10-dev \
+        python3.10-distutils \
         python3.11-dev \
         python3.11-distutils \
-        python3.12-dev \
         python3.13-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -136,8 +136,8 @@ RUN : \
     && rustup component add clippy rustfmt \
     && :
 
-ARG SWIFT=5.7.3
-ARG SWIFT_SHA256=312a18d0d2f207620349e3a373200f369fc1a6aad1b7f2365d55aa8a10881a59
+ARG SWIFT=6.0.3
+ARG SWIFT_SHA256=33e923609f6d89ee455af0a017ae4941ce16878c4940882cbf6a1656de294e8b
 ENV \
     PATH=/opt/swift/usr/bin:$PATH \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/swift/usr/lib
@@ -209,8 +209,8 @@ ENV \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
     && echo 'lang: r' \
-    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-22.04-r-4.3.1/r-4.3.1.tgz \
-    && echo '5c62bee0d4787fd92b7c6101f3a80e65377308b711816d671fb5513f05c1870c /tmp/r.tgz' | sha256sum --check \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-24.04-r-4.4.2/r-4.4.2.tgz \
+    && echo '735db5e00a1f69970a490c77183daa1d7323ff7bb6b7637860e760779c90e889 /tmp/r.tgz' | sha256sum --check \
     && mkdir /opt/r \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
