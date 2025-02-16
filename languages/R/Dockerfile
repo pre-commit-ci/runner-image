@@ -1,7 +1,6 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 RUN : \
-    # https://askubuntu.com/questions/496549/error-you-must-put-some-source-uris-in-your-sources-list
-    && sed -i 's/^# deb-src /deb-src /' /etc/apt/sources.list \
+    && sed -i 's/^Types: deb$/Types: deb deb-src/g' /etc/apt/sources.list.d/ubuntu.sources \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends build-dep r-base \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends curl \
