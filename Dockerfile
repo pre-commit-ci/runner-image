@@ -117,9 +117,9 @@ RUN : \
     && rm /tmp/node.tar.gz \
     && :
 
-ARG RUST=1.83.0
-ARG RUSTUP_SHA256=0b2f6c8f85a3d02fde2efc0ced4657869d73fccfce59defb4e8d29233116e6db
-ARG RUSTUP_VERSION=1.26.0
+ARG RUST=1.85.0
+ARG RUSTUP_SHA256=c8d03f559a2335693379e1d3eaee76622b2a6580807e63bcd61faea709b9f664
+ARG RUSTUP_VERSION=1.28.0
 ENV \
     CARGO_HOME=/tmp/cargo/home \
     RUSTUP_HOME=/opt/rust/rustup \
