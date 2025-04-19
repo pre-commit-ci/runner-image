@@ -26,6 +26,7 @@ RUN : \
         liblapack3 \
         libssl3 \
         libstdc++6 \
+        libtirpc3t64 \
         libxml2 \
         libyaml-dev \
         libz3-dev \
