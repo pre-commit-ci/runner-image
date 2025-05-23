@@ -1,26 +1,26 @@
-runner-image:2025-04-19-8158ec5-full
+runner-image:2025-05-23-a1f733e-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2025-04-19-8158ec5-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2025-05-23-a1f733e-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2025-04-19-8158ec5'
+IMAGE = 'runner-image:2025-05-23-a1f733e'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:daed240884df6fc7d467b47989b6e543abcb62f6d4ec1cfc98b118e1943a8aa0',  # noqa: E501
-        full='sha256:fd5c4066f0a14f04092034c031c4211d9b44d5c15da313aabf23954ea4e356b3',  # noqa: E501
+        minimal='sha256:e5b7ae9f3480ecde162ac0187ef4c33e6c8f6ec18926b72e3afe50463a6d8fb4',  # noqa: E501
+        full='sha256:73463fc599850b79780f46e14093eeb3d3b799f9446932f6dc3015d973e9229d',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:daed240884df6fc7d467b47989b6e543abcb62f6d4ec1cfc98b118e1943a8aa0',  # noqa: E501
-        full='sha256:fd5c4066f0a14f04092034c031c4211d9b44d5c15da313aabf23954ea4e356b3',  # noqa: E501
+        minimal='sha256:e5b7ae9f3480ecde162ac0187ef4c33e6c8f6ec18926b72e3afe50463a6d8fb4',  # noqa: E501
+        full='sha256:73463fc599850b79780f46e14093eeb3d3b799f9446932f6dc3015d973e9229d',  # noqa: E501
     ),
 )
 ```
@@ -34,13 +34,12 @@ distlib==0.3.9
 filelock==3.18.0
 identify==2.6.10
 nodeenv==1.9.1
-pip==25.0.1
+pip==25.1.1
 platformdirs==4.3.7
 pre_commit==4.2.0
 PyYAML==6.0.2
-setuptools==78.1.0
+setuptools==80.3.1
 virtualenv==20.30.0
-wheel==0.45.1
 ```
 
 ## os
@@ -177,7 +176,7 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v20.17.0
+v20.19.2
 
 $ npm --version
 10.8.2
