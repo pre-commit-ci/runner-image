@@ -1,26 +1,26 @@
-runner-image:2025-06-24-14ded3c-full
+runner-image:2025-07-14-d0107cd-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2025-06-24-14ded3c-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2025-07-14-d0107cd-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2025-06-24-14ded3c'
+IMAGE = 'runner-image:2025-07-14-d0107cd'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:07143fb8596e968f07c97ef3128bcb5a4b79cd6585c0fa4082ca11b840dfd13e',  # noqa: E501
-        full='sha256:1236dbabd03ee7edd800dd118e53aded7d90057574fe62c3a624f89fd8f86279',  # noqa: E501
+        minimal='sha256:94380d2437b261225f67186cee9a928be71738b2c59bee0de386e0d64d66210c',  # noqa: E501
+        full='sha256:223c7dc2c7428b4b172835c56f57c0602e61f10339d5c9a1927364dbe8b1037a',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:07143fb8596e968f07c97ef3128bcb5a4b79cd6585c0fa4082ca11b840dfd13e',  # noqa: E501
-        full='sha256:1236dbabd03ee7edd800dd118e53aded7d90057574fe62c3a624f89fd8f86279',  # noqa: E501
+        minimal='sha256:94380d2437b261225f67186cee9a928be71738b2c59bee0de386e0d64d66210c',  # noqa: E501
+        full='sha256:223c7dc2c7428b4b172835c56f57c0602e61f10339d5c9a1927364dbe8b1037a',  # noqa: E501
     ),
 )
 ```
@@ -32,14 +32,14 @@ $ pip freeze --all
 cfgv==3.4.0
 distlib==0.3.9
 filelock==3.18.0
-identify==2.6.10
+identify==2.6.12
 nodeenv==1.9.1
 pip==25.1.1
-platformdirs==4.3.7
+platformdirs==4.3.8
 pre_commit==4.2.0
 PyYAML==6.0.2
 setuptools==80.3.1
-virtualenv==20.30.0
+virtualenv==20.31.2
 ```
 
 ## os
