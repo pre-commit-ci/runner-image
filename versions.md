@@ -1,26 +1,26 @@
-runner-image:2025-08-13-63925f2-full
+runner-image:2025-09-19-90704d5-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2025-08-13-63925f2-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2025-09-19-90704d5-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2025-08-13-63925f2'
+IMAGE = 'runner-image:2025-09-19-90704d5'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:80244204acd025a6f52808766ac55e3e70159891b9d39d4f19bce0f817557dee',  # noqa: E501
-        full='sha256:5fe72c8fd0ff139c3bd072865b93431ae5f246aa7a824be20733629e5caede55',  # noqa: E501
+        minimal='sha256:8e8e9a58f2a7b8c0782860cd16ebeedfed6f539106845ad6d719501d805e121e',  # noqa: E501
+        full='sha256:40e688cb0b35946f976bec889b9846594f027f2ed7924d07fa9e01583c3c3f4f',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:80244204acd025a6f52808766ac55e3e70159891b9d39d4f19bce0f817557dee',  # noqa: E501
-        full='sha256:5fe72c8fd0ff139c3bd072865b93431ae5f246aa7a824be20733629e5caede55',  # noqa: E501
+        minimal='sha256:8e8e9a58f2a7b8c0782860cd16ebeedfed6f539106845ad6d719501d805e121e',  # noqa: E501
+        full='sha256:40e688cb0b35946f976bec889b9846594f027f2ed7924d07fa9e01583c3c3f4f',  # noqa: E501
     ),
 )
 ```
@@ -34,7 +34,7 @@ distlib==0.4.0
 filelock==3.18.0
 identify==2.6.12
 nodeenv==1.9.1
-pip==25.1.1
+pip==25.2
 platformdirs==4.3.8
 pre_commit==4.3.0
 PyYAML==6.0.2
@@ -49,7 +49,7 @@ $ cat /etc/lsb-release
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=24.04
 DISTRIB_CODENAME=noble
-DISTRIB_DESCRIPTION="Ubuntu 24.04.2 LTS"
+DISTRIB_DESCRIPTION="Ubuntu 24.04.3 LTS"
 ```
 
 ## python
@@ -58,10 +58,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.12.3 (main, Jun 18 2025, 17:59:45) [GCC 13.3.0]
+Python 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]
 
 $ python3 --version --version
-Python 3.12.3 (main, Jun 18 2025, 17:59:45) [GCC 13.3.0]
+Python 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]
 ```
 
 others
@@ -78,7 +78,7 @@ $ python3.11 --version --version
 Python 3.11.13 (main, Jun  4 2025, 08:57:30) [GCC 13.3.0]
 
 $ python3.13 --version --version
-Python 3.13.6 (main, Aug  7 2025, 09:00:55) [GCC 13.3.0]
+Python 3.13.7 (main, Aug 15 2025, 08:56:07) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
