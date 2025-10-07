@@ -24,6 +24,7 @@ RUN : \
         libgssapi-krb5-2 \
         libicu74 \
         liblapack3 \
+        libmagic1 \
         libssl3 \
         libstdc++6 \
         libtirpc3t64 \
