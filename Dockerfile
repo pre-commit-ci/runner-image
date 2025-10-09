@@ -47,13 +47,12 @@ RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         pypy3-dev \
-        python3.9-dev \
-        python3.9-distutils \
         python3.10-dev \
         python3.10-distutils \
         python3.11-dev \
         python3.11-distutils \
         python3.13-dev \
+        python3.14-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
@@ -74,7 +73,7 @@ ENV \
     XDG_DATA_HOME=/tmp/data
 COPY requirements.txt /tmp/requirements.txt
 RUN : \
-    && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.9/virtualenv.pyz \
+    && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.10/virtualenv.pyz \
     && python3.12 /tmp/virtualenv.pyz /venv \
     && pip install --requirement /tmp/requirements.txt \
     && rm -rf "$XDG_DATA_HOME" /tmp/virtualenv.pyz \

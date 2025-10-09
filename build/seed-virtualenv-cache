@@ -27,7 +27,8 @@ def main() -> int:
         subprocess.check_call(('virtualenv', '/tmp/v', '-p', python))
         shutil.rmtree('/tmp/v')
     # additionally seed the `python3 -m` executable
-    subprocess.check_call(('python3', '-mvirtualenv', '/tmp/v', '-ppython3.9'))
+    cmd = ('python3', '-mvirtualenv', '/tmp/v', '-ppython3.10')
+    subprocess.check_call(cmd)
     shutil.rmtree('/tmp/v')
     return 0
 
