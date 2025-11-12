@@ -8,8 +8,10 @@ import os.path
 import tarfile
 import tempfile
 
+import cfgv
 from pre_commit import constants
 from pre_commit.all_languages import languages
+from pre_commit.clientlib import CONFIG_HOOK_DICT
 from pre_commit.store import _make_local_repo
 
 
@@ -38,6 +40,11 @@ def main() -> int:
         },
         'local_repo_version': constants.LOCAL_REPO_VERSION,
     }
+
+    # if this fails then remove the lines after it
+    cfgv.validate({'id': '1', 'language': 'system'}, CONFIG_HOOK_DICT)
+    data['languages']['system'] = data['languages']['unsupported']
+    data['languages']['script'] = data['languages']['unsupported_script']
 
     info_json = os.path.join(args.dest, 'info.json')
     with open(info_json, 'w') as f:
