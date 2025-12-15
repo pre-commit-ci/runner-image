@@ -1,16 +1,16 @@
-runner-image:2025-12-05-b607932-full
+runner-image:2025-12-15-18476dc-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2025-12-05-b607932-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2025-12-15-18476dc-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2025-12-05-b607932'
+IMAGE = 'runner-image:2025-12-15-18476dc'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
