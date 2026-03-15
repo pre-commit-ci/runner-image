@@ -76,7 +76,7 @@ RUN : \
     && curl --silent --location --output /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv/3.10/virtualenv.pyz \
     && python3.12 /tmp/virtualenv.pyz /venv \
     && pip install --requirement /tmp/requirements.txt \
-    && rm -rf "$XDG_DATA_HOME" /tmp/virtualenv.pyz \
+    && rm -rf "$XDG_CACHE_HOME" /tmp/virtualenv.pyz \
     && :
 
 # ensure virtualenv appdata cache is populated
