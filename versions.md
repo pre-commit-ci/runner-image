@@ -1,26 +1,26 @@
-runner-image:2026-04-13-26b82db-full
+runner-image:2026-04-17-68038d4-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-04-13-26b82db-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-04-17-68038d4-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-04-13-26b82db'
+IMAGE = 'runner-image:2026-04-17-68038d4'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:3a933b4f95ecf0e594f3603feaa33496374c780ba09f7b949dea4180123390e8',  # noqa: E501
-        full='sha256:e84e6b3062ceee06bc260a225908aafd1e6e34451e7a58305ee6c9a03e5936e9',  # noqa: E501
+        minimal='sha256:c44ffbb2052f32dcf098f26f083a18eb74333f3e05af3cfa2cf93fb5e37e2829',  # noqa: E501
+        full='sha256:56f430487f1b3f6e0ddc9dcb007c0a046ef7c1ed249934493b27ba157534e749',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:3a933b4f95ecf0e594f3603feaa33496374c780ba09f7b949dea4180123390e8',  # noqa: E501
-        full='sha256:e84e6b3062ceee06bc260a225908aafd1e6e34451e7a58305ee6c9a03e5936e9',  # noqa: E501
+        minimal='sha256:c44ffbb2052f32dcf098f26f083a18eb74333f3e05af3cfa2cf93fb5e37e2829',  # noqa: E501
+        full='sha256:56f430487f1b3f6e0ddc9dcb007c0a046ef7c1ed249934493b27ba157534e749',  # noqa: E501
     ),
 )
 ```
@@ -38,7 +38,7 @@ pip==26.0.1
 platformdirs==4.5.0
 pre_commit==4.5.0
 PyYAML==6.0.3
-setuptools==82.0.0
+setuptools==82.0.1
 virtualenv==20.35.4
 ```
 
@@ -58,10 +58,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.14.3 (main, Feb  4 2026, 09:28:29) [GCC 13.3.0]
+Python 3.14.4 (main, Apr  8 2026, 09:50:55) [GCC 13.3.0]
 
 $ python3 --version --version
-Python 3.14.3 (main, Feb  4 2026, 09:28:29) [GCC 13.3.0]
+Python 3.14.4 (main, Apr  8 2026, 09:50:55) [GCC 13.3.0]
 ```
 
 others
@@ -77,7 +77,7 @@ $ python3.12 --version --version
 Python 3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
 
 $ python3.13 --version --version
-Python 3.13.12 (main, Feb  4 2026, 09:25:39) [GCC 13.3.0]
+Python 3.13.13 (main, Apr  8 2026, 09:49:30) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
@@ -175,10 +175,10 @@ LuaRocks main command-line interface
 
 ```console
 $ node --version
-v20.19.2
+v24.9.0
 
 $ npm --version
-10.8.2
+11.6.0
 ```
 
 ## perl
