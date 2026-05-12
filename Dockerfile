@@ -202,6 +202,21 @@ RUN : \
     && rm /tmp/dart.zip \
     && :
 
+ARG JULIA=1.12.6
+ARG JULIA_SHA256=bbabf3bef19421a9dbd24a767d807606ab85e444323b5a1c73ffe293fa3d079a
+ENV \
+    PATH=/opt/julia/bin:$PATH \
+    JULIA_DEPOT_PATH=/pc/julia_depot
+RUN : \
+    && echo 'lang: julia' \
+    && julia_minor="${JULIA%.*}" \
+    && curl --silent --location --output /tmp/julia.tgz "https://julialang-s3.julialang.org/bin/linux/x64/${julia_minor}/julia-${JULIA}-linux-x86_64.tar.gz" \
+    && echo "${JULIA_SHA256}  /tmp/julia.tgz" | sha256sum --check \
+    && mkdir /opt/julia \
+    && tar --strip-components=1 --directory /opt/julia -xf /tmp/julia.tgz \
+    && rm /tmp/julia.tgz \
+    && :
+
 ENV \
     PATH=/opt/r/bin/:$PATH \
     RENV_CONFIG_CACHE_ENABLED=false \
