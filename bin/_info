@@ -89,6 +89,12 @@ def main() -> int:
         _call('go', 'version')
     print()
 
+    print('## julia')
+    print()
+    with _console():
+        _call('julia', '--version')
+    print()
+
     print('## lua')
     print()
     with _console():
