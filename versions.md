@@ -1,26 +1,26 @@
-runner-image:2026-05-19-299f64d-full
+runner-image:2026-05-29-ab0e726-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-05-19-299f64d-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-05-29-ab0e726-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-05-19-299f64d'
+IMAGE = 'runner-image:2026-05-29-ab0e726'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
         minimal='sha256:40c99feeb08fe3250ff24a784be3235233b70f9bd31de3c6c97558f98698611d',  # noqa: E501
-        full='sha256:429ff9821fdcb13dd61ae24ea4616c7a6b72d12a442e27db43f83ff32debfccb',  # noqa: E501
+        full='sha256:6728220f738b75c0d12b7f740ad1a62746bae2c56f6139b7927e2285725babf2',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
         minimal='sha256:40c99feeb08fe3250ff24a784be3235233b70f9bd31de3c6c97558f98698611d',  # noqa: E501
-        full='sha256:429ff9821fdcb13dd61ae24ea4616c7a6b72d12a442e27db43f83ff32debfccb',  # noqa: E501
+        full='sha256:6728220f738b75c0d12b7f740ad1a62746bae2c56f6139b7927e2285725babf2',  # noqa: E501
     ),
 )
 ```
@@ -157,6 +157,13 @@ Download .NET:
 ```console
 $ go version
 go version go1.25.3 linux/amd64
+```
+
+## julia
+
+```console
+$ julia --version
+julia version 1.12.6
 ```
 
 ## lua
