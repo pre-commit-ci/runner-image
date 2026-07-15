@@ -1,26 +1,26 @@
-runner-image:2026-05-29-2c02030-full
+runner-image:2026-07-15-ce39a46-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-05-29-2c02030-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-07-15-ce39a46-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-05-29-2c02030'
+IMAGE = 'runner-image:2026-07-15-ce39a46'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:de3856b6ffa338782933695c62e575e5b645efe1fe15a7beeccebbad83943d52',  # noqa: E501
-        full='sha256:33a5cdabef037f16981142309453538c269263e86950431972b6d85db2adfd87',  # noqa: E501
+        minimal='sha256:38c2176c2d224d8bfab47039988c2ec1f9fd3f4bde8c787399300a962492b223',  # noqa: E501
+        full='sha256:e6514d80535c884f3195da1773900a7904e0aff1b3a24e0f82047c383ab1a52e',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:de3856b6ffa338782933695c62e575e5b645efe1fe15a7beeccebbad83943d52',  # noqa: E501
-        full='sha256:33a5cdabef037f16981142309453538c269263e86950431972b6d85db2adfd87',  # noqa: E501
+        minimal='sha256:38c2176c2d224d8bfab47039988c2ec1f9fd3f4bde8c787399300a962492b223',  # noqa: E501
+        full='sha256:e6514d80535c884f3195da1773900a7904e0aff1b3a24e0f82047c383ab1a52e',  # noqa: E501
     ),
 )
 ```
@@ -34,11 +34,11 @@ distlib==0.4.0
 filelock==3.20.0
 identify==2.6.19
 nodeenv==1.9.1
-pip==26.1.1
+pip==26.1.2
 platformdirs==4.5.0
 pre_commit==4.5.0
 PyYAML==6.0.3
-setuptools==82.0.1
+setuptools==83.0.0
 virtualenv==20.35.4
 ```
 
@@ -58,10 +58,10 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.14.5 (main, May 11 2026, 11:48:49) [GCC 13.3.0]
+Python 3.14.6 (main, Jun 11 2026, 12:32:48) [GCC 13.3.0]
 
 $ python3 --version --version
-Python 3.14.5 (main, May 11 2026, 11:48:49) [GCC 13.3.0]
+Python 3.14.6 (main, Jun 11 2026, 12:32:48) [GCC 13.3.0]
 ```
 
 others
@@ -74,10 +74,10 @@ $ python3.11 --version --version
 Python 3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 13.3.0]
 
 $ python3.12 --version --version
-Python 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+Python 3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]
 
 $ python3.13 --version --version
-Python 3.13.13 (main, Apr  8 2026, 09:49:30) [GCC 13.3.0]
+Python 3.13.14 (main, Jun 11 2026, 12:30:59) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
