@@ -1,26 +1,26 @@
-runner-image:2026-07-24-705822b-full
+runner-image:2026-08-10-7c5d580-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-07-24-705822b-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-08-10-7c5d580-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-07-24-705822b'
+IMAGE = 'runner-image:2026-08-10-7c5d580'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:289a551e2aae0396f93c83b4bb11344bc311d2788712b7cf1ec478fb505a8819',  # noqa: E501
-        full='sha256:eb23a24998a52f3be54277720071d8845c91b3aaf502ba258f0fa41cac20370b',  # noqa: E501
+        minimal='sha256:3d4c24ab69022c8fd9359398c832176f1dc1a46ec8f7af059e775b6a180690bb',  # noqa: E501
+        full='sha256:7991a97b7479e1ccf6513e81c7e21f99e594360f237411639c3f2c918fb2d74f',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:289a551e2aae0396f93c83b4bb11344bc311d2788712b7cf1ec478fb505a8819',  # noqa: E501
-        full='sha256:eb23a24998a52f3be54277720071d8845c91b3aaf502ba258f0fa41cac20370b',  # noqa: E501
+        minimal='sha256:3d4c24ab69022c8fd9359398c832176f1dc1a46ec8f7af059e775b6a180690bb',  # noqa: E501
+        full='sha256:7991a97b7479e1ccf6513e81c7e21f99e594360f237411639c3f2c918fb2d74f',  # noqa: E501
     ),
 )
 ```
@@ -34,11 +34,11 @@ distlib==0.4.0
 filelock==3.20.0
 identify==2.6.19
 nodeenv==1.9.1
-pip==26.1.2
+pip==26.2.1
 platformdirs==4.5.0
-pre_commit==4.6.1
+pre_commit==4.6.2
 PyYAML==6.0.3
-setuptools==83.0.0
+setuptools==84.0.0
 virtualenv==20.35.4
 ```
 
@@ -77,7 +77,7 @@ $ python3.12 --version --version
 Python 3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]
 
 $ python3.13 --version --version
-Python 3.13.14 (main, Jun 11 2026, 12:30:59) [GCC 13.3.0]
+Python 3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
