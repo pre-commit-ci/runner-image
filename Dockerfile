@@ -20,6 +20,7 @@ RUN : \
         libfile-homedir-perl \
         libgcc1 \
         libgdiplus \
+        libgmp-dev \
         libgssapi-krb5-2 \
         libicu74 \
         libssl3 \
@@ -34,6 +35,7 @@ RUN : \
         ruby-dev \
         unzip \
         xdg-user-dirs \
+        xz-utils \
         zlib1g \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -114,6 +116,25 @@ RUN : \
     && mkdir /opt/node \
     && tar --strip-components 1 --directory /opt/node -xf /tmp/node.tar.gz \
     && rm /tmp/node.tar.gz \
+    && :
+
+ARG HASKELL_GHC=9.14.1
+ARG HASKELL_CABAL=3.18.1.0
+ARG HASKELL_GHCUP=0.2.6.2
+ARG HASKELL_GHCUP_SHA256=9ed5da5449b48043a0d17e767c05d2ef585e25a639bb934329496c6d2fad9cf8
+ENV \
+    CABAL_DIR=/tmp/cabal \
+    GHCUP_INSTALL_BASE_PREFIX=/opt/haskell \
+    PATH=/opt/haskell/.ghcup/bin:$PATH
+RUN : \
+    && echo 'lang: haskell' \
+    && mkdir -p /opt/haskell/.ghcup/bin \
+    && curl --silent --location --output /tmp/ghcup "https://downloads.haskell.org/~ghcup/${HASKELL_GHCUP}/x86_64-linux-ghcup-${HASKELL_GHCUP}" \
+    && echo "${HASKELL_GHCUP_SHA256}  /tmp/ghcup" | sha256sum --check \
+    && install -m 0755 /tmp/ghcup /opt/haskell/.ghcup/bin/ghcup \
+    && rm /tmp/ghcup \
+    && ghcup install ghc "$HASKELL_GHC" --set \
+    && ghcup install cabal "$HASKELL_CABAL" --set \
     && :
 
 ARG RUST=1.89.0
