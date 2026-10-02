@@ -22,8 +22,8 @@ RUN : \
         --prefix=/opt/r/ \
         --enable-memory-profiling \
         --enable-R-shlib \
-        --with-blas \
-        --with-lapack \
+        --without-blas \
+        --without-lapack \
         --without-recommended-packages \
     && make \
     && make install \
