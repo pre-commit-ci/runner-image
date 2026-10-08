@@ -1,26 +1,26 @@
-runner-image:2026-10-08-39c53db-full
+runner-image:2026-10-08-96c8686-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-08-39c53db-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-08-96c8686-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-10-08-39c53db'
+IMAGE = 'runner-image:2026-10-08-96c8686'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:fb447aa367057de8b05be6b53cfa11eba5e77d0c69e873d2ac243168e303824f',  # noqa: E501
-        full='sha256:df71ea2a2cbe5b5eb3108de04242545e868271215fcd6e83cf2f80b32f91a8d3',  # noqa: E501
+        minimal='sha256:3d957b27576ea592d914735e4609b8a6d363dc2b4a7f7ec2862e1ba88d71b673',  # noqa: E501
+        full='sha256:e2c0a0925ddb7a021742383f8b366df595f37828816ff9dfb0ce438080cffb3c',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:f7f87a360e168c0ccd540bf39a4924d20d69e5edb9cedc1d0aba53d882aaf414',  # noqa: E501
-        full='sha256:6c8b6ef54127d63acba666737b92b187e18b56ec5ec4434389250859738e8cbb',  # noqa: E501
+        minimal='sha256:1919e18714d253eea2500bd51493ab4e6b8e7be16723eb0b3fe66707b3998d8a',  # noqa: E501
+        full='sha256:73808b45300cc166dc44e5b73857c4a112e83b9ed77202ee9368828054d00ed4',  # noqa: E501
     ),
 )
 ```
@@ -200,8 +200,8 @@ v5.38.2
 
 ```console
 $ R --version
-R version 4.4.2 (2024-10-31) -- "Pile of Leaves"
-Copyright (C) 2024 The R Foundation for Statistical Computing
+R version 4.6.1 (2026-06-24) -- "Happy Hop"
+Copyright (C) 2026 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
