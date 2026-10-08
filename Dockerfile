@@ -14,7 +14,6 @@ RUN : \
         gcc \
         git \
         gnupg2 \
-        libblas3 \
         libc6 \
         libedit2 \
         libffi-dev \
@@ -23,7 +22,6 @@ RUN : \
         libgdiplus \
         libgssapi-krb5-2 \
         libicu74 \
-        liblapack3 \
         libssl3 \
         libstdc++6 \
         libtirpc3t64 \
@@ -223,8 +221,8 @@ ENV \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
     && echo 'lang: r' \
-    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-24.04-r-4.4.2/r-4.4.2.tgz \
-    && echo '735db5e00a1f69970a490c77183daa1d7323ff7bb6b7637860e760779c90e889 /tmp/r.tgz' | sha256sum --check \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-24.04-r-4.6.1/r-4.6.1.tgz \
+    && echo '52846b27c46a64bf06f8fc1430757440ada6ec5c5be6d9cf0ab62f46537ded0a /tmp/r.tgz' | sha256sum --check \
     && mkdir /opt/r \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
