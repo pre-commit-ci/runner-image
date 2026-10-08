@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-R_VERSION=4.4.2
-R_SHA256=1578cd603e8d866b58743e49d8bf99c569e81079b6a60cf33cdf7bdffeb817ec
+R_VERSION=4.6.1
+R_SHA256=4da6e61d2c0aac5f14a2e7e432cb5fcc269efe83da4293050ba7f03dff4e2cf4
 # https://www.r-project.org/
 
 cd "$(dirname "$0")"
