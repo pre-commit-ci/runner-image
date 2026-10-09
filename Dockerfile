@@ -46,12 +46,11 @@ RUN : \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         pypy3-dev \
-        python3.10-dev \
-        python3.10-distutils \
         python3.11-dev \
         python3.11-distutils \
         python3.13-dev \
         python3.14-dev \
+        python3.15-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && :
