@@ -1,26 +1,26 @@
-runner-image:2026-10-08-96c8686-full
+runner-image:2026-10-09-a08a26f-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-08-96c8686-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-09-a08a26f-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-10-08-96c8686'
+IMAGE = 'runner-image:2026-10-09-a08a26f'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:3d957b27576ea592d914735e4609b8a6d363dc2b4a7f7ec2862e1ba88d71b673',  # noqa: E501
-        full='sha256:e2c0a0925ddb7a021742383f8b366df595f37828816ff9dfb0ce438080cffb3c',  # noqa: E501
+        minimal='sha256:4fbe2ab866f7fb06194f5a611a4fe40badcb5efa6baef0fa450e41579126966f',  # noqa: E501
+        full='sha256:d48ec11935ad71adfa8dfd6d03a30dfc26c5ab8644f766917472c3da12885cab',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:1919e18714d253eea2500bd51493ab4e6b8e7be16723eb0b3fe66707b3998d8a',  # noqa: E501
-        full='sha256:73808b45300cc166dc44e5b73857c4a112e83b9ed77202ee9368828054d00ed4',  # noqa: E501
+        minimal='sha256:b01b936ad8bb4d42928cab1a5d858d4e585a7e4342ed951a58d00ec09366744c',  # noqa: E501
+        full='sha256:938e9252b9a05451c8eee674d741acab699bd84d578a7eaed0ac31eb448e6c17',  # noqa: E501
     ),
 )
 ```
@@ -67,9 +67,6 @@ Python 3.14.8 (main, Oct  1 2026, 15:42:08) [GCC 13.3.0]
 others
 
 ```console
-$ python3.10 --version --version
-Python 3.10.22 (main, Oct  1 2026, 15:39:47) [GCC 13.3.0]
-
 $ python3.11 --version --version
 Python 3.11.17 (main, Oct  1 2026, 15:41:07) [GCC 13.3.0]
 
@@ -78,6 +75,9 @@ Python 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
 
 $ python3.13 --version --version
 Python 3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]
+
+$ python3.15 --version --version
+Python 3.15.0 (main, Oct  9 2026, 14:11:45) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
