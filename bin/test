@@ -147,6 +147,27 @@ def test_can_run_go_hook(tag: str, pc: str, podman: bool) -> None:
         _build_and_run(tag, tmpdir, pc, podman=podman)
 
 
+HASKELL_HOOK = '''\
+repos:
+-   repo: https://github.com/NixOS/nixfmt
+    rev: v1.5.0
+    hooks:
+    -   id: nixfmt
+'''
+
+
+def test_can_run_haskell_hook(tag: str, pc: str, podman: bool) -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        subprocess.check_call(('git', 'init', tmpdir))
+        with open(os.path.join(tmpdir, '.pre-commit-config.yaml'), 'w') as f:
+            f.write(HASKELL_HOOK)
+        with open(os.path.join(tmpdir, 't.nix'), 'w') as f:
+            f.write('1\n')
+        subprocess.check_call(('git', '-C', tmpdir, 'add', '.'))
+
+        _build_and_run(tag, tmpdir, pc, podman=podman)
+
+
 RUST_HOOK = '''\
 repos:
 -   repo: local
@@ -454,6 +475,8 @@ def main() -> int:
         test_can_install_ffi_gem(full_tag)
         print(' can run go hooks '.center(79, '='), flush=True)
         test_can_run_go_hook(full_tag, pc, podman=args.podman)
+        print(' can run haskell hooks '.center(79, '='), flush=True)
+        test_can_run_haskell_hook(full_tag, pc, podman=args.podman)
         print(' can run rust hooks '.center(79, '='), flush=True)
         test_can_run_rust_hook(full_tag, pc, podman=args.podman)
         print(' can run swift hooks '.center(79, '='), flush=True)
