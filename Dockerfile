@@ -20,6 +20,7 @@ RUN : \
         libfile-homedir-perl \
         libgcc1 \
         libgdiplus \
+        libgfortran5 \
         libgssapi-krb5-2 \
         libicu74 \
         libssl3 \
