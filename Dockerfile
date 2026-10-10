@@ -173,13 +173,15 @@ RUN : \
     && rm /tmp/dotnet.tar.gz \
     && :
 
-ARG CONDA=py39_4.10.3
-ARG CONDA_SHA256=1ea2f885b4dbc3098662845560bc64271eb17085387a70c2ba3f29fff6f8d52f
+ARG CONDA=py314_26.7.1-1
+ARG CONDA_SHA256=e8b25b92b262499141c5bd57a98d3c008024185fa951494b9cd9b6d94e72338b
 ENV PATH=/opt/conda/bin:$PATH CONDA_PKGS_DIRS=/tmp/conda/pkgs
 RUN : \
     && echo 'lang: conda' \
     && curl --silent --location --output /tmp/conda.sh "https://repo.anaconda.com/miniconda/Miniconda3-$CONDA-Linux-x86_64.sh" \
     && bash /tmp/conda.sh -p /opt/conda/install -b \
+    # accept the TOS, but please don't write files at runtime
+    && /opt/conda/install/bin/python3.14 -m pip uninstall conda-anaconda-tos -y --root-user-action=ignore \
     && mkdir /opt/conda/bin \
     && ln -sf /opt/conda/install/bin/conda /opt/conda/bin \
     && rm -rf /tmp/conda.sh /root/.conda \
