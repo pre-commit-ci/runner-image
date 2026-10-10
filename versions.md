@@ -1,26 +1,26 @@
-runner-image:2026-10-09-a08a26f-full
+runner-image:2026-10-10-4b441fa-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-09-a08a26f-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-10-4b441fa-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-10-09-a08a26f'
+IMAGE = 'runner-image:2026-10-10-4b441fa'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
         minimal='sha256:4fbe2ab866f7fb06194f5a611a4fe40badcb5efa6baef0fa450e41579126966f',  # noqa: E501
-        full='sha256:d48ec11935ad71adfa8dfd6d03a30dfc26c5ab8644f766917472c3da12885cab',  # noqa: E501
+        full='sha256:ca003371fa8f87c99fb5c3be5cdb7d36651d3ab4086c45f630744861d826fed1',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
         minimal='sha256:b01b936ad8bb4d42928cab1a5d858d4e585a7e4342ed951a58d00ec09366744c',  # noqa: E501
-        full='sha256:938e9252b9a05451c8eee674d741acab699bd84d578a7eaed0ac31eb448e6c17',  # noqa: E501
+        full='sha256:f890779cb5803c6c576c686a75ad0b66d9389d4b4ef8460b1c008564923d07e7',  # noqa: E501
     ),
 )
 ```
@@ -88,7 +88,7 @@ Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
 
 ```console
 $ conda --version
-conda 4.10.3
+conda 26.7.1
 ```
 
 ## coursier
