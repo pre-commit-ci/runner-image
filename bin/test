@@ -333,7 +333,7 @@ repos:
     -   id: r-local
         name: r-local
         language: r
-        entry: Rscript -e "glue::glue('1+1')"
+        entry: Rscript -e "glue::glue('1+1'); library(stats)"
         additional_dependencies: [glue@1.4.2]
 '''
 
