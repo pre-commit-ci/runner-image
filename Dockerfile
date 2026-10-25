@@ -1,4 +1,4 @@
-FROM ubuntu:noble AS minimal
+FROM ubuntu:resolute AS minimal
 
 ENTRYPOINT ["dumb-init", "--"]
 
@@ -22,12 +22,13 @@ RUN : \
         libgdiplus \
         libgfortran5 \
         libgssapi-krb5-2 \
-        libicu74 \
+        libicu78 \
+        libncurses6 \
         libssl3 \
         libstdc++6 \
         libtirpc3t64 \
         libuv1-dev \
-        libxml2 \
+        libxml2-16 \
         libyaml-dev \
         libz3-dev \
         make \
@@ -42,15 +43,15 @@ RUN : \
 
 RUN : \
     && . /etc/lsb-release \
-    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F23C5A6CF475977595C89F51BA6932366A755776 \
-    && echo deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu $DISTRIB_CODENAME main > /etc/apt/sources.list.d/deadsnakes.list \
+    && curl --silent --location --output /etc/apt/keyrings/deadsnakes.asc 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf23c5a6cf475977595c89f51ba6932366a755776' \
+    && echo deb '[signed-by=/etc/apt/keyrings/deadsnakes.asc]' http://ppa.launchpad.net/deadsnakes/ppa/ubuntu "$DISTRIB_CODENAME" main > /etc/apt/sources.list.d/deadsnakes.list \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         pypy3-dev \
         python3.11-dev \
         python3.11-distutils \
+        python3.12-dev \
         python3.13-dev \
-        python3.14-dev \
         python3.15-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -135,8 +136,8 @@ RUN : \
     && rustup component add clippy rustfmt \
     && :
 
-ARG SWIFT=6.0.3
-ARG SWIFT_SHA256=33e923609f6d89ee455af0a017ae4941ce16878c4940882cbf6a1656de294e8b
+ARG SWIFT=6.4.0
+ARG SWIFT_SHA256=c966d52a195724238fcc082afefac8f274dff1f30cf2ace5f93ec684c17b0026
 ENV \
     PATH=/opt/swift/usr/bin:$PATH \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/swift/usr/lib
@@ -216,6 +217,7 @@ RUN : \
     && rm /tmp/julia.tgz \
     && :
 
+ARG R_SHA256=af1b1d00de82b321a363a92dfd69f8e27ad61746caf5fd0fe40015372ad053a4
 ENV \
     PATH=/opt/r/bin/:$PATH \
     RENV_CONFIG_CACHE_ENABLED=false \
@@ -223,8 +225,9 @@ ENV \
     RENV_PATHS_ROOT=/tmp/renv
 RUN : \
     && echo 'lang: r' \
-    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-24.04-r-4.6.1/r-4.6.1.tgz \
-    && echo '52846b27c46a64bf06f8fc1430757440ada6ec5c5be6d9cf0ab62f46537ded0a /tmp/r.tgz' | sha256sum --check \
+    && . /etc/lsb-release \
+    && curl --silent --location --output /tmp/r.tgz https://github.com/pre-commit-ci/runner-image/releases/download/ubuntu-${DISTRIB_RELEASE}-r-4.6.1/r-4.6.1.tgz \
+    && echo "${R_SHA256} /tmp/r.tgz" | sha256sum --check \
     && mkdir /opt/r \
     && tar -C /opt/r -xf /tmp/r.tgz \
     && rm /tmp/r.tgz \
