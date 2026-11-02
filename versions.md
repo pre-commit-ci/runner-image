@@ -1,26 +1,26 @@
-runner-image:2026-10-24-dcb16fc-full
+runner-image:2026-11-02-993272b-full
 ====================================
 
 to pull this image:
 
 ```bash
-docker pull ghcr.io/pre-commit-ci/runner-image:2026-10-24-dcb16fc-full
+docker pull ghcr.io/pre-commit-ci/runner-image:2026-11-02-993272b-full
 ```
 
 digests:
 
 ```python
-IMAGE = 'runner-image:2026-10-24-dcb16fc'
+IMAGE = 'runner-image:2026-11-02-993272b'
 DIGESTS = (
     Image(
         name='public.ecr.aws/k7o0k5z0/pre-commit-ci-runner-image',
-        minimal='sha256:4fb24e5babe1a1686ce57da7cf6f1cb072b21338d2cfda22fb356bcfff644a8d',  # noqa: E501
-        full='sha256:56196ebfd9949c111e45911fb185a93f069b206186e326b8a4e67bee272878b5',  # noqa: E501
+        minimal='sha256:412dd44a286cbcf5fb478a264c05d108943b13ffc1904422c625cdb608795300',  # noqa: E501
+        full='sha256:d24c2a87b666c7b97f259c9f0be53549ff4e5ca4b1f98986d521be2c480199bf',  # noqa: E501
     ),
     Image(
         name='ghcr.io/pre-commit-ci/runner-image',
-        minimal='sha256:4fb24e5babe1a1686ce57da7cf6f1cb072b21338d2cfda22fb356bcfff644a8d',  # noqa: E501
-        full='sha256:56196ebfd9949c111e45911fb185a93f069b206186e326b8a4e67bee272878b5',  # noqa: E501
+        minimal='sha256:412dd44a286cbcf5fb478a264c05d108943b13ffc1904422c625cdb608795300',  # noqa: E501
+        full='sha256:d24c2a87b666c7b97f259c9f0be53549ff4e5ca4b1f98986d521be2c480199bf',  # noqa: E501
     ),
 )
 ```
@@ -60,26 +60,26 @@ default `python` / `python3`
 
 ```console
 $ python --version --version
-Python 3.14.8 (main, Oct  1 2026, 15:42:08) [GCC 13.3.0]
+Python 3.14.10 (main, Oct 26 2026, 15:29:55) [GCC 13.3.0]
 
 $ python3 --version --version
-Python 3.14.8 (main, Oct  1 2026, 15:42:08) [GCC 13.3.0]
+Python 3.14.10 (main, Oct 26 2026, 15:29:55) [GCC 13.3.0]
 ```
 
 others
 
 ```console
 $ python3.11 --version --version
-Python 3.11.17 (main, Oct  1 2026, 15:41:07) [GCC 13.3.0]
+Python 3.11.18 (main, Oct 26 2026, 15:28:55) [GCC 13.3.0]
 
 $ python3.12 --version --version
 Python 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
 
 $ python3.13 --version --version
-Python 3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]
+Python 3.13.18 (main, Oct 26 2026, 15:28:15) [GCC 13.3.0]
 
 $ python3.15 --version --version
-Python 3.15.0 (main, Oct  9 2026, 14:11:45) [GCC 13.3.0]
+Python 3.15.2 (main, Oct 26 2026, 15:27:56) [GCC 13.3.0]
 
 $ pypy3 --version --version
 Python 3.9.18 (7.3.15+dfsg-1build3, Apr 01 2024, 03:12:48)
